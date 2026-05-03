@@ -1,0 +1,18 @@
+[
+  "Paris,FR", "Lyon,FR", "Nice,FR", "Marseille,FR", "Bordeaux,FR", "London,GB", "Edinburgh,GB", "Manchester,GB", "Berlin,DE", "Munich,DE",
+  "Hamburg,DE", "Frankfurt,DE", "Rome,IT", "Milan,IT", "Venice,IT", "Florence,IT", "Naples,IT", "Madrid,ES", "Barcelona,ES", "Seville,ES",
+  "Valencia,ES", "Lisbon,PT", "Porto,PT", "Amsterdam,NL", "Rotterdam,NL", "Brussels,BE", "Vienna,AT", "Salzburg,AT", "Zurich,CH", "Geneva,CH",
+  "Prague,CZ", "Budapest,HU", "Warsaw,PL", "Krakow,PL", "Copenhagen,DK", "Stockholm,SE", "Oslo,NO", "Helsinki,FI", "Athens,GR", "Dublin,IE",
+  
+  "New York,US", "Los Angeles,US", "Miami,US", "Orlando,US", "Las Vegas,US", "Chicago,US", "San Francisco,US", "Honolulu,US", "Toronto,CA", "Vancouver,CA",
+  "Montreal,CA", "Mexico City,MX", "Cancun,MX", "Rio de Janeiro,BR", "Sao Paulo,BR", "Buenos Aires,AR", "Santiago,CL", "Lima,PE", "Bogota,CO", "Cartagena,CO",
+  
+  "Tokyo,JP", "Kyoto,JP", "Osaka,JP", "Seoul,KR", "Busan,KR", "Beijing,CN", "Shanghai,CN", "Hong Kong,HK", "Taipei,TW", "Bangkok,TH",
+  "Phuket,TH", "Singapore,SG", "Kuala Lumpur,MY", "Jakarta,ID", "Bali,ID",
+  
+  "Sydney,AU", "Melbourne,AU", "Brisbane,AU", "Perth,AU", "Gold Coast,AU", "Auckland,NZ", "Wellington,NZ", "Queenstown,NZ",
+  
+  "Cairo,EG", "Cape Town,ZA", "Johannesburg,ZA", "Marrakech,MA", "Casablanca,MA", "Nairobi,KE", "Lagos,NG",
+  
+  "Dubai,AE", "Abu Dhabi,AE", "Doha,QA", "Riyadh,SA", "Jeddah,SA", "Tel Aviv,IL", "Jerusalem,IL", "Muscat,OM", "Amman,JO", "Beirut,LB"
+]

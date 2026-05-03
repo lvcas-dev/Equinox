@@ -1,0 +1,5 @@
+{
+    "tasks": {
+        "monitorar": "deno run --allow-env --allow-net --allow-read --allow-write index.ts"
+    }
+}

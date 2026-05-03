@@ -1,0 +1,3602 @@
+[
+  {
+    "cidade": "Paris",
+    "clima_bruto": {
+      "temp": 19.45,
+      "temp_min": 18.54,
+      "temp_max": 20.77,
+      "chuva_prob": 801,
+      "vento": 20.376,
+      "timezone": 7200,
+      "lat": 48.8534,
+      "lon": 2.3488,
+      "pais": "FR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "Jardim de Luxemburgo",
+        "contexto": "Clima impecável. Perfeito para um piquenique gourmet nos gramados reais."
+      }
+    }
+  },
+  {
+    "cidade": "Lyon",
+    "clima_bruto": {
+      "temp": 16.6,
+      "temp_min": 16.5,
+      "temp_max": 18.05,
+      "chuva_prob": 804,
+      "vento": 6.444,
+      "timezone": 7200,
+      "lat": 45.75,
+      "lon": 4.5833,
+      "pais": "FR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Nice",
+    "clima_bruto": {
+      "temp": 8.87,
+      "temp_min": 10.06,
+      "temp_max": 10.06,
+      "chuva_prob": 804,
+      "vento": 7.164,
+      "timezone": 7200,
+      "lat": 44,
+      "lon": 7.25,
+      "pais": "FR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Marseille",
+    "clima_bruto": {
+      "temp": 16.61,
+      "temp_min": 16.75,
+      "temp_max": 18.53,
+      "chuva_prob": 804,
+      "vento": 22.608,
+      "timezone": 7200,
+      "lat": 43.3333,
+      "lon": 5.5,
+      "pais": "FR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Bordeaux",
+    "clima_bruto": {
+      "temp": 19,
+      "temp_min": 19.05,
+      "temp_max": 19.15,
+      "chuva_prob": 803,
+      "vento": 7.416,
+      "timezone": 7200,
+      "lat": 44.8404,
+      "lon": -0.5805,
+      "pais": "FR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "London",
+    "clima_bruto": {
+      "temp": 18.48,
+      "temp_min": 17.98,
+      "temp_max": 19.49,
+      "chuva_prob": 804,
+      "vento": 14.832,
+      "timezone": 3600,
+      "lat": 51.5085,
+      "lon": -0.1257,
+      "pais": "GB"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "Borough Market",
+        "contexto": "Aproveite a trégua caminhando e degustando ostras frescas ao ar livre."
+      }
+    }
+  },
+  {
+    "cidade": "Edinburgh",
+    "clima_bruto": {
+      "temp": 7.25,
+      "temp_min": 8.71,
+      "temp_max": 10.44,
+      "chuva_prob": 803,
+      "vento": 12.96,
+      "timezone": 3600,
+      "lat": 55.9521,
+      "lon": -3.1965,
+      "pais": "GB"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Manchester",
+    "clima_bruto": {
+      "temp": 12.37,
+      "temp_min": 12.08,
+      "temp_max": 13.13,
+      "chuva_prob": 804,
+      "vento": 16.668,
+      "timezone": 3600,
+      "lat": 53.4809,
+      "lon": -2.2374,
+      "pais": "GB"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Berlin",
+    "clima_bruto": {
+      "temp": 26.26,
+      "temp_min": 23.34,
+      "temp_max": 27.01,
+      "chuva_prob": 800,
+      "vento": 12.96,
+      "timezone": 7200,
+      "lat": 52.5244,
+      "lon": 13.4105,
+      "pais": "DE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Munich",
+    "clima_bruto": {
+      "temp": 21.43,
+      "temp_min": 21.44,
+      "temp_max": 24.52,
+      "chuva_prob": 804,
+      "vento": 6.012,
+      "timezone": 7200,
+      "lat": 48.1374,
+      "lon": 11.5755,
+      "pais": "DE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Hamburg",
+    "clima_bruto": {
+      "temp": 22.26,
+      "temp_min": 22.88,
+      "temp_max": 22.92,
+      "chuva_prob": 800,
+      "vento": 22.212,
+      "timezone": 7200,
+      "lat": 53.55,
+      "lon": 10,
+      "pais": "DE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Frankfurt",
+    "clima_bruto": {
+      "temp": 22.06,
+      "temp_min": 21.86,
+      "temp_max": 22.94,
+      "chuva_prob": 800,
+      "vento": 16.668,
+      "timezone": 7200,
+      "lat": 50.1167,
+      "lon": 8.6833,
+      "pais": "DE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Rome",
+    "clima_bruto": {
+      "temp": 19.08,
+      "temp_min": 18.69,
+      "temp_max": 20.55,
+      "chuva_prob": 800,
+      "vento": 11.124,
+      "timezone": 7200,
+      "lat": 41.8947,
+      "lon": 12.4839,
+      "pais": "IT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Milan",
+    "clima_bruto": {
+      "temp": 22.24,
+      "temp_min": 21.87,
+      "temp_max": 23.34,
+      "chuva_prob": 804,
+      "vento": 9.648000000000001,
+      "timezone": 7200,
+      "lat": 45.4643,
+      "lon": 9.1895,
+      "pais": "IT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Venice",
+    "clima_bruto": {
+      "temp": 20,
+      "temp_min": 19.97,
+      "temp_max": 22.24,
+      "chuva_prob": 800,
+      "vento": 14.832,
+      "timezone": 7200,
+      "lat": 45.4386,
+      "lon": 12.3267,
+      "pais": "IT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Florence",
+    "clima_bruto": {
+      "temp": 21.84,
+      "temp_min": 19.9,
+      "temp_max": 22.82,
+      "chuva_prob": 800,
+      "vento": 16.668,
+      "timezone": 7200,
+      "lat": 43.7667,
+      "lon": 11.25,
+      "pais": "IT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Naples",
+    "clima_bruto": {
+      "temp": 17.27,
+      "temp_min": 17.36,
+      "temp_max": 19.34,
+      "chuva_prob": 800,
+      "vento": 16.668,
+      "timezone": 7200,
+      "lat": 40.8333,
+      "lon": 14.25,
+      "pais": "IT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Madrid",
+    "clima_bruto": {
+      "temp": 18.29,
+      "temp_min": 18.47,
+      "temp_max": 19.68,
+      "chuva_prob": 801,
+      "vento": 27.791999999999998,
+      "timezone": 7200,
+      "lat": 40.4165,
+      "lon": -3.7026,
+      "pais": "ES"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Barcelona",
+    "clima_bruto": {
+      "temp": 16.92,
+      "temp_min": 16.63,
+      "temp_max": 17.96,
+      "chuva_prob": 802,
+      "vento": 16.668,
+      "timezone": 7200,
+      "lat": 41.3888,
+      "lon": 2.159,
+      "pais": "ES"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Seville",
+    "clima_bruto": {
+      "temp": 21.79,
+      "temp_min": 21.16,
+      "temp_max": 23.37,
+      "chuva_prob": 804,
+      "vento": 19.296000000000003,
+      "timezone": 7200,
+      "lat": 37.3824,
+      "lon": -5.9761,
+      "pais": "ES"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Tecidos em linho ou algodão",
+        "Sapatos loafers respiráveis",
+        "Óculos escuros premium"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Valencia",
+    "clima_bruto": {
+      "temp": 17.86,
+      "temp_min": 17.97,
+      "temp_max": 17.97,
+      "chuva_prob": 804,
+      "vento": 5.796,
+      "timezone": 7200,
+      "lat": 39.3333,
+      "lon": -0.8333,
+      "pais": "ES"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Lisbon",
+    "clima_bruto": {
+      "temp": 17.09,
+      "temp_min": 17.41,
+      "temp_max": 18.4,
+      "chuva_prob": 802,
+      "vento": 20.376,
+      "timezone": 3600,
+      "lat": 38.7167,
+      "lon": -9.1333,
+      "pais": "PT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Porto",
+    "clima_bruto": {
+      "temp": 15.24,
+      "temp_min": 15.73,
+      "temp_max": 16.47,
+      "chuva_prob": 803,
+      "vento": 14.832,
+      "timezone": 3600,
+      "lat": 41.1496,
+      "lon": -8.611,
+      "pais": "PT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Amsterdam",
+    "clima_bruto": {
+      "temp": 15.91,
+      "temp_min": 14.93,
+      "temp_max": 16.61,
+      "chuva_prob": 801,
+      "vento": 12.96,
+      "timezone": 7200,
+      "lat": 52.374,
+      "lon": 4.8897,
+      "pais": "NL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Rotterdam",
+    "clima_bruto": {
+      "temp": 16.28,
+      "temp_min": 15.5,
+      "temp_max": 16.62,
+      "chuva_prob": 301,
+      "vento": 12.96,
+      "timezone": 7200,
+      "lat": 51.9225,
+      "lon": 4.4792,
+      "pais": "NL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Capa de chuva britânica",
+        "Guarda-chuva resistente",
+        "Calçados de couro fechados"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Brussels",
+    "clima_bruto": {
+      "temp": 15.25,
+      "temp_min": 14.84,
+      "temp_max": 16.01,
+      "chuva_prob": 201,
+      "vento": 18.503999999999998,
+      "timezone": 7200,
+      "lat": 50.8504,
+      "lon": 4.3488,
+      "pais": "BE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Gore-Tex impermeável",
+        "Cachecol pesado e luvas",
+        "Botas com alto isolamento"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Vienna",
+    "clima_bruto": {
+      "temp": 21.88,
+      "temp_min": 21.75,
+      "temp_max": 23.27,
+      "chuva_prob": 800,
+      "vento": 25.92,
+      "timezone": 7200,
+      "lat": 48.2085,
+      "lon": 16.3721,
+      "pais": "AT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Salzburg",
+    "clima_bruto": {
+      "temp": 25.95,
+      "temp_min": 22.45,
+      "temp_max": 25.95,
+      "chuva_prob": 801,
+      "vento": 14.832,
+      "timezone": 7200,
+      "lat": 47.7994,
+      "lon": 13.044,
+      "pais": "AT"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Zurich",
+    "clima_bruto": {
+      "temp": 15.95,
+      "temp_min": 14.36,
+      "temp_max": 17.79,
+      "chuva_prob": 803,
+      "vento": 25.92,
+      "timezone": 7200,
+      "lat": 47.3667,
+      "lon": 8.55,
+      "pais": "CH"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Geneva",
+    "clima_bruto": {
+      "temp": 15.41,
+      "temp_min": 16.19,
+      "temp_max": 16.85,
+      "chuva_prob": 804,
+      "vento": 7.416,
+      "timezone": 7200,
+      "lat": 46.2022,
+      "lon": 6.1457,
+      "pais": "CH"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Prague",
+    "clima_bruto": {
+      "temp": 24.22,
+      "temp_min": 23.84,
+      "temp_max": 25.5,
+      "chuva_prob": 800,
+      "vento": 18.503999999999998,
+      "timezone": 7200,
+      "lat": 50.088,
+      "lon": 14.4208,
+      "pais": "CZ"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Jeans de alta gramatura",
+        "T-shirt respirável",
+        "Jaqueta leve de apoio"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Budapest",
+    "clima_bruto": {
+      "temp": 20.19,
+      "temp_min": 18.93,
+      "temp_max": 22.23,
+      "chuva_prob": 800,
+      "vento": 11.124,
+      "timezone": 7200,
+      "lat": 47.498,
+      "lon": 19.0399,
+      "pais": "HU"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Warsaw",
+    "clima_bruto": {
+      "temp": 23.76,
+      "temp_min": 24.32,
+      "temp_max": 24.88,
+      "chuva_prob": 800,
+      "vento": 12.96,
+      "timezone": 7200,
+      "lat": 52.2298,
+      "lon": 21.0118,
+      "pais": "PL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Jeans de alta gramatura",
+        "T-shirt respirável",
+        "Jaqueta leve de apoio"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Krakow",
+    "clima_bruto": {
+      "temp": 20.25,
+      "temp_min": 21.66,
+      "temp_max": 23.11,
+      "chuva_prob": 800,
+      "vento": 7.416,
+      "timezone": 7200,
+      "lat": 50.0833,
+      "lon": 19.9167,
+      "pais": "PL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Jeans de alta gramatura",
+        "T-shirt respirável",
+        "Jaqueta leve de apoio"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Copenhagen",
+    "clima_bruto": {
+      "temp": 14.84,
+      "temp_min": 14.94,
+      "temp_max": 15.64,
+      "chuva_prob": 803,
+      "vento": 9.251999999999999,
+      "timezone": 7200,
+      "lat": 55.6759,
+      "lon": 12.5655,
+      "pais": "DK"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Stockholm",
+    "clima_bruto": {
+      "temp": 7.69,
+      "temp_min": 6.25,
+      "temp_max": 7.84,
+      "chuva_prob": 804,
+      "vento": 1.62,
+      "timezone": 7200,
+      "lat": 59.3326,
+      "lon": 18.0649,
+      "pais": "SE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Oslo",
+    "clima_bruto": {
+      "temp": 10.18,
+      "temp_min": 9.96,
+      "temp_max": 12.92,
+      "chuva_prob": 804,
+      "vento": 11.520000000000001,
+      "timezone": 7200,
+      "lat": 59.9127,
+      "lon": 10.7461,
+      "pais": "NO"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Helsinki",
+    "clima_bruto": {
+      "temp": 11.06,
+      "temp_min": 10.43,
+      "temp_max": 15.25,
+      "chuva_prob": 802,
+      "vento": 9.648000000000001,
+      "timezone": 10800,
+      "lat": 60.1695,
+      "lon": 24.9355,
+      "pais": "FI"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Athens",
+    "clima_bruto": {
+      "temp": 11.64,
+      "temp_min": 11.88,
+      "temp_max": 13.97,
+      "chuva_prob": 802,
+      "vento": 17.712,
+      "timezone": 10800,
+      "lat": 37.9795,
+      "lon": 23.7162,
+      "pais": "GR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Trench coat estruturado",
+        "Malhas ou tricot leve",
+        "Chelsea boots confortáveis"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Dublin",
+    "clima_bruto": {
+      "temp": 12.59,
+      "temp_min": 11.99,
+      "temp_max": 14.03,
+      "chuva_prob": 803,
+      "vento": 16.668,
+      "timezone": 3600,
+      "lat": 53.344,
+      "lon": -6.2672,
+      "pais": "IE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "New York",
+    "clima_bruto": {
+      "temp": 10.54,
+      "temp_min": 11.31,
+      "temp_max": 13.79,
+      "chuva_prob": 803,
+      "vento": 35.172,
+      "timezone": -14400,
+      "lat": 40.7143,
+      "lon": -74.006,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Ventos fortes. Desconforto moderado em áreas muito abertas.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Los Angeles",
+    "clima_bruto": {
+      "temp": 15.87,
+      "temp_min": 14.95,
+      "temp_max": 17.6,
+      "chuva_prob": 804,
+      "vento": 12.96,
+      "timezone": -25200,
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Miami",
+    "clima_bruto": {
+      "temp": 26.46,
+      "temp_min": 25.56,
+      "temp_max": 27.79,
+      "chuva_prob": 500,
+      "vento": 7.416,
+      "timezone": -14400,
+      "lat": 25.7743,
+      "lon": -80.1937,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Corta-vento impermeável",
+        "Acessórios resistentes à água",
+        "Solado aderente"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Orlando",
+    "clima_bruto": {
+      "temp": 24.79,
+      "temp_min": 23.81,
+      "temp_max": 25.62,
+      "chuva_prob": 802,
+      "vento": 20.376,
+      "timezone": -14400,
+      "lat": 28.5383,
+      "lon": -81.3792,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Las Vegas",
+    "clima_bruto": {
+      "temp": 26.26,
+      "temp_min": 26.38,
+      "temp_max": 28.47,
+      "chuva_prob": 800,
+      "vento": 14.832,
+      "timezone": -25200,
+      "lat": 36.175,
+      "lon": -115.1372,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Chicago",
+    "clima_bruto": {
+      "temp": 10.96,
+      "temp_min": 10.68,
+      "temp_max": 12.94,
+      "chuva_prob": 804,
+      "vento": 9.648000000000001,
+      "timezone": -18000,
+      "lat": 41.85,
+      "lon": -87.65,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "San Francisco",
+    "clima_bruto": {
+      "temp": 13.73,
+      "temp_min": 12.88,
+      "temp_max": 15.87,
+      "chuva_prob": 804,
+      "vento": 18.503999999999998,
+      "timezone": -25200,
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Honolulu",
+    "clima_bruto": {
+      "temp": 22.84,
+      "temp_min": 21.82,
+      "temp_max": 23.63,
+      "chuva_prob": 500,
+      "vento": 9.251999999999999,
+      "timezone": -36000,
+      "lat": 21.3069,
+      "lon": -157.8583,
+      "pais": "US"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Tecidos de secagem rápida",
+        "Calçados à prova d'água",
+        "Mochila impermeável"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Toronto",
+    "clima_bruto": {
+      "temp": 10.41,
+      "temp_min": 11.29,
+      "temp_max": 13.06,
+      "chuva_prob": 803,
+      "vento": 22.212,
+      "timezone": -14400,
+      "lat": 43.7001,
+      "lon": -79.4163,
+      "pais": "CA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Vancouver",
+    "clima_bruto": {
+      "temp": 21.07,
+      "temp_min": 19.02,
+      "temp_max": 23.32,
+      "chuva_prob": 804,
+      "vento": 1.836,
+      "timezone": -25200,
+      "lat": 49.2497,
+      "lon": -123.1193,
+      "pais": "CA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Jeans de alta gramatura",
+        "T-shirt respirável",
+        "Jaqueta leve de apoio"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Montreal",
+    "clima_bruto": {
+      "temp": 6.25,
+      "temp_min": 8.48,
+      "temp_max": 10.79,
+      "chuva_prob": 804,
+      "vento": 24.084000000000003,
+      "timezone": -14400,
+      "lat": 45.5088,
+      "lon": -73.5878,
+      "pais": "CA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Outerwear corta-vento pesado",
+        "Base layers térmicas",
+        "Botas tratoradas de neve"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Mexico City",
+    "clima_bruto": {
+      "temp": 21.14,
+      "temp_min": 21.64,
+      "temp_max": 21.96,
+      "chuva_prob": 500,
+      "vento": 9.251999999999999,
+      "timezone": -21600,
+      "lat": 19.4285,
+      "lon": -99.1277,
+      "pais": "MX"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Tecidos de secagem rápida",
+        "Calçados à prova d'água",
+        "Mochila impermeável"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Cancun",
+    "clima_bruto": {
+      "temp": 38.96,
+      "temp_min": 31.7,
+      "temp_max": 31.96,
+      "chuva_prob": 500,
+      "vento": 18.503999999999998,
+      "timezone": -18000,
+      "lat": 21.1743,
+      "lon": -86.8466,
+      "pais": "MX"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Tecidos de secagem rápida",
+        "Calçados à prova d'água",
+        "Mochila impermeável"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Rio de Janeiro",
+    "clima_bruto": {
+      "temp": 25.11,
+      "temp_min": 24,
+      "temp_max": 25.97,
+      "chuva_prob": 804,
+      "vento": 16.668,
+      "timezone": -10800,
+      "lat": -22.9028,
+      "lon": -43.2075,
+      "pais": "BR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Sao Paulo",
+    "clima_bruto": {
+      "temp": 17.43,
+      "temp_min": 16.36,
+      "temp_max": 18.2,
+      "chuva_prob": 804,
+      "vento": 22.212,
+      "timezone": -10800,
+      "lat": -23.5475,
+      "lon": -46.6361,
+      "pais": "BR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta corta-vento leve",
+        "Calças de tecido confortável",
+        "Sneakers casuais"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Buenos Aires",
+    "clima_bruto": {
+      "temp": 15.74,
+      "temp_min": 15.82,
+      "temp_max": 17.75,
+      "chuva_prob": 802,
+      "vento": 1.62,
+      "timezone": -10800,
+      "lat": -34.6132,
+      "lon": -58.3772,
+      "pais": "AR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Santiago",
+    "clima_bruto": {
+      "temp": 23.19,
+      "temp_min": 22.53,
+      "temp_max": 24.77,
+      "chuva_prob": 800,
+      "vento": 9.251999999999999,
+      "timezone": -14400,
+      "lat": -33.4569,
+      "lon": -70.6483,
+      "pais": "CL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Lima",
+    "clima_bruto": {
+      "temp": 21.22,
+      "temp_min": 21.14,
+      "temp_max": 21.14,
+      "chuva_prob": 800,
+      "vento": 11.124,
+      "timezone": -18000,
+      "lat": -12.0432,
+      "lon": -77.0282,
+      "pais": "PE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Bogota",
+    "clima_bruto": {
+      "temp": 14.82,
+      "temp_min": 14.53,
+      "temp_max": 17.5,
+      "chuva_prob": 803,
+      "vento": 6.12,
+      "timezone": -18000,
+      "lat": 4.6097,
+      "lon": -74.0817,
+      "pais": "CO"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta corta-vento leve",
+        "Calças de tecido confortável",
+        "Sneakers casuais"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Cartagena",
+    "clima_bruto": {
+      "temp": 35.93,
+      "temp_min": 30.79,
+      "temp_max": 30.79,
+      "chuva_prob": 801,
+      "vento": 16.668,
+      "timezone": -18000,
+      "lat": 10.3997,
+      "lon": -75.5144,
+      "pais": "CO"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Fadiga térmica provável. Intercale caminhadas com pausas na sombra.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "🔥 Calor Extremo",
+        "🍹 Refúgios Sombreados",
+        "🌙 Vida Noturna"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Terraços & Oásis Urbanos",
+        "contexto": "Fuja do mormaço intenso. O momento exige a exploração da alta coquetelaria em rooftops ventilados ou espaços premium climatizados."
+      }
+    }
+  },
+  {
+    "cidade": "Tokyo",
+    "clima_bruto": {
+      "temp": 19.65,
+      "temp_min": 18.21,
+      "temp_max": 19.8,
+      "chuva_prob": 520,
+      "vento": 44.46,
+      "timezone": 32400,
+      "lat": 35.6895,
+      "lon": 139.6917,
+      "pais": "JP"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Corta-vento impermeável",
+        "Acessórios resistentes à água",
+        "Solado aderente"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "Omoide Yokocho",
+        "contexto": "A chuva no neon cria a atmosfera cyberpunk ideal. Busque izakayas cobertos."
+      }
+    }
+  },
+  {
+    "cidade": "Kyoto",
+    "clima_bruto": {
+      "temp": 18.74,
+      "temp_min": 16.64,
+      "temp_max": 18.7,
+      "chuva_prob": 500,
+      "vento": 14.004000000000001,
+      "timezone": 32400,
+      "lat": 35.0211,
+      "lon": 135.7538,
+      "pais": "JP"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Corta-vento impermeável",
+        "Acessórios resistentes à água",
+        "Solado aderente"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Osaka",
+    "clima_bruto": {
+      "temp": 19.02,
+      "temp_min": 17.73,
+      "temp_max": 19.93,
+      "chuva_prob": 502,
+      "vento": 7.416,
+      "timezone": 32400,
+      "lat": 34.6937,
+      "lon": 135.5022,
+      "pais": "JP"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Corta-vento impermeável",
+        "Acessórios resistentes à água",
+        "Solado aderente"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Seoul",
+    "clima_bruto": {
+      "temp": 6.72,
+      "temp_min": 9.76,
+      "temp_max": 9.78,
+      "chuva_prob": 701,
+      "vento": 24.084000000000003,
+      "timezone": 32400,
+      "lat": 37.5683,
+      "lon": 126.9778,
+      "pais": "KR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Busan",
+    "clima_bruto": {
+      "temp": 13.32,
+      "temp_min": 13.99,
+      "temp_max": 13.99,
+      "chuva_prob": 803,
+      "vento": 12.96,
+      "timezone": 32400,
+      "lat": 35.1028,
+      "lon": 129.0403,
+      "pais": "KR"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Beijing",
+    "clima_bruto": {
+      "temp": 8.94,
+      "temp_min": 8.94,
+      "temp_max": 8.94,
+      "chuva_prob": 800,
+      "vento": 4.6080000000000005,
+      "timezone": 28800,
+      "lat": 39.9075,
+      "lon": 116.3972,
+      "pais": "CN"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Shanghai",
+    "clima_bruto": {
+      "temp": 15.58,
+      "temp_min": 15.92,
+      "temp_max": 15.92,
+      "chuva_prob": 800,
+      "vento": 3.6,
+      "timezone": 28800,
+      "lat": 31.2222,
+      "lon": 121.4581,
+      "pais": "CN"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Hong Kong",
+    "clima_bruto": {
+      "temp": 23.51,
+      "temp_min": 22.19,
+      "temp_max": 23.03,
+      "chuva_prob": 804,
+      "vento": 9.648000000000001,
+      "timezone": 28800,
+      "lat": 22.2855,
+      "lon": 114.1577,
+      "pais": "HK"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Taipei",
+    "clima_bruto": {
+      "temp": 23.05,
+      "temp_min": 21.85,
+      "temp_max": 23.91,
+      "chuva_prob": 803,
+      "vento": 25.92,
+      "timezone": 28800,
+      "lat": 25.0478,
+      "lon": 121.5319,
+      "pais": "TW"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Bangkok",
+    "clima_bruto": {
+      "temp": 36.01,
+      "temp_min": 30.94,
+      "temp_max": 30.94,
+      "chuva_prob": 804,
+      "vento": 18.540000000000003,
+      "timezone": 25200,
+      "lat": 13.75,
+      "lon": 100.5167,
+      "pais": "TH"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Fadiga térmica provável. Intercale caminhadas com pausas na sombra.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "🔥 Calor Extremo",
+        "🍹 Refúgios Sombreados",
+        "🌙 Vida Noturna"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Terraços & Oásis Urbanos",
+        "contexto": "Fuja do mormaço intenso. O momento exige a exploração da alta coquetelaria em rooftops ventilados ou espaços premium climatizados."
+      }
+    }
+  },
+  {
+    "cidade": "Phuket",
+    "clima_bruto": {
+      "temp": 26.3,
+      "temp_min": 25.12,
+      "temp_max": 30.61,
+      "chuva_prob": 500,
+      "vento": 3.708,
+      "timezone": 25200,
+      "lat": 8,
+      "lon": 98.25,
+      "pais": "TH"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Tecidos de secagem rápida",
+        "Calçados à prova d'água",
+        "Mochila impermeável"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Singapore",
+    "clima_bruto": {
+      "temp": 30.83,
+      "temp_min": 25.95,
+      "temp_max": 27.74,
+      "chuva_prob": 803,
+      "vento": 5.5440000000000005,
+      "timezone": 28800,
+      "lat": 1.2897,
+      "lon": 103.8501,
+      "pais": "SG"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Kuala Lumpur",
+    "clima_bruto": {
+      "temp": 26.4,
+      "temp_min": 26.4,
+      "temp_max": 26.75,
+      "chuva_prob": 801,
+      "vento": 1.836,
+      "timezone": 28800,
+      "lat": 3.1431,
+      "lon": 101.6865,
+      "pais": "MY"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Jakarta",
+    "clima_bruto": {
+      "temp": 26.48,
+      "temp_min": 26.05,
+      "temp_max": 26.96,
+      "chuva_prob": 801,
+      "vento": 7.416,
+      "timezone": 25200,
+      "lat": -6.2146,
+      "lon": 106.8451,
+      "pais": "ID"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Bali",
+    "clima_bruto": {
+      "temp": 25.03,
+      "temp_min": 24.2,
+      "temp_max": 24.2,
+      "chuva_prob": 803,
+      "vento": 8.208,
+      "timezone": 28800,
+      "lat": -8.5,
+      "lon": 115,
+      "pais": "ID"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Sydney",
+    "clima_bruto": {
+      "temp": 17.05,
+      "temp_min": 15.27,
+      "temp_max": 17.9,
+      "chuva_prob": 801,
+      "vento": 12.636,
+      "timezone": 36000,
+      "lat": -33.8679,
+      "lon": 151.2073,
+      "pais": "AU"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Melbourne",
+    "clima_bruto": {
+      "temp": 12.7,
+      "temp_min": 11.86,
+      "temp_max": 13.7,
+      "chuva_prob": 801,
+      "vento": 25.92,
+      "timezone": 36000,
+      "lat": -37.814,
+      "lon": 144.9633,
+      "pais": "AU"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Brisbane",
+    "clima_bruto": {
+      "temp": 17.62,
+      "temp_min": 16.77,
+      "temp_max": 18.17,
+      "chuva_prob": 801,
+      "vento": 14.832,
+      "timezone": 36000,
+      "lat": -27.4679,
+      "lon": 153.0281,
+      "pais": "AU"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Perth",
+    "clima_bruto": {
+      "temp": 11.78,
+      "temp_min": 11.11,
+      "temp_max": 13.8,
+      "chuva_prob": 800,
+      "vento": 10.908,
+      "timezone": 28800,
+      "lat": -31.9333,
+      "lon": 115.8333,
+      "pais": "AU"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Gold Coast",
+    "clima_bruto": {
+      "temp": 19.88,
+      "temp_min": 17.36,
+      "temp_max": 20.02,
+      "chuva_prob": 803,
+      "vento": 7.416,
+      "timezone": 36000,
+      "lat": -28,
+      "lon": 153.4333,
+      "pais": "AU"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Auckland",
+    "clima_bruto": {
+      "temp": 11.51,
+      "temp_min": 11.34,
+      "temp_max": 13.24,
+      "chuva_prob": 804,
+      "vento": 9.648000000000001,
+      "timezone": 43200,
+      "lat": -36.8667,
+      "lon": 174.7667,
+      "pais": "NZ"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Wellington",
+    "clima_bruto": {
+      "temp": 12.09,
+      "temp_min": 12.53,
+      "temp_max": 13.14,
+      "chuva_prob": 803,
+      "vento": 24.084000000000003,
+      "timezone": 43200,
+      "lat": -41.2866,
+      "lon": 174.7756,
+      "pais": "NZ"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Queenstown",
+    "clima_bruto": {
+      "temp": 2.81,
+      "temp_min": 2.81,
+      "temp_max": 2.81,
+      "chuva_prob": 803,
+      "vento": 3.492,
+      "timezone": 43200,
+      "lat": -45.0302,
+      "lon": 168.6627,
+      "pais": "NZ"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Frio rigoroso. Caminhadas curtas com roupas de alto isolamento.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Cairo",
+    "clima_bruto": {
+      "temp": 21.84,
+      "temp_min": 21.9,
+      "temp_max": 22.42,
+      "chuva_prob": 802,
+      "vento": 27.791999999999998,
+      "timezone": 10800,
+      "lat": 30.0626,
+      "lon": 31.2497,
+      "pais": "EG"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Cape Town",
+    "clima_bruto": {
+      "temp": 16.79,
+      "temp_min": 16.06,
+      "temp_max": 17.55,
+      "chuva_prob": 300,
+      "vento": 20.376,
+      "timezone": 7200,
+      "lat": -33.9258,
+      "lon": 18.4232,
+      "pais": "ZA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Baixa",
+        "descricao": "Precipitação ativa. Priorize deslocamentos curtos via app/táxi.",
+        "cor": "#ef4444"
+      },
+      "vibe_tags": [
+        "💧 Alta Umidade",
+        "🍷 Foco Intimista",
+        "🏛️ Exploração Indoor"
+      ],
+      "vestuario_checklist": [
+        "Corta-vento impermeável",
+        "Acessórios resistentes à água",
+        "Solado aderente"
+      ],
+      "roteiro_ideal": "Museus, Galerias de Arte de vanguarda e espetáculos fechados.",
+      "local_premium": {
+        "nome": "✦ Alta Gastronomia & Indoor",
+        "contexto": "A precipitação sugere mudança de rota. Busque bistrôs conceituados, galerias de arte modernas ou reserve lounges intimistas para uma noite protegida."
+      }
+    }
+  },
+  {
+    "cidade": "Johannesburg",
+    "clima_bruto": {
+      "temp": 17.05,
+      "temp_min": 16.04,
+      "temp_max": 18.28,
+      "chuva_prob": 800,
+      "vento": 9.756,
+      "timezone": 7200,
+      "lat": -26.2023,
+      "lon": 28.0436,
+      "pais": "ZA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Marrakech",
+    "clima_bruto": {
+      "temp": 27.44,
+      "temp_min": 28.04,
+      "temp_max": 28.04,
+      "chuva_prob": 800,
+      "vento": 11.124,
+      "timezone": 3600,
+      "lat": 31.6315,
+      "lon": -8.0083,
+      "pais": "MA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Casablanca",
+    "clima_bruto": {
+      "temp": 20.78,
+      "temp_min": 20.74,
+      "temp_max": 23.12,
+      "chuva_prob": 802,
+      "vento": 11.124,
+      "timezone": 3600,
+      "lat": 33.5928,
+      "lon": -7.6192,
+      "pais": "MA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Nairobi",
+    "clima_bruto": {
+      "temp": 17.12,
+      "temp_min": 16.99,
+      "temp_max": 16.99,
+      "chuva_prob": 803,
+      "vento": 4.14,
+      "timezone": 10800,
+      "lat": -1.2833,
+      "lon": 36.8167,
+      "pais": "KE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta corta-vento leve",
+        "Calças de tecido confortável",
+        "Sneakers casuais"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Lagos",
+    "clima_bruto": {
+      "temp": 34.85,
+      "temp_min": 29.73,
+      "temp_max": 29.73,
+      "chuva_prob": 804,
+      "vento": 10.188,
+      "timezone": 3600,
+      "lat": 6.5833,
+      "lon": 3.75,
+      "pais": "NG"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Fadiga térmica provável. Intercale caminhadas com pausas na sombra.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "🔥 Calor Extremo",
+        "🍹 Refúgios Sombreados",
+        "🌙 Vida Noturna"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Terraços & Oásis Urbanos",
+        "contexto": "Fuja do mormaço intenso. O momento exige a exploração da alta coquetelaria em rooftops ventilados ou espaços premium climatizados."
+      }
+    }
+  },
+  {
+    "cidade": "Dubai",
+    "clima_bruto": {
+      "temp": 33.06,
+      "temp_min": 33.14,
+      "temp_max": 33.96,
+      "chuva_prob": 800,
+      "vento": 16.668,
+      "timezone": 14400,
+      "lat": 25.2582,
+      "lon": 55.3047,
+      "pais": "AE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Fadiga térmica provável. Intercale caminhadas com pausas na sombra.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "🔥 Calor Extremo",
+        "🍹 Refúgios Sombreados",
+        "🌙 Vida Noturna"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Terraços & Oásis Urbanos",
+        "contexto": "Fuja do mormaço intenso. O momento exige a exploração da alta coquetelaria em rooftops ventilados ou espaços premium climatizados."
+      }
+    }
+  },
+  {
+    "cidade": "Abu Dhabi",
+    "clima_bruto": {
+      "temp": 32.25,
+      "temp_min": 31.01,
+      "temp_max": 32.06,
+      "chuva_prob": 800,
+      "vento": 11.124,
+      "timezone": 14400,
+      "lat": 24.4667,
+      "lon": 54.3667,
+      "pais": "AE"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Fadiga térmica provável. Intercale caminhadas com pausas na sombra.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "🔥 Calor Extremo",
+        "🍹 Refúgios Sombreados",
+        "🌙 Vida Noturna"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Terraços & Oásis Urbanos",
+        "contexto": "Fuja do mormaço intenso. O momento exige a exploração da alta coquetelaria em rooftops ventilados ou espaços premium climatizados."
+      }
+    }
+  },
+  {
+    "cidade": "Doha",
+    "clima_bruto": {
+      "temp": 31.19,
+      "temp_min": 29.94,
+      "temp_max": 29.99,
+      "chuva_prob": 800,
+      "vento": 11.124,
+      "timezone": 10800,
+      "lat": 25.2867,
+      "lon": 51.5333,
+      "pais": "QA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Riyadh",
+    "clima_bruto": {
+      "temp": 31.05,
+      "temp_min": 33.52,
+      "temp_max": 33.52,
+      "chuva_prob": 800,
+      "vento": 15.912,
+      "timezone": 10800,
+      "lat": 24.6877,
+      "lon": 46.7219,
+      "pais": "SA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Jeddah",
+    "clima_bruto": {
+      "temp": 31.01,
+      "temp_min": 32.92,
+      "temp_max": 32.92,
+      "chuva_prob": 800,
+      "vento": 9.251999999999999,
+      "timezone": 10800,
+      "lat": 21.5169,
+      "lon": 39.2192,
+      "pais": "SA"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Roupas vazadas/resort wear",
+        "Chapéu de abas largas",
+        "Protetor solar alta fixação"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Tel Aviv",
+    "clima_bruto": {
+      "temp": 18.98,
+      "temp_min": 18.43,
+      "temp_max": 19.14,
+      "chuva_prob": 803,
+      "vento": 18.503999999999998,
+      "timezone": 10800,
+      "lat": 32.0833,
+      "lon": 34.8,
+      "pais": "IL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "🍃 Clima Perfeito",
+        "🚶‍♂️ Walking Tours",
+        "📸 Fotografia Externa"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Exploração Plena a Céu Aberto",
+        "contexto": "Condições atmosféricas sublimes. Perca-se pela arquitetura da cidade, desfrute de cafés nas calçadas e garanta vistas em mirantes a céu aberto."
+      }
+    }
+  },
+  {
+    "cidade": "Jerusalem",
+    "clima_bruto": {
+      "temp": 14.65,
+      "temp_min": 14.81,
+      "temp_max": 14.84,
+      "chuva_prob": 802,
+      "vento": 17.712,
+      "timezone": 10800,
+      "lat": 31.769,
+      "lon": 35.2163,
+      "pais": "IL"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Muscat",
+    "clima_bruto": {
+      "temp": 34.73,
+      "temp_min": 35.62,
+      "temp_max": 35.62,
+      "chuva_prob": 800,
+      "vento": 13.824,
+      "timezone": 14400,
+      "lat": 23.6139,
+      "lon": 58.5922,
+      "pais": "OM"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Média",
+        "descricao": "Fadiga térmica provável. Intercale caminhadas com pausas na sombra.",
+        "cor": "#eab308"
+      },
+      "vibe_tags": [
+        "🔥 Calor Extremo",
+        "🍹 Refúgios Sombreados",
+        "🌙 Vida Noturna"
+      ],
+      "vestuario_checklist": [
+        "Streetwear minimalista",
+        "Cortes oversized frescos",
+        "Calçados leves para asfalto"
+      ],
+      "roteiro_ideal": "Parques Aquáticos, praias ou Museus climatizados à tarde.",
+      "local_premium": {
+        "nome": "✦ Terraços & Oásis Urbanos",
+        "contexto": "Fuja do mormaço intenso. O momento exige a exploração da alta coquetelaria em rooftops ventilados ou espaços premium climatizados."
+      }
+    }
+  },
+  {
+    "cidade": "Amman",
+    "clima_bruto": {
+      "temp": 17.62,
+      "temp_min": 17.75,
+      "temp_max": 17.75,
+      "chuva_prob": 800,
+      "vento": 27.648,
+      "timezone": 10800,
+      "lat": 31.9552,
+      "lon": 35.945,
+      "pais": "JO"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  },
+  {
+    "cidade": "Beirut",
+    "clima_bruto": {
+      "temp": 14.47,
+      "temp_min": 14.65,
+      "temp_max": 14.65,
+      "chuva_prob": 804,
+      "vento": 28.224,
+      "timezone": 10800,
+      "lat": 33.8889,
+      "lon": 35.4944,
+      "pais": "LB"
+    },
+    "turista": {
+      "viabilidade_outdoor": {
+        "nivel": "Alta",
+        "descricao": "Excelentes condições. Explore a pé livremente.",
+        "cor": "#22c55e"
+      },
+      "vibe_tags": [
+        "❄️ Frio Acentuado",
+        "🎷 Jazz & Aconchego",
+        "☕ Rotas Gastronômicas"
+      ],
+      "vestuario_checklist": [
+        "Jaqueta de couro ou parka",
+        "Sobreposições em moletom",
+        "Tênis de silhueta robusta"
+      ],
+      "roteiro_ideal": "Exploração a pé, arquitetura ao ar livre e mirantes com vista panorâmica.",
+      "local_premium": {
+        "nome": "✦ Conforto Térmico & Tradição",
+        "contexto": "A temperatura convida ao acolhimento. Excelente janela para degustar vinhos locais encorpados em adegas subterrâneas ou restaurantes com aquecimento."
+      }
+    }
+  }
+]
