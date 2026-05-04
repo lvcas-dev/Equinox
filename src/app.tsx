@@ -286,6 +286,23 @@ export default function App() {
   useEffect(() => { localStorage.setItem('equinox_visao', visaoApresentacao); }, [visaoApresentacao]);
   useEffect(() => { localStorage.setItem('equinox_unidade', unidade); }, [unidade]);
 
+  // ── LÓGICA DO ONBOARDING ──
+  const [mostrarOnboarding, setMostrarOnboarding] = useState(false);
+
+  useEffect(() => {
+    // Quando o app abre, checa se o usuário já passou pelo tutorial
+    const jaViuTutorial = localStorage.getItem('equinox_onboarding_concluido');
+    if (!jaViuTutorial) {
+      setMostrarOnboarding(true);
+    }
+  }, []);
+
+  const fecharOnboarding = () => {
+    // Salva na memória que o usuário já viu o modal e fecha a tela
+    localStorage.setItem('equinox_onboarding_concluido', 'true');
+    setMostrarOnboarding(false);
+  };
+
   useEffect(() => { 
     setLimiteExibicao(filtroAtivo === 'Todos' && termoBusca === '' ? 4 : 12); 
   }, [filtroAtivo, termoBusca]);
@@ -1013,6 +1030,45 @@ export default function App() {
           </div>
         </div>
       )}
-    </div>
+      {/* ── MODAL DE ONBOARDING (Boas-vindas) ── */}
+      {mostrarOnboarding && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4 animate-in fade-in duration-500">
+          <div className="bg-slate-900 border border-slate-700/50 rounded-3xl shadow-2xl max-w-md w-full p-8 text-center relative overflow-hidden">
+            
+            {/* Efeitos de Luz no Fundo do Modal */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="relative z-10">
+              {/* Ícone de Globo Terrestre */}
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
+              <h2 className="text-2xl font-bold text-slate-100 mb-3 tracking-tight">
+                Bem-vindo ao Equinox
+              </h2>
+              
+              <p className="text-slate-400 mb-8 leading-relaxed text-sm">
+                Sua nova bússola para o clima global. Descubra os melhores destinos, analise tendências históricas e planeje sua próxima jornada guiado por dados em tempo real.
+              </p>
+              
+              <button 
+                onClick={fecharOnboarding}
+                className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium rounded-xl transition-all shadow-md hover:shadow-blue-500/25 active:scale-[0.98] flex items-center justify-center gap-2"
+              >
+                Começar a Explorar
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+    </div> // <-- Esta é a div principal que já existe no seu código, não duplique ela.
   );
 }
