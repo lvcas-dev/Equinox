@@ -330,6 +330,85 @@ export default function App() {
     return () => clearInterval(intervalo);
   }, []);
 
+// ── MOTOR DE INTELIGÊNCIA ARTIFICIAL (BLINDADO) ──
+  const gerarDossiePremium = async () => {
+    if (!cidadeSelecionada) return;
+
+    setEstadoRoteiroIA('carregando');
+
+    try {
+      // 1. Segurança: Puxa a chave e verifica se ela realmente existe
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("Chave de API não encontrada. Verifique seu arquivo .env.");
+      }
+
+      // 2. Configuração: Coloque aqui o modelo que estiver liberado na sua cota
+      // Sugestão de fallback estável: "gemini-1.5-pro" ou "gemini-1.5-flash"
+      const MODELO_IA = "gemini-2.5-flash";
+
+      // 3. O Prompt Engessado
+      const prompt = `
+        Atue como um concierge de viagens de luxo e explorador global para o app Equinox.
+        Crie um dossiê premium para a cidade de ${cidadeSelecionada.cidade} (${cidadeSelecionada.clima_bruto?.pais || 'Desconhecido'}).
+        O usuário tem um perfil de viagem focado em: ${perfilViagem}.
+        A temperatura base para referência é ${cidadeSelecionada.temperatura}°C.
+
+        RETORNE APENAS UM JSON VÁLIDO. NENHUM TEXTO ADICIONAL.
+        Formato obrigatório:
+        {
+          "vibe_local": "Uma frase cinematográfica sobre a atmosfera da cidade",
+          "dica_premium": "Um segredo local ou recomendação fora do clichê turístico",
+          "itens_indispensaveis": ["item 1", "item 2", "item 3"]
+        }
+      `;
+
+      // 4. A Requisição (com POST e Headers obrigatórios)
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELO_IA}:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { 
+            response_mime_type: "application/json",
+            temperature: 0.7 // Garante um pouco de criatividade, mas mantém a estrutura
+          }
+        })
+      });
+
+      // 5. O Detetive: Se a porta não abrir, lê exatamente o motivo do Google
+      if (!response.ok) {
+        const erroDoGoogle = await response.json();
+        console.error("🚨 O Google recusou a requisição. Motivo detalhado:", erroDoGoogle);
+        throw new Error(erroDoGoogle.error?.message || "Erro desconhecido retornado pela API");
+      }
+
+      // 6. Extração dos Dados
+      const data = await response.json();
+      let respostaTexto = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+      if (!respostaTexto) {
+        throw new Error("A IA devolveu um pacote vazio. Possível bloqueio de segurança.");
+      }
+
+      // 7. Limpeza Ninja: Remove crases e marcações Markdown residuais
+      respostaTexto = respostaTexto.replace(/```json/gi, '').replace(/```/g, '').trim();
+
+      // 8. Conversão e Sucesso
+      const dossieJson = JSON.parse(respostaTexto);
+      setDossieAtual(dossieJson);
+      setEstadoRoteiroIA('pronto');
+
+    } catch (error: any) {
+      // 9. Tratamento de Queda: Mostra no console e alerta o usuário
+      console.error("❌ Erro interno do motor:", error);
+      setEstadoRoteiroIA('setup'); 
+      alert(`Falha na IA: ${error.message || "Turbulência na conexão."}`);
+    }
+  };
+
   useEffect(() => {
     if (cidadeSelecionada) {
       const dadosFrescos = dadosClima.find(c => c?.cidade === cidadeSelecionada.cidade);
@@ -465,7 +544,7 @@ export default function App() {
             <h2 className="text-xs md:text-md text-blue-400 font-black tracking-[0.4em] uppercase mb-10">
               {t.slogan}
             </h2>
-            <button 
+            <button type="button"
               onClick={iniciarExploracao} 
               className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest px-8 md:px-10 py-3 md:py-4 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.3)] text-sm md:text-base"
             >
@@ -543,13 +622,13 @@ export default function App() {
             <span className="text-blue-500">{ICONE_DO_APP}</span> {NOME_DO_APP}
           </h1>
           <div className="flex bg-black/30 p-1 rounded-lg border border-white/10">
-             <button 
+             <button type="button" 
                onClick={() => setIdioma('PT')} 
                className={`px-2 py-1 text-[9px] font-black rounded-md transition-all ${idioma === 'PT' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
              >
                PT
              </button>
-             <button 
+             <button type="button" 
                onClick={() => setIdioma('EN')} 
                className={`px-2 py-1 text-[9px] font-black rounded-md transition-all ${idioma === 'EN' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
              >
@@ -560,13 +639,13 @@ export default function App() {
 
         <div className="flex w-full md:w-auto justify-between gap-3 items-center">
           <div className="bg-black/30 p-1.5 rounded-full flex border border-white/10">
-            <button 
+            <button type="button" 
               onClick={() => setVisaoApresentacao('lista')} 
               className={`px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider transition-all duration-300 ${visaoApresentacao === 'lista' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
             >
               {t.destinos}
             </button>
-            <button 
+            <button type="button" 
               onClick={() => setVisaoApresentacao('mapa')} 
               className={`px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider transition-all duration-300 ${visaoApresentacao === 'mapa' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
             >
@@ -574,13 +653,13 @@ export default function App() {
             </button>
           </div>
           <div className="bg-black/30 p-1.5 rounded-full flex border border-white/10">
-             <button 
+             <button type="button" 
                onClick={() => setUnidade('C')} 
                className={`px-3 md:px-4 py-1.5 text-[10px] font-black rounded-full transition-all ${unidade === 'C' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
              >
                °C
              </button>
-             <button 
+             <button type="button" 
                onClick={() => setUnidade('F')} 
                className={`px-3 md:px-4 py-1.5 text-[10px] font-black rounded-full transition-all ${unidade === 'F' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
              >
@@ -614,7 +693,7 @@ export default function App() {
             </div>
             
             <div className="relative w-full sm:w-auto">
-              <button 
+              <button type="button" 
                 onClick={() => setMenuFiltroAberto(!menuFiltroAberto)} 
                 className="w-full sm:w-auto px-5 py-4 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all bg-[#0b1120]/60 backdrop-blur-xl border border-white/10 text-slate-200 flex justify-between items-center gap-4 hover:bg-[#0b1120]/80 shadow-xl"
               >
@@ -627,7 +706,7 @@ export default function App() {
                   <div className="fixed inset-0 z-[190]" onClick={() => setMenuFiltroAberto(false)} />
                   <div className="absolute right-0 top-full mt-2 w-full sm:w-64 bg-[#0b1120]/95 border border-white/10 rounded-xl shadow-2xl z-[200] overflow-y-auto max-h-96 flex flex-col backdrop-blur-2xl animate-in slide-in-from-top-2 duration-200 no-scrollbar">
                     {REGIOES_FILTRO.map(r => (
-                      <button 
+                      <button type="button"
                         key={r} 
                         onClick={() => { setFiltroAtivo(r); setMenuFiltroAberto(false); }} 
                         className={`px-5 py-4 text-left text-[10px] font-bold uppercase tracking-wider hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors ${filtroAtivo === r ? 'text-blue-400 bg-blue-500/10' : 'text-slate-300'}`}
@@ -711,7 +790,7 @@ export default function App() {
             
             <div className="flex flex-col w-full shrink-0 mb-4 md:mb-6 gap-3">
               <div className="flex justify-end w-full">
-                <button 
+                <button type="button"
                   onClick={fecharModal} 
                   className="bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl transition-all border border-white/10 flex items-center justify-center gap-2 text-[10px] md:text-xs font-black uppercase tracking-widest shadow-sm group"
                 >
@@ -721,13 +800,13 @@ export default function App() {
               </div>
 
               <div className="flex md:hidden w-full bg-black/40 rounded-xl p-1 border border-white/10 shadow-inner">
-                 <button 
+                 <button type="button"
                    onClick={() => setAbaMobileAtiva('panorama')} 
                    className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
                  >
                    {t.panorama}
                  </button>
-                 <button 
+                 <button type="button"
                    onClick={() => setAbaMobileAtiva('premium')} 
                    className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'premium' ? 'bg-purple-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
                  >
@@ -761,7 +840,64 @@ export default function App() {
                 </div>
 
                 <div className="space-y-6">
+                  {/* ▼▼▼ COLE ESTE BLOCO AQUI ▼▼▼ */}
+                  <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-5 shadow-inner">
+                    {estadoRoteiroIA === 'fechado' || estadoRoteiroIA === 'setup' ? (
+                      <button
+                        type="button"
+                        onClick={gerarDossiePremium}
+                        className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2 shadow-lg shadow-purple-500/20 active:scale-95"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Gerar Dossiê Premium com IA
+                      </button>
+                    ) 
+                    : estadoRoteiroIA === 'carregando' ? (
+                      <div className="animate-pulse flex flex-col gap-4">
+                        <div className="h-4 bg-slate-700/50 rounded w-3/4"></div>
+                        <div className="h-4 bg-slate-700/50 rounded w-full"></div>
+                        <div className="h-4 bg-slate-700/50 rounded w-5/6"></div>
+                        <p className="text-center text-blue-400 text-sm mt-2 font-medium animate-pulse">
+                          A IA está explorando a cidade para você...
+                        </p>
+                      </div>
+                    ) 
+                    : estadoRoteiroIA === 'pronto' && dossieAtual ? (
+                      <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                        <div>
+                          <h4 className="text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">Vibe Local</h4>
+                          <p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p>
+                        </div>
+                        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+                        <div>
+                          <h4 className="text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">O Segredo Premium</h4>
+                          <p className="text-slate-300 text-sm leading-relaxed">{dossieAtual.dica_premium}</p>
+                        </div>
+                        <div>
+                          <h4 className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Na Mala (Indispensável)</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (
+                              <span key={i} className="bg-slate-900 border border-slate-700 text-slate-300 text-xs px-3 py-1 rounded-full shadow-sm">
+                                {item}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <button 
+                          type="button"
+                          onClick={() => setEstadoRoteiroIA('setup')}
+                          className="w-full mt-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 text-sm rounded-lg transition-colors"
+                        >
+                          Ocultar Dossiê
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                  {/* ▲▲▲ FIM DO BLOCO DA IA ▲▲▲ */}
                   <div className="bg-black/30 p-6 rounded-2xl border border-white/5 shadow-inner">
+                  
                     <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 block mb-4">
                       {t.condicoesPasseio}
                     </span>
@@ -866,7 +1002,7 @@ export default function App() {
                 <div className="space-y-4 mb-auto flex flex-col shrink-0">
                    
                    <div className="bg-black/40 border border-white/5 rounded-2xl overflow-hidden shadow-inner transition-all duration-300">
-                     <button 
+                     <button type="button"
                        onClick={() => setEstadoRoteiroIA(prev => prev === 'fechado' ? 'setup' : 'fechado')} 
                        className="w-full p-6 hover:bg-purple-900/10 transition-all flex items-center justify-between group"
                      >
@@ -927,7 +1063,7 @@ export default function App() {
                    </div>
 
                    <div className="bg-black/40 border border-white/5 rounded-2xl overflow-hidden shadow-inner transition-all duration-300">
-                     <button 
+                     <button type="button"
                        onClick={() => setEstadoMaquinaTempo(prev => prev === 'fechado' ? 'setup' : 'fechado')} 
                        className="w-full p-6 hover:bg-amber-900/10 transition-all flex items-center justify-between group"
                      >
@@ -945,7 +1081,7 @@ export default function App() {
                               <span className="text-slate-400 text-[9px] font-bold uppercase tracking-widest block mb-4">Selecionar Mês Base</span>
                               <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mb-5">
                                 {MESES_ANO.map(mes => (
-                                  <button 
+                                  <button type="button"
                                     key={mes} 
                                     onClick={() => trocarMes(mes)} 
                                     className={`py-3 text-[10px] md:text-xs font-bold rounded-xl border transition-all ${mesSelecionado === mes ? 'bg-amber-500/20 border-amber-500/50 text-amber-400 shadow-md' : 'bg-black/30 border-white/10 text-slate-400 hover:border-white/30'}`}
@@ -1055,7 +1191,7 @@ export default function App() {
                 Sua nova bússola para o clima global. Descubra os melhores destinos, analise tendências históricas e planeje sua próxima jornada guiado por dados em tempo real.
               </p>
               
-              <button 
+              <button type="button" 
                 onClick={fecharOnboarding}
                 className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium rounded-xl transition-all shadow-md hover:shadow-blue-500/25 active:scale-[0.98] flex items-center justify-center gap-2"
               >
