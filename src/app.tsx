@@ -245,12 +245,18 @@ function getMapsLink(nomeLocal: string, cidade: string) {
 }
 
 export default function App() {
-  const [idioma, setIdioma] = useState<'PT' | 'EN'>('PT');
+  // Inicialização buscando memória do Local Storage (com Fallback padrão)
+  const [idioma, setIdioma] = useState<'PT' | 'EN'>(() => {
+    return (localStorage.getItem('equinox_idioma') as 'PT' | 'EN') || 'PT';
+  });
   const t = DICIONARIO[idioma];
 
   const [mostrarSplash, setMostrarSplash] = useState(true);
   const [splashSaindo, setSplashSaindo] = useState(false);
-  const [visaoApresentacao, setVisaoApresentacao] = useState<'lista' | 'mapa'>('lista');
+  
+  const [visaoApresentacao, setVisaoApresentacao] = useState<'lista' | 'mapa'>(() => {
+    return (localStorage.getItem('equinox_visao') as 'lista' | 'mapa') || 'lista';
+  });
   const [camadaRadar, setCamadaRadar] = useState<'nenhuma' | 'temp_new' | 'precipitation_new'>('precipitation_new');
   
   const [dadosClima, setDadosClima] = useState<ClimaCidade[]>([]);
@@ -267,11 +273,18 @@ export default function App() {
   const [mesSelecionado, setMesSelecionado] = useState('Jul');
   const [dossieAtual, setDossieAtual] = useState<any>(null);
 
-  const [unidade, setUnidade] = useState<'C' | 'F'>('C');
+  const [unidade, setUnidade] = useState<'C' | 'F'>(() => {
+    return (localStorage.getItem('equinox_unidade') as 'C' | 'F') || 'C';
+  });
   const [filtroAtivo, setFiltroAtivo] = useState('Todos');
   const [menuFiltroAberto, setMenuFiltroAberto] = useState(false);
   const [termoBusca, setTermoBusca] = useState('');
   const [limiteExibicao, setLimiteExibicao] = useState(4); 
+
+  // ── EFEITOS DE PERSISTÊNCIA (Os "Vigias" do Local Storage) ──
+  useEffect(() => { localStorage.setItem('equinox_idioma', idioma); }, [idioma]);
+  useEffect(() => { localStorage.setItem('equinox_visao', visaoApresentacao); }, [visaoApresentacao]);
+  useEffect(() => { localStorage.setItem('equinox_unidade', unidade); }, [unidade]);
 
   useEffect(() => { 
     setLimiteExibicao(filtroAtivo === 'Todos' && termoBusca === '' ? 4 : 12); 
