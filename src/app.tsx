@@ -3,7 +3,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// @ts-ignore
 const API_KEY = import.meta.env.VITE_OPENWEATHER_KEY;
 
 const NOME_DO_APP = "EQUINOX"; 
@@ -245,7 +244,6 @@ function getMapsLink(nomeLocal: string, cidade: string) {
 }
 
 export default function App() {
-  // Inicialização buscando memória do Local Storage (com Fallback padrão)
   const [idioma, setIdioma] = useState<'PT' | 'EN'>(() => {
     return (localStorage.getItem('equinox_idioma') as 'PT' | 'EN') || 'PT';
   });
@@ -254,8 +252,8 @@ export default function App() {
   const [mostrarSplash, setMostrarSplash] = useState(true);
   const [splashSaindo, setSplashSaindo] = useState(false);
   
-  const [visaoApresentacao, setVisaoApresentacao] = useState<'lista' | 'mapa'>(() => {
-    return (localStorage.getItem('equinox_visao') as 'lista' | 'mapa') || 'lista';
+    const [visaoApresentacao, setVisaoApresentacao] = useState<'lista' | 'mapa'>(() => {
+    return (localStorage.getItem('equinox_visao') as 'lista' | 'mapa') || 'mapa'; // <-- Mudamos o padrão aqui de lista para mapa
   });
   const [camadaRadar, setCamadaRadar] = useState<'nenhuma' | 'temp_new' | 'precipitation_new'>('precipitation_new');
   
@@ -281,7 +279,7 @@ export default function App() {
   const [termoBusca, setTermoBusca] = useState('');
   const [limiteExibicao, setLimiteExibicao] = useState(4); 
 
-  // ── EFEITOS DE PERSISTÊNCIA (Os "Vigias" do Local Storage) ──
+  // ── EFEITOS DE PERSISTÊNCIA ──
   useEffect(() => { localStorage.setItem('equinox_idioma', idioma); }, [idioma]);
   useEffect(() => { localStorage.setItem('equinox_visao', visaoApresentacao); }, [visaoApresentacao]);
   useEffect(() => { localStorage.setItem('equinox_unidade', unidade); }, [unidade]);
@@ -290,7 +288,6 @@ export default function App() {
   const [mostrarOnboarding, setMostrarOnboarding] = useState(false);
 
   useEffect(() => {
-    // Quando o app abre, checa se o usuário já passou pelo tutorial
     const jaViuTutorial = localStorage.getItem('equinox_onboarding_concluido');
     if (!jaViuTutorial) {
       setMostrarOnboarding(true);
@@ -298,14 +295,14 @@ export default function App() {
   }, []);
 
   const fecharOnboarding = () => {
-    // Salva na memória que o usuário já viu o modal e fecha a tela
     localStorage.setItem('equinox_onboarding_concluido', 'true');
     setMostrarOnboarding(false);
   };
 
-  useEffect(() => { 
-    setLimiteExibicao(filtroAtivo === 'Todos' && termoBusca === '' ? 4 : 12); 
-  }, [filtroAtivo, termoBusca]);
+    useEffect(() => { 
+        // Se não há filtro nem busca, mostra apenas o Top 8. Senão, mostra até 20.
+        setLimiteExibicao(filtroAtivo === 'Todos' && termoBusca === '' ? 8 : 20); 
+      }, [filtroAtivo, termoBusca]);
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
@@ -330,79 +327,101 @@ export default function App() {
     return () => clearInterval(intervalo);
   }, []);
 
-// ── MOTOR DE INTELIGÊNCIA ARTIFICIAL (BLINDADO) ──
+// ── MOTOR DE INTELIGÊNCIA ARTIFICIAL ──
   const gerarDossiePremium = async () => {
     if (!cidadeSelecionada) return;
 
     setEstadoRoteiroIA('carregando');
 
     try {
-      // 1. Segurança: Puxa a chave e verifica se ela realmente existe
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("Chave de API não encontrada. Verifique seu arquivo .env.");
-      }
+      if (!apiKey) throw new Error("Chave de API não encontrada.");
 
-      // 2. Configuração: Coloque aqui o modelo que estiver liberado na sua cota
-      // Sugestão de fallback estável: "gemini-1.5-pro" ou "gemini-1.5-flash"
       const MODELO_IA = "gemini-2.5-flash";
 
-      // 3. O Prompt Engessado
-      const prompt = `
-        Atue como um concierge de viagens de luxo e explorador global para o app Equinox.
-        Crie um dossiê premium para a cidade de ${cidadeSelecionada.cidade} (${cidadeSelecionada.clima_bruto?.pais || 'Desconhecido'}).
-        O usuário tem um perfil de viagem focado em: ${perfilViagem}.
-        A temperatura base para referência é ${cidadeSelecionada.temperatura}°C.
+      const regrasPerfil = {
+        mochilao: {
+          persona: "um guia local experiente em viagens 'budget' e mochilões",
+          tom: "descontraído, prático e focado em economia extrema e vivência autêntica de rua",
+          foco_hotspot: "uma comida de rua lendária, um bar underground ou um local autêntico e muito barato",
+          foco_hacks: "transporte público, passes de desconto, dias gratuitos em museus e comida barata"
+        },
+        equilibrado: { 
+          persona: "um consultor de viagens smart-luxury, que equilibra economia com conforto",
+          tom: "equilibrado, objetivo e focado em custo-benefício inteligente (gastar onde importa)",
+          foco_hotspot: "um restaurante de excelente custo-benefício ou uma atração que vale cada centavo do ingresso",
+          foco_hacks: "como evitar armadilhas para turistas, onde economizar para poder gastar em experiências-chave"
+        },
+        luxo: {
+          persona: "um concierge de ultra-luxo",
+          tom: "sofisticado, direto e focado em exclusividade, conforto absoluto e zero atrito",
+          foco_hotspot: "um restaurante Michelin, um rooftop exclusivo ou experiência VIP premium",
+          foco_hacks: "acesso fast-track, transfers privados, regras de etiqueta da alta sociedade local"
+        }
+      };
 
-        RETORNE APENAS UM JSON VÁLIDO. NENHUM TEXTO ADICIONAL.
-        Formato obrigatório:
+      const regraAtual = regrasPerfil[perfilViagem];
+
+      const prompt = `
+        Atue como ${regraAtual.persona} para o app Equinox.
+        O destino EXATO é: ${cidadeSelecionada.cidade} (País: ${cidadeSelecionada.clima_bruto?.pais || 'Verificar local'}).
+        REGRA GEOGRÁFICA DE OURO: É estritamente proibido sugerir locais que não existam nesta exata cidade.
+
+        DIRETRIZES DE TOM E PERFIL (ESTILO: ${perfilViagem.toUpperCase()}):
+        Seja ${regraAtual.tom}. O usuário não quer ler muito, quer inteligência acionável e rápida.
+
+        1. VIBE LOCAL: Uma única frase capturando a essência da cidade PARA ESTE PERFIL de viajante.
+        2. HOTSPOT: Indique ${regraAtual.foco_hotspot} REAL em ${cidadeSelecionada.cidade}.
+        3. SEGREDO PREMIUM (HACKS): Focados em: ${regraAtual.foco_hacks}. Máximo de 2 frases curtas por tópico.
+        4. VESTUÁRIO: Baseado na temperatura de ${cidadeSelecionada.temperatura}°C e no perfil ${perfilViagem.toUpperCase()}. Cite a peça e o motivo em, no máximo, 15 palavras por item.
+        5. NA MALA: Cite o item e o motivo tático em, no máximo, 15 palavras por item.
+        
+        RETORNE APENAS UM JSON VÁLIDO. Formato obrigatório:
         {
-          "vibe_local": "Uma frase cinematográfica sobre a atmosfera da cidade",
-          "dica_premium": "Um segredo local ou recomendação fora do clichê turístico",
-          "itens_indispensaveis": ["item 1", "item 2", "item 3"]
+          "vibe_local": "Frase de impacto curta.",
+          "hotspot": {
+            "nome": "Nome do Local Real",
+            "descricao": "Frase curta sobre a experiência."
+          },
+          "segredo_premium": [
+            "🤝 Código de Conduta: [Regra social para este perfil]",
+            "⚡ Hack de Acesso: [Tática rápida de otimização de tempo/dinheiro]",
+            "🛡️ Tática de Campo: [Alerta de segurança/locomoção objetivo]"
+          ],
+          "vestuario_sugerido": ["Peça 1: Motivo em 15 palavras", "Peça 2: Motivo", "Peça 3: Motivo"],
+          "itens_indispensaveis": ["Item 1: Motivo em 15 palavras", "Item 2: Motivo", "Item 3: Motivo"]
         }
       `;
 
-      // 4. A Requisição (com POST e Headers obrigatórios)
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELO_IA}:generateContent?key=${apiKey}`, {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json' 
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { 
             response_mime_type: "application/json",
-            temperature: 0.7 // Garante um pouco de criatividade, mas mantém a estrutura
+            temperature: 0.7 
           }
         })
       });
 
-      // 5. O Detetive: Se a porta não abrir, lê exatamente o motivo do Google
       if (!response.ok) {
         const erroDoGoogle = await response.json();
-        console.error("🚨 O Google recusou a requisição. Motivo detalhado:", erroDoGoogle);
         throw new Error(erroDoGoogle.error?.message || "Erro desconhecido retornado pela API");
       }
 
-      // 6. Extração dos Dados
       const data = await response.json();
       let respostaTexto = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-      if (!respostaTexto) {
-        throw new Error("A IA devolveu um pacote vazio. Possível bloqueio de segurança.");
-      }
+      if (!respostaTexto) throw new Error("A IA devolveu um pacote vazio.");
 
-      // 7. Limpeza Ninja: Remove crases e marcações Markdown residuais
       respostaTexto = respostaTexto.replace(/```json/gi, '').replace(/```/g, '').trim();
-
-      // 8. Conversão e Sucesso
       const dossieJson = JSON.parse(respostaTexto);
+      
       setDossieAtual(dossieJson);
       setEstadoRoteiroIA('pronto');
 
     } catch (error: any) {
-      // 9. Tratamento de Queda: Mostra no console e alerta o usuário
       console.error("❌ Erro interno do motor:", error);
       setEstadoRoteiroIA('setup'); 
       alert(`Falha na IA: ${error.message || "Turbulência na conexão."}`);
@@ -459,26 +478,6 @@ export default function App() {
   const paisesMonitorados = new Set(dadosClima.map(c => a2toa3[c?.clima_bruto?.pais || '']).filter(Boolean));
   const corDestaque = '#3b82f6'; 
 
-  const onEachFeature = (feature: any, layer: any) => {
-    if (!paisesMonitorados.has(feature.id)) return;
-    
-    layer.on({
-      mouseover: (e: any) => { 
-        e.target.setStyle({ fillOpacity: 0.3, weight: 2 }); 
-        e.target.bringToFront(); 
-      },
-      mouseout: () => { 
-        if (geoJson) layer.setStyle({ fillColor: corDestaque, weight: 1.5, color: corDestaque, fillOpacity: 0.1, dashArray: '' }); 
-      },
-      click: () => { 
-        const iso2 = Object.keys(a2toa3).find(k => a2toa3[k] === feature.id);
-        if (iso2) setFiltroAtivo(getContinente(iso2) !== 'Global' ? getContinente(iso2) : 'Todos');
-        setTermoBusca('');
-        setVisaoApresentacao('lista'); 
-      }
-    });
-  };
-
   const abrirPainel = (cidade: ClimaCidade) => {
     setCidadeSelecionada(cidade);
     setAbaMobileAtiva('panorama');
@@ -490,11 +489,6 @@ export default function App() {
     setCidadeSelecionada(null);
     setEstadoRoteiroIA('fechado');
     setEstadoMaquinaTempo('fechado');
-  };
-
-  const acionarIA = () => {
-    setEstadoRoteiroIA('carregando');
-    setTimeout(() => setEstadoRoteiroIA('pronto'), 1800);
   };
 
   const acionarMaquinaTempo = () => {
@@ -514,7 +508,6 @@ export default function App() {
 
   const curadoriaAtual = cidadeSelecionada ? gerarCuradoriaDinamica(cidadeSelecionada.clima_bruto?.temp || 20, getContinente(cidadeSelecionada.clima_bruto?.pais), idioma) : null;
   
-  // DADOS DO GRÁFICO (Com Fallback garantido para portfólio)
   const dadosGraficoProcessados = historico.map(p => ({ 
     hora: p.time, 
     temp: p && cidadeSelecionada && p[cidadeSelecionada.cidade] !== undefined ? Number(converterValor(p[cidadeSelecionada.cidade]).toFixed(1)) : null 
@@ -570,7 +563,7 @@ export default function App() {
             <TileLayer 
               key={camadaRadar} 
               url={`https://tile.openweathermap.org/map/${camadaRadar}/{z}/{x}/{y}.png?appid=${API_KEY}`} 
-              opacity={0.5} 
+              opacity={1.5} 
             />
           )}
             {geoJson && (
@@ -616,7 +609,6 @@ export default function App() {
 
       {/* ── HEADER PRINCIPAL STICKY NO TOPO ── */}
       <header className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 z-[1000] bg-[#0b1120]/60 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl transition-all duration-500">
-        
         <div className="flex items-center gap-4 w-full md:w-auto justify-between">
           <h1 className="text-xl md:text-2xl font-black text-white uppercase flex items-center gap-2 tracking-widest leading-none drop-shadow-md">
             <span className="text-blue-500">{ICONE_DO_APP}</span> {NOME_DO_APP}
@@ -625,15 +617,11 @@ export default function App() {
              <button type="button" 
                onClick={() => setIdioma('PT')} 
                className={`px-2 py-1 text-[9px] font-black rounded-md transition-all ${idioma === 'PT' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >
-               PT
-             </button>
+             >PT</button>
              <button type="button" 
                onClick={() => setIdioma('EN')} 
                className={`px-2 py-1 text-[9px] font-black rounded-md transition-all ${idioma === 'EN' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >
-               EN
-             </button>
+             >EN</button>
           </div>
         </div>
 
@@ -656,24 +644,18 @@ export default function App() {
              <button type="button" 
                onClick={() => setUnidade('C')} 
                className={`px-3 md:px-4 py-1.5 text-[10px] font-black rounded-full transition-all ${unidade === 'C' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >
-               °C
-             </button>
+             >°C</button>
              <button type="button" 
                onClick={() => setUnidade('F')} 
                className={`px-3 md:px-4 py-1.5 text-[10px] font-black rounded-full transition-all ${unidade === 'F' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >
-               °F
-             </button>
+             >°F</button>
           </div>
         </div>
       </header>
 
       {/* ── PAINEL DE CONTEÚDO (FEED) ── */}
       <div className={`absolute top-0 bottom-0 left-0 w-full z-[100] overflow-y-auto no-scrollbar transition-all duration-700 ease-in-out ${visaoApresentacao === 'lista' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        
         <div className="h-44 md:h-32 w-full" />
-
         <div className="max-w-7xl mx-auto px-4 md:px-8 pb-32">
           
           <div className="flex flex-col sm:flex-row gap-3 mb-8 justify-end">
@@ -697,7 +679,7 @@ export default function App() {
                 onClick={() => setMenuFiltroAberto(!menuFiltroAberto)} 
                 className="w-full sm:w-auto px-5 py-4 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all bg-[#0b1120]/60 backdrop-blur-xl border border-white/10 text-slate-200 flex justify-between items-center gap-4 hover:bg-[#0b1120]/80 shadow-xl"
               >
-                <span>{filtroAtivo === 'Todos' ? '🌍 Grade Global' : `📍 ${filtroAtivo}`}</span>
+                <span>{filtroAtivo === 'Todos' ? '⭐ Destinos Mais Visitados' : `📍 ${filtroAtivo}`}</span>
                 <span className={`opacity-50 transition-transform ${menuFiltroAberto ? 'rotate-180' : ''}`}>▾</span>
               </button>
 
@@ -800,18 +782,18 @@ export default function App() {
               </div>
 
               <div className="flex md:hidden w-full bg-black/40 rounded-xl p-1 border border-white/10 shadow-inner">
-                 <button type="button"
-                   onClick={() => setAbaMobileAtiva('panorama')} 
-                   className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
-                 >
-                   {t.panorama}
-                 </button>
-                 <button type="button"
-                   onClick={() => setAbaMobileAtiva('premium')} 
-                   className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'premium' ? 'bg-purple-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
-                 >
-                   {t.premium}
-                 </button>
+                <button type="button"
+                  onClick={() => setAbaMobileAtiva('panorama')} 
+                  className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
+                >
+                  {t.panorama} 
+                </button>
+                <button type="button"
+                  onClick={() => setAbaMobileAtiva('premium')} 
+                  className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'premium' ? 'bg-purple-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`} 
+                >
+                  {t.premium}
+                </button>
               </div>
             </div>
 
@@ -830,144 +812,147 @@ export default function App() {
                     </h2>
                   </div>
                   <div className="text-right flex flex-col items-end">
-                     <div className="text-5xl font-light text-white tracking-tighter mb-2">
-                       {formatarExibicao(cidadeSelecionada.clima_bruto?.temp ?? cidadeSelecionada.temperatura)}°
-                     </div>
-                     <span className={`text-[10px] md:text-xs font-mono px-3 py-1.5 rounded-xl border shadow-inner flex items-center gap-2 ${getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).isDia ? 'bg-amber-900/30 text-amber-200 border-amber-500/20' : 'bg-blue-900/30 text-blue-200 border-blue-500/20'}`}>
-                       <span>{getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).isDia ? '☀️' : '🌙'}</span> {getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).texto}
-                     </span>
+                    <div className="text-5xl font-light text-white tracking-tighter mb-2">
+                      {formatarExibicao(cidadeSelecionada.clima_bruto?.temp ?? cidadeSelecionada.temperatura)}°
+                    </div>
+                    <span className={`text-[10px] md:text-xs font-mono px-3 py-1.5 rounded-xl border shadow-inner flex items-center gap-2 ${getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).isDia ? 'bg-amber-900/30 text-amber-200 border-amber-500/20' : 'bg-blue-900/30 text-blue-200 border-blue-500/20'}`}>
+                      <span>{getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).isDia ? '☀️' : '🌙'}</span> {getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).texto}
+                    </span>
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  {/* ▼▼▼ COLE ESTE BLOCO AQUI ▼▼▼ */}
-                  <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-5 shadow-inner">
-                    {estadoRoteiroIA === 'fechado' || estadoRoteiroIA === 'setup' ? (
+                  
+                  {/* SETUP DA IA (Botões de Perfil) */}
+                  {(estadoRoteiroIA === 'fechado' || estadoRoteiroIA === 'setup') && (
+                    <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-5 shadow-inner">
+                      <h4 className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-3 text-center">1. Selecione seu Perfil</h4>
+                      
+                      <div className="grid grid-cols-3 gap-2 mb-5">
+                        <button
+                          onClick={() => setPerfilViagem('mochilao')}
+                          className={`py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${perfilViagem === 'mochilao' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                        >
+                          🎒 Mochilão
+                        </button>
+                        <button
+                          onClick={() => setPerfilViagem('equilibrado')}
+                          className={`py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${perfilViagem === 'equilibrado' ? 'bg-purple-600 text-white shadow-lg' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                        >
+                          ⚖️ Híbrido
+                        </button>
+                        <button
+                          onClick={() => setPerfilViagem('luxo')}
+                          className={`py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${perfilViagem === 'luxo' ? 'bg-amber-600 text-white shadow-lg' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                        >
+                          🥂 Luxo
+                        </button>
+                      </div>
+
                       <button
                         type="button"
                         onClick={gerarDossiePremium}
-                        className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2 shadow-lg shadow-purple-500/20 active:scale-95"
+                        className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all flex items-center justify-center gap-2"
                       >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-4 h-4 fill-none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
-                        Gerar Dossiê Premium com IA
+                        2. Gerar Guia com IA
                       </button>
-                    ) 
-                    : estadoRoteiroIA === 'carregando' ? (
-                      <div className="animate-pulse flex flex-col gap-4">
-                        <div className="h-4 bg-slate-700/50 rounded w-3/4"></div>
-                        <div className="h-4 bg-slate-700/50 rounded w-full"></div>
-                        <div className="h-4 bg-slate-700/50 rounded w-5/6"></div>
-                        <p className="text-center text-blue-400 text-sm mt-2 font-medium animate-pulse">
-                          A IA está explorando a cidade para você...
-                        </p>
+                    </div>
+                  )}
+
+                  {/* EFEITO HOLLYWOOD DE CARREGAMENTO */}
+                  {estadoRoteiroIA === 'carregando' && (
+                    <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-8 shadow-inner flex flex-col items-center justify-center min-h-[200px] animate-in zoom-in-95 duration-300">
+                      <div className="relative w-12 h-12 mb-5">
+                        <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full"></div>
+                        <div className="absolute inset-0 border-4 border-blue-400 rounded-full border-t-transparent animate-spin"></div>
+                        <div className="absolute inset-2 bg-blue-500/20 rounded-full animate-pulse"></div>
                       </div>
-                    ) 
-                    : estadoRoteiroIA === 'pronto' && dossieAtual ? (
-                      <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        <div>
-                          <h4 className="text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">Vibe Local</h4>
-                          <p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p>
-                        </div>
-                        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
-                        <div>
-                          <h4 className="text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">O Segredo Premium</h4>
-                          <p className="text-slate-300 text-sm leading-relaxed">{dossieAtual.dica_premium}</p>
-                        </div>
-                        <div>
-                          <h4 className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Na Mala (Indispensável)</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (
-                              <span key={i} className="bg-slate-900 border border-slate-700 text-slate-300 text-xs px-3 py-1 rounded-full shadow-sm">
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <button 
-                          type="button"
-                          onClick={() => setEstadoRoteiroIA('setup')}
-                          className="w-full mt-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 text-sm rounded-lg transition-colors"
-                        >
-                          Ocultar Dossiê
-                        </button>
-                      </div>
-                    ) : null}
-                  </div>
-                  {/* ▲▲▲ FIM DO BLOCO DA IA ▲▲▲ */}
-                  <div className="bg-black/30 p-6 rounded-2xl border border-white/5 shadow-inner">
-                  
-                    <span className="text-[9px] font-black uppercase tracking-widest text-slate-500 block mb-4">
-                      {t.condicoesPasseio}
-                    </span>
-                    <div className="flex items-center gap-4">
-                      <div 
-                        className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-black text-sm border shadow-inner" 
-                        style={{ backgroundColor: `${curadoriaAtual.cor}20`, color: curadoriaAtual.cor, borderColor: `${curadoriaAtual.cor}50` }}
-                      >
-                        {curadoriaAtual.nivel === 'Alta' ? 'A' : (curadoriaAtual.nivel === 'Média' ? 'M' : 'B')}
-                      </div>
-                      <p className="text-slate-300 text-xs leading-relaxed border-l-2 pl-3 py-1" style={{ borderColor: `${curadoriaAtual.cor}50` }}>
-                        {curadoriaAtual.descricao}
+                      <h4 className="text-blue-400 text-[11px] font-black uppercase tracking-widest animate-pulse mb-1">
+                        Decodificando {cidadeSelecionada.cidade}
+                      </h4>
+                      <p className="text-slate-400 text-[10px] uppercase tracking-wider font-mono">
+                        Matriz: Perfil {perfilViagem}
                       </p>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="bg-black/30 p-6 rounded-2xl border border-white/5 shadow-inner">
-                    <span className="text-[9px] font-black uppercase tracking-widest text-blue-500 block mb-4">
-                      {t.dressCode}
-                    </span>
-                    <div className="grid grid-cols-1 gap-3">
-                      {curadoriaAtual.itens.map((item, idx) => (
-                        <div key={idx} className="text-slate-300 text-[11px] flex items-center gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/5 shadow-sm">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]" /> 
-                          <span className="leading-snug">{item}</span>
+                  {/* RESULTADO DA IA */}
+                  {estadoRoteiroIA === 'pronto' && dossieAtual && (
+                    <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-6 shadow-inner space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                      <div>
+                        <h4 className="text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">Vibe Local</h4>
+                        <p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p>
+                      </div>
+                      
+                      <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+
+                      <div>
+                        <h4 className="text-purple-400 text-xs font-bold uppercase tracking-wider mb-2">O Segredo Premium</h4>
+                        <div className="space-y-2">
+                          {dossieAtual.segredo_premium?.map((dica: string, idx: number) => (
+                            <p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-lg border border-white/5">
+                              {dica}
+                            </p>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
 
-                  {/* Gráfico Blindado com Altura Estática */}
+                      <div>
+                        <h4 className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Dress Code Local</h4>
+                        <div className="flex flex-col gap-2">
+                          {dossieAtual.vestuario_sugerido?.map((roupa: string, idx: number) => (
+                            <div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-2 rounded-xl border border-white/5">
+                              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></div>
+                              <span className="leading-snug">{roupa}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Na Mala (Indispensável)</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (
+                            <span key={i} className="bg-slate-900 border border-slate-700 text-slate-300 text-xs px-3 py-1 rounded-full shadow-sm break-words whitespace-normal leading-tight text-center max-w-full">
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => setEstadoRoteiroIA('setup')}
+                        className="w-full mt-2 py-3 border border-white/5 text-slate-400 hover:text-white hover:bg-white/5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
+                      >
+                        Ocultar Guia Inteligente
+                      </button>
+                    </div>
+                  )}
+
+                  {/* GRÁFICO HISTÓRICO */}
                   <div className="bg-black/40 rounded-2xl p-6 border border-white/5 flex flex-col shadow-inner">
-                     <div className="flex justify-between items-center mb-6">
-                        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
-                          {t.previsaoHora}
-                        </span>
-                        <span className="text-[9px] text-slate-400 font-mono bg-white/5 px-3 py-1.5 rounded border border-white/10 shadow-sm">
-                          Min {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_min)}° | Max {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_max)}°
-                        </span>
-                     </div>
-                     
-                     <div className="w-full h-[180px] mt-2">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart 
-                            margin={{ top: 20, right: 10, left: 0, bottom: 0 }} 
-                            data={dadosGraficoSeguros}
-                          >
-                            <CartesianGrid strokeDasharray="3 3" stroke="#ffffff" strokeOpacity={0.03} vertical={false} />
-                            <XAxis dataKey="hora" stroke="#475569" fontSize={9} tickMargin={8} axisLine={false} tickLine={false} />
-                            <YAxis 
-                              domain={['auto', 'auto']} 
-                              stroke="#475569" 
-                              fontSize={9} 
-                              axisLine={false} 
-                              tickLine={false} 
-                              width={25} 
-                            />
-                            <Tooltip contentStyle={{ backgroundColor: '#0b1120', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }} itemStyle={{ color: '#fff' }} />
-                            <Line 
-                              type="monotone" 
-                              dataKey="temp" 
-                              stroke={corDestaque} 
-                              strokeWidth={3} 
-                              dot={{ r: 4, fill: '#0b1120', stroke: corDestaque, strokeWidth: 2 }} 
-                              activeDot={{ r: 7, fill: corDestaque, stroke: '#0b1120', strokeWidth: 2 }} 
-                              label={{ position: 'top', fill: '#94a3b8', fontSize: 10, dy: -8, fontWeight: 'bold' }} 
-                            />
-                          </LineChart>
-                        </ResponsiveContainer>
-                     </div>
+                    <div className="flex justify-between items-center mb-6">
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
+                        {t.previsaoHora}
+                      </span>
+                      <span className="text-[9px] text-slate-400 font-mono bg-white/5 px-3 py-1.5 rounded border border-white/10 shadow-sm">
+                        Min {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_min)}° | Max {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_max)}°
+                      </span>
+                    </div>
+                    <div className="w-full h-[180px] mt-2">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart margin={{ top: 20, right: 10, left: 0, bottom: 0 }} data={dadosGraficoSeguros}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#ffffff" strokeOpacity={0.03} vertical={false} />
+                          <XAxis dataKey="hora" stroke="#475569" fontSize={9} tickMargin={8} axisLine={false} tickLine={false} />
+                          <YAxis domain={['auto', 'auto']} stroke="#475569" fontSize={9} axisLine={false} tickLine={false} width={25} />
+                          <Tooltip contentStyle={{ backgroundColor: '#0b1120', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }} itemStyle={{ color: '#fff' }} />
+                          <Line isAnimationActive={false} type="monotone" dataKey="temp" stroke={corDestaque} strokeWidth={3} dot={{ r: 4, fill: '#0b1120', stroke: corDestaque, strokeWidth: 2 }} activeDot={{ r: 7, fill: corDestaque, stroke: '#0b1120', strokeWidth: 2 }} />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -979,89 +964,42 @@ export default function App() {
                   <span className="animate-pulse text-amber-400">✦</span> {t.premiumModo}
                 </div>
 
-                <div className="min-h-[180px] shrink-0 bg-gradient-to-br from-amber-900/20 to-black/50 p-8 rounded-[2rem] border border-amber-500/20 relative overflow-hidden mb-8 flex flex-col justify-center shadow-lg group">
-                  <div className="absolute -top-6 -right-6 text-7xl md:text-8xl opacity-5 transform rotate-12 group-hover:scale-110 group-hover:rotate-45 transition-transform duration-700 text-amber-500">✦</div>
-                  <h4 className="text-lg md:text-xl font-black text-amber-400 mb-3 tracking-tight uppercase italic drop-shadow-md">
-                    {cidadeSelecionada.turista?.local_premium?.nome || 'Consultoria Exclusiva'}
-                  </h4>
-                  <p className="text-amber-200/70 leading-relaxed text-xs font-medium mb-6">
-                    "{cidadeSelecionada.turista?.local_premium?.contexto || 'Análise de localização de alto padrão para o perfil selecionado.'}"
-                  </p>
-                  {(!cidadeSelecionada.turista?.local_premium?.nome?.includes("✦")) && (
-                    <a 
-                      href={getMapsLink(cidadeSelecionada.turista?.local_premium?.nome || '', cidadeSelecionada.cidade || '')} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 text-[10px] font-black uppercase tracking-widest px-5 py-3.5 rounded-xl border border-amber-500/30 w-full text-center transition-colors flex items-center justify-center gap-2 shadow-sm hover:shadow-amber-500/20"
-                    >
-                      {t.rotaSecreta}
-                    </a>
+                {/* CAIXA ÂMBAR (HOTSPOT DINDÂMICO DA IA) */}
+                <div className="min-h-[180px] shrink-0 bg-gradient-to-br from-amber-900/20 to-black/50 p-8 rounded-[2rem] border border-amber-500/20 relative overflow-hidden group mb-6 shadow-lg">
+                  <div className="absolute -top-6 -right-6 text-7xl md:text-8xl opacity-5 transform rotate-12 group-hover:scale-110 group-hover:rotate-45 transition-transform duration-700">✦</div>
+                  
+                  {estadoRoteiroIA === 'pronto' && dossieAtual?.hotspot ? (
+                    <div className="animate-in fade-in duration-500 relative z-10">
+                      <h3 className="text-amber-400 font-black italic text-lg uppercase tracking-wider mb-2 flex items-center gap-2">
+                        📍 {dossieAtual.hotspot.nome}
+                      </h3>
+                      <p className="text-slate-300 text-sm leading-relaxed italic">
+                        "{dossieAtual.hotspot.descricao}"
+                      </p>
+                      
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dossieAtual.hotspot.nome + ' ' + cidadeSelecionada.cidade)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full mt-4 block text-center py-3 border border-amber-500/30 text-amber-500 hover:bg-amber-500 hover:text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all"
+                      >
+                        Visualizar Localização
+                      </a>
+                    </div>
+                  ) : (
+                    <div className="opacity-50 relative z-10">
+                      <h3 className="text-amber-400 font-black italic text-lg uppercase tracking-wider mb-2 flex items-center gap-2">
+                        HOTSPOT OCULTO
+                      </h3>
+                      <p className="text-slate-300 text-sm leading-relaxed italic">
+                        "Ative o Guia com IA para revelar a principal recomendação para {cidadeSelecionada.cidade}."
+                      </p>
+                    </div>
                   )}
                 </div>
 
+                {/* MÁQUINA DO TEMPO */}
                 <div className="space-y-4 mb-auto flex flex-col shrink-0">
-                   
-                   <div className="bg-black/40 border border-white/5 rounded-2xl overflow-hidden shadow-inner transition-all duration-300">
-                     <button type="button"
-                       onClick={() => setEstadoRoteiroIA(prev => prev === 'fechado' ? 'setup' : 'fechado')} 
-                       className="w-full p-6 hover:bg-purple-900/10 transition-all flex items-center justify-between group"
-                     >
-                        <div className="text-left">
-                          <span className="text-purple-500 text-[8px] md:text-[9px] font-black uppercase tracking-widest block mb-1">Processamento IA</span>
-                          <span className="text-white text-sm md:text-base font-bold uppercase tracking-tight group-hover:text-purple-300 transition-colors">{t.gerarRoteiro}</span>
-                        </div>
-                        <span className={`bg-white/5 p-3 rounded-xl text-white group-hover:bg-purple-500/20 transition-all duration-300 border border-white/5 ${estadoRoteiroIA !== 'fechado' ? 'rotate-90 text-purple-400' : ''}`}>🤖</span>
-                     </button>
-                     
-                     {estadoRoteiroIA !== 'fechado' && (
-                       <div className="p-6 border-t border-white/5 bg-black/20 animate-in slide-in-from-top-2">
-                          {estadoRoteiroIA === 'setup' && (
-                            <>
-                              <span className="text-slate-400 text-[9px] font-bold uppercase tracking-widest block mb-4">{t.configurar}</span>
-                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
-                                <button onClick={() => setPerfilViagem('mochilao')} className={`py-4 rounded-xl border text-[10px] md:text-xs font-bold flex flex-col items-center gap-2 transition-all ${perfilViagem === 'mochilao' ? 'border-purple-500 bg-purple-500/20 text-purple-300' : 'border-white/10 bg-black/30 text-slate-400 hover:border-white/30'}`}>
-                                  <span className="text-lg">🎒</span> {idioma === 'PT' ? 'Mochilão' : 'Budget'}
-                                </button>
-                                <button onClick={() => setPerfilViagem('equilibrado')} className={`py-4 rounded-xl border text-[10px] md:text-xs font-bold flex flex-col items-center gap-2 transition-all ${perfilViagem === 'equilibrado' ? 'border-purple-500 bg-purple-500/20 text-purple-300' : 'border-white/10 bg-black/30 text-slate-400 hover:border-white/30'}`}>
-                                  <span className="text-lg">⚖️</span> {idioma === 'PT' ? 'Equilibrado' : 'Balanced'}
-                                </button>
-                                <button onClick={() => setPerfilViagem('luxo')} className={`py-4 rounded-xl border text-[10px] md:text-xs font-bold flex flex-col items-center gap-2 transition-all ${perfilViagem === 'luxo' ? 'border-purple-500 bg-purple-500/20 text-purple-300' : 'border-white/10 bg-black/30 text-slate-400 hover:border-white/30'}`}>
-                                  <span className="text-lg">🥂</span> {idioma === 'PT' ? 'Luxo' : 'Luxury'}
-                                </button>
-                              </div>
-                              <button onClick={acionarIA} className="w-full bg-purple-600 hover:bg-purple-500 text-white font-black text-[10px] py-4 rounded-xl uppercase tracking-widest transition-all shadow-lg hover:shadow-purple-500/40">
-                                {t.sintetizar}
-                              </button>
-                            </>
-                          )}
-                          
-                          {estadoRoteiroIA === 'carregando' && (
-                            <div className="py-10 flex flex-col items-center justify-center">
-                              <div className="w-8 h-8 border-4 border-purple-500/20 border-t-purple-500 rounded-full animate-spin mb-4"></div>
-                              <p className="text-purple-400 font-mono text-[10px] uppercase tracking-widest animate-pulse text-center">Processando parâmetros dinâmicos...</p>
-                            </div>
-                          )}
-                          
-                          {estadoRoteiroIA === 'pronto' && (
-                            <div className="animate-in fade-in">
-                              <div className="bg-purple-500/10 border-l-2 border-purple-500 p-4 mb-5 rounded-r-xl">
-                                <p className="text-slate-300 text-[11px] md:text-xs leading-relaxed font-medium">
-                                  {perfilViagem === 'mochilao' 
-                                    ? 'A abordagem sugerida foca em mobilidade gratuita. Explore os perímetros boêmios a pé, integrando o transporte público local. Foque em visitas externas ou horários gratuitos para museus governamentais.' 
-                                    : perfilViagem === 'luxo' 
-                                    ? `Planejamento de alto padrão concluído. O foco é transição porta a porta (door-to-door). Agende visitações VIP nas galerias indicadas e planeje a transição direta para sua experiência no ${cidadeSelecionada.turista?.local_premium?.nome}.` 
-                                    : 'A abordagem equilibrada sugere sessões de caminhada matinal pelos centros históricos e cartões postais, intercalando com paradas em estabelecimentos tradicionais no período de maior pico solar para reduzir a fadiga da viagem.'}
-                                </p>
-                              </div>
-                              <button onClick={() => setEstadoRoteiroIA('setup')} className="text-slate-400 hover:text-white text-[10px] font-bold uppercase tracking-widest w-full text-center flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 py-3.5 rounded-xl transition-colors border border-white/5">
-                                {t.voltarHoje}
-                              </button>
-                            </div>
-                          )}
-                       </div>
-                     )}
-                   </div>
-
                    <div className="bg-black/40 border border-white/5 rounded-2xl overflow-hidden shadow-inner transition-all duration-300">
                      <button type="button"
                        onClick={() => setEstadoMaquinaTempo(prev => prev === 'fechado' ? 'setup' : 'fechado')} 
@@ -1166,17 +1104,16 @@ export default function App() {
           </div>
         </div>
       )}
+
       {/* ── MODAL DE ONBOARDING (Boas-vindas) ── */}
       {mostrarOnboarding && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4 animate-in fade-in duration-500">
           <div className="bg-slate-900 border border-slate-700/50 rounded-3xl shadow-2xl max-w-md w-full p-8 text-center relative overflow-hidden">
             
-            {/* Efeitos de Luz no Fundo do Modal */}
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10">
-              {/* Ícone de Globo Terrestre */}
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-blue-500/20">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -1205,6 +1142,6 @@ export default function App() {
         </div>
       )}
       
-    </div> // <-- Esta é a div principal que já existe no seu código, não duplique ela.
+    </div>
   );
 }
