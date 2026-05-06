@@ -72,6 +72,105 @@ const REGIOES_FILTRO = ['Todos', ...Array.from(new Set(Object.values(mapaContine
 const MESES_ANO = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 const CIDADES_DESTAQUE = ['Paris', 'Rome', 'Madrid', 'Tokyo'];
 
+const IconesMonumentos = (cidade: string, contexto: 'mini' | 'premium'): React.ReactNode => {
+  if (cidade !== 'Paris') return null;
+
+  const isPremium = contexto === 'premium';
+
+  return (
+    <svg 
+      viewBox={isPremium ? "0 0 1200 500" : "700 150 300 350"} 
+      preserveAspectRatio="xMaxYMax meet"
+      /* O AJUSTE FINO ESTÁ NESTA LINHA ABAIXO: */
+      className={`absolute pointer-events-none transition-all duration-1000 z-0 ${
+        isPremium 
+          /* Mobile Aberto: mais afastado dos ícones (top-8 right-8) e um pouco menor (h-85px) */
+          ? "top-8 md:top-5 right-8 md:right-0 w-auto md:w-full h-[85px] md:h-[165px] group-hover:scale-[1.02]" 
+          /* Minicard Fechado: centralizado com right-12 (empurra para o meio) */
+          : "bottom-0 right-12 md:right-16 w-auto h-[120px] opacity-30 group-hover:scale-[1.05]"
+      }`}
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <defs>
+        <linearGradient id={`fadeMask-${contexto}`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="transparent" />
+          <stop offset="20%" stopColor="white" />
+          <stop offset="100%" stopColor="white" />
+        </linearGradient>
+        <mask id={`landscapeFade-${contexto}`}>
+          <rect width="1200" height="500" fill={`url(#fadeMask-${contexto})`} />
+        </mask>
+        
+        <pattern id={`blueprintGrid-${contexto}`} width="30" height="30" patternUnits="userSpaceOnUse">
+          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      <g mask={isPremium ? `url(#landscapeFade-${contexto})` : undefined}>
+        <rect x="-400" width="1800" height="500" fill={`url(#blueprintGrid-${contexto})`} />
+
+        <g transform={isPremium ? "translate(-650, 0)" : "translate(0, 100)"}>
+          
+          {/* ── CAMADA 1: PAISAGEM URBANA ── */}
+          <g className="stroke-white/20" strokeWidth="1">
+            <path d="M 0 500 L 1400 500" strokeWidth="1.5" />
+            <path d="M 300 500 v -80 h 100 v 80" /> 
+            <path d="M 280 500 v -50 h 20 M 400 500 v -50 h 20" /> 
+            <path d="M 310 420 v -40 h 80 v 40" /> 
+            <path d="M 320 420 v -40 M 335 420 v -40 M 350 420 v -40 M 365 420 v -40 M 380 420 v -40" strokeWidth="0.5" />
+            <path d="M 310 380 C 310 300, 390 300, 390 380" />
+            <path d="M 330 380 C 335 320, 365 320, 370 380 M 350 380 v -68" strokeWidth="0.5" />
+            <path d="M 345 312 v -25 h 10 v 25 M 350 287 v -40" strokeWidth="1.5" />
+            <path d="M 550 500 L 800 450 M 1150 500 L 920 450" strokeWidth="1.5" />
+            <path d="M 600 500 L 820 450 M 1100 500 L 900 450" strokeWidth="1" />
+            <path d="M 650 500 L 840 450 M 1050 500 L 880 450" strokeWidth="0.5" />
+            <path d="M 0 500 Q 100 450 200 490 T 450 480 T 600 500" />
+            <path d="M 1100 500 Q 1150 460 1200 480" />
+          </g>
+
+          {/* ── CAMADA 2: A DAMA DE FERRO ── */}
+          <g className="stroke-white/30 group-hover:stroke-blue-300/60 transition-colors duration-700">
+            <path d="M 720 500 C 790 300, 840 150, 855 80" strokeWidth="3" />
+            <path d="M 1000 500 C 930 300, 880 150, 865 80" strokeWidth="3" />
+            <path d="M 780 500 C 820 320, 850 150, 859 80" strokeWidth="2" />
+            <path d="M 940 500 C 900 320, 870 150, 861 80" strokeWidth="2" />
+            <path d="M 770 500 C 810 400, 910 400, 950 500" strokeWidth="3" />
+            <path d="M 790 500 C 820 430, 900 430, 930 500" strokeWidth="1.5" />
+            <path d="M 780 470 L 800 460 M 790 435 L 815 425 M 940 470 L 920 460 M 930 435 L 905 425" strokeWidth="1" />
+            <path d="M 755 350 h 210 M 760 340 h 200" strokeWidth="2.5" />
+            <path d="M 760 340 v 10 M 960 340 v 10 M 780 340 v 10 M 940 340 v 10 M 800 340 v 10 M 920 340 v 10" strokeWidth="1" />
+            <path d="M 780 340 v -15 h 160 v 15" fill="rgba(255,255,255,0.05)" strokeWidth="1" />
+            <path d="M 800 220 h 120 M 805 212 h 110" strokeWidth="2" />
+            <path d="M 805 212 v 8 M 915 212 v 8 M 825 212 v 8 M 895 212 v 8" strokeWidth="1" />
+            <path d="M 840 100 h 40 M 842 94 h 36" strokeWidth="1.5" />
+            <path d="M 845 94 L 850 70 h 20 L 875 94 Z" strokeWidth="1" fill="rgba(255,255,255,0.08)" />
+            <path d="M 850 70 C 850 50, 870 50, 870 70" strokeWidth="1.5" />
+            <path d="M 860 50 v -40" strokeWidth="3" /> 
+            <path d="M 855 20 h 10 M 857 30 h 6" strokeWidth="1" /> 
+
+            {/* Malha de Aço Ultra Detalhada */}
+            <g strokeWidth="0.5" className="stroke-white/40">
+              <path d="M 750 500 L 810 340 M 970 500 L 910 340" strokeWidth="1" strokeDasharray="2 2" />
+              <path d="M 730 470 L 785 430 M 740 430 L 780 470 M 735 440 L 785 390 M 745 390 L 780 430 M 740 410 L 780 350 M 750 350 L 785 400" />
+              <path d="M 990 470 L 935 430 M 980 430 L 940 470 M 985 440 L 935 390 M 975 390 L 940 430 M 980 410 L 940 350 M 970 350 L 935 400" />
+              <path d="M 765 330 L 805 280 M 770 280 L 810 330 M 770 280 L 815 230 M 780 230 L 810 280" />
+              <path d="M 955 330 L 915 280 M 950 280 L 910 330 M 950 280 L 905 230 M 940 230 L 910 280" />
+              <path d="M 765 330 L 915 220 M 955 330 L 805 220" strokeWidth="0.75" className="stroke-white/20" />
+              <path d="M 770 280 L 910 280 M 790 250 L 930 250" strokeWidth="0.5" className="stroke-white/10" />
+              <path d="M 808 210 L 825 160 M 825 210 L 812 160 M 815 160 L 832 110 M 832 160 L 820 110" />
+              <path d="M 912 210 L 895 160 M 895 210 L 908 160 M 905 160 L 888 110 M 888 160 L 900 110" />
+              <path d="M 818 185 h 84 M 825 155 h 70 M 830 135 h 60 M 835 115 h 50" strokeWidth="0.5" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+
 const DICIONARIO = {
   PT: {
     slogan: "O mundo mapeado em sensações.",
@@ -713,13 +812,18 @@ export default function App() {
                 const horaLocal = getHoraLocalInfo(cidade.clima_bruto?.timezone);
                 const previewCuradoria = gerarCuradoriaDinamica(cidade.clima_bruto?.temp || 20, getContinente(cidade.clima_bruto?.pais), idioma);
                 
-                return (
+return (
                   <div 
                     key={cidade.cidade} 
                     onClick={() => abrirPainel(cidade)} 
                     className="bg-[#0b1120]/50 backdrop-blur-xl border border-white/10 p-6 rounded-[2rem] cursor-pointer hover:bg-[#0b1120]/80 hover:border-blue-500/30 transition-all duration-300 group shadow-xl flex flex-col h-full relative overflow-hidden"
                   >
-                    <div className="flex justify-between items-start mb-6">
+                    
+                    {/* INJEÇÃO DO SVG AQUI */}
+                    {IconesMonumentos(cidade.cidade, 'mini')}
+
+                    {/* ADICIONADO relative z-10 NESTA DIV ABAIXO */}
+                    <div className="flex justify-between items-start mb-6 relative z-10">
                       <div>
                         <span className="text-[8px] font-black uppercase text-blue-400/80 tracking-widest block mb-1">
                           {getContinente(cidade.clima_bruto?.pais)}
@@ -800,9 +904,15 @@ export default function App() {
             <div className="flex flex-col lg:flex-row gap-6 flex-1 min-h-0 animate-in slide-in-from-bottom-8 duration-500">
 
               {/* CARD 1: RELATÓRIO TÉCNICO E CLIMÁTICO */}
-              <div className={`${abaMobileAtiva === 'panorama' ? 'flex' : 'hidden'} md:flex flex-1 bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative`}>
+{/* CARD 1: RELATÓRIO TÉCNICO E CLIMÁTICO */}
+              <div className={`${abaMobileAtiva === 'panorama' ? 'flex' : 'hidden'} md:flex flex-1 bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative overflow-hidden`}>
                 
-                <div className="flex justify-between items-start mb-8 border-b border-white/5 pb-8">
+                {/* INJEÇÃO DO SVG NO PAINEL PREMIUM AQUI */}
+                {/* Note que aqui usamos 'cidadeSelecionada.cidade' em vez de apenas 'cidade.cidade' */}
+                {IconesMonumentos(cidadeSelecionada.cidade, 'premium')}
+
+                {/* ADICIONADO relative z-10 NESTA DIV ABAIXO */}
+                <div className="flex justify-between items-start mb-8 border-b border-white/5 pb-8 relative z-10">
                   <div>
                     <span className="text-[10px] font-black uppercase text-blue-500 tracking-widest block mb-2">
                       {getContinente(cidadeSelecionada.clima_bruto?.pais)}
