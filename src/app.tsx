@@ -72,112 +72,12 @@ const REGIOES_FILTRO = ['Todos', ...Array.from(new Set(Object.values(mapaContine
 const MESES_ANO = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 const CIDADES_DESTAQUE = ['Paris', 'Rome', 'Madrid', 'Tokyo'];
 
-const IconesMonumentos = (cidade: string, contexto: 'mini' | 'premium'): React.ReactNode => {
-  if (cidade !== 'Paris') return null;
-
-  const isPremium = contexto === 'premium';
-
-  return (
-    <svg 
-      viewBox={isPremium ? "0 0 1200 500" : "700 150 300 350"} 
-      preserveAspectRatio="xMaxYMax meet"
-      /* O AJUSTE FINO ESTÁ NESTA LINHA ABAIXO: */
-      className={`absolute pointer-events-none transition-all duration-1000 z-0 ${
-        isPremium 
-          /* Mobile Aberto: mais afastado dos ícones (top-8 right-8) e um pouco menor (h-85px) */
-          ? "top-8 md:top-5 right-8 md:right-0 w-auto md:w-full h-[85px] md:h-[165px] group-hover:scale-[1.02]" 
-          /* Minicard Fechado: centralizado com right-12 (empurra para o meio) */
-          : "bottom-0 right-12 md:right-16 w-auto h-[120px] opacity-30 group-hover:scale-[1.05]"
-      }`}
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <defs>
-        <linearGradient id={`fadeMask-${contexto}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="transparent" />
-          <stop offset="20%" stopColor="white" />
-          <stop offset="100%" stopColor="white" />
-        </linearGradient>
-        <mask id={`landscapeFade-${contexto}`}>
-          <rect width="1200" height="500" fill={`url(#fadeMask-${contexto})`} />
-        </mask>
-        
-        <pattern id={`blueprintGrid-${contexto}`} width="30" height="30" patternUnits="userSpaceOnUse">
-          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
-        </pattern>
-      </defs>
-
-      <g mask={isPremium ? `url(#landscapeFade-${contexto})` : undefined}>
-        <rect x="-400" width="1800" height="500" fill={`url(#blueprintGrid-${contexto})`} />
-
-        <g transform={isPremium ? "translate(-650, 0)" : "translate(0, 100)"}>
-          
-          {/* ── CAMADA 1: PAISAGEM URBANA ── */}
-          <g className="stroke-white/20" strokeWidth="1">
-            <path d="M 0 500 L 1400 500" strokeWidth="1.5" />
-            <path d="M 300 500 v -80 h 100 v 80" /> 
-            <path d="M 280 500 v -50 h 20 M 400 500 v -50 h 20" /> 
-            <path d="M 310 420 v -40 h 80 v 40" /> 
-            <path d="M 320 420 v -40 M 335 420 v -40 M 350 420 v -40 M 365 420 v -40 M 380 420 v -40" strokeWidth="0.5" />
-            <path d="M 310 380 C 310 300, 390 300, 390 380" />
-            <path d="M 330 380 C 335 320, 365 320, 370 380 M 350 380 v -68" strokeWidth="0.5" />
-            <path d="M 345 312 v -25 h 10 v 25 M 350 287 v -40" strokeWidth="1.5" />
-            <path d="M 550 500 L 800 450 M 1150 500 L 920 450" strokeWidth="1.5" />
-            <path d="M 600 500 L 820 450 M 1100 500 L 900 450" strokeWidth="1" />
-            <path d="M 650 500 L 840 450 M 1050 500 L 880 450" strokeWidth="0.5" />
-            <path d="M 0 500 Q 100 450 200 490 T 450 480 T 600 500" />
-            <path d="M 1100 500 Q 1150 460 1200 480" />
-          </g>
-
-          {/* ── CAMADA 2: A DAMA DE FERRO ── */}
-          <g className="stroke-white/30 group-hover:stroke-blue-300/60 transition-colors duration-700">
-            <path d="M 720 500 C 790 300, 840 150, 855 80" strokeWidth="3" />
-            <path d="M 1000 500 C 930 300, 880 150, 865 80" strokeWidth="3" />
-            <path d="M 780 500 C 820 320, 850 150, 859 80" strokeWidth="2" />
-            <path d="M 940 500 C 900 320, 870 150, 861 80" strokeWidth="2" />
-            <path d="M 770 500 C 810 400, 910 400, 950 500" strokeWidth="3" />
-            <path d="M 790 500 C 820 430, 900 430, 930 500" strokeWidth="1.5" />
-            <path d="M 780 470 L 800 460 M 790 435 L 815 425 M 940 470 L 920 460 M 930 435 L 905 425" strokeWidth="1" />
-            <path d="M 755 350 h 210 M 760 340 h 200" strokeWidth="2.5" />
-            <path d="M 760 340 v 10 M 960 340 v 10 M 780 340 v 10 M 940 340 v 10 M 800 340 v 10 M 920 340 v 10" strokeWidth="1" />
-            <path d="M 780 340 v -15 h 160 v 15" fill="rgba(255,255,255,0.05)" strokeWidth="1" />
-            <path d="M 800 220 h 120 M 805 212 h 110" strokeWidth="2" />
-            <path d="M 805 212 v 8 M 915 212 v 8 M 825 212 v 8 M 895 212 v 8" strokeWidth="1" />
-            <path d="M 840 100 h 40 M 842 94 h 36" strokeWidth="1.5" />
-            <path d="M 845 94 L 850 70 h 20 L 875 94 Z" strokeWidth="1" fill="rgba(255,255,255,0.08)" />
-            <path d="M 850 70 C 850 50, 870 50, 870 70" strokeWidth="1.5" />
-            <path d="M 860 50 v -40" strokeWidth="3" /> 
-            <path d="M 855 20 h 10 M 857 30 h 6" strokeWidth="1" /> 
-
-            {/* Malha de Aço Ultra Detalhada */}
-            <g strokeWidth="0.5" className="stroke-white/40">
-              <path d="M 750 500 L 810 340 M 970 500 L 910 340" strokeWidth="1" strokeDasharray="2 2" />
-              <path d="M 730 470 L 785 430 M 740 430 L 780 470 M 735 440 L 785 390 M 745 390 L 780 430 M 740 410 L 780 350 M 750 350 L 785 400" />
-              <path d="M 990 470 L 935 430 M 980 430 L 940 470 M 985 440 L 935 390 M 975 390 L 940 430 M 980 410 L 940 350 M 970 350 L 935 400" />
-              <path d="M 765 330 L 805 280 M 770 280 L 810 330 M 770 280 L 815 230 M 780 230 L 810 280" />
-              <path d="M 955 330 L 915 280 M 950 280 L 910 330 M 950 280 L 905 230 M 940 230 L 910 280" />
-              <path d="M 765 330 L 915 220 M 955 330 L 805 220" strokeWidth="0.75" className="stroke-white/20" />
-              <path d="M 770 280 L 910 280 M 790 250 L 930 250" strokeWidth="0.5" className="stroke-white/10" />
-              <path d="M 808 210 L 825 160 M 825 210 L 812 160 M 815 160 L 832 110 M 832 160 L 820 110" />
-              <path d="M 912 210 L 895 160 M 895 210 L 908 160 M 905 160 L 888 110 M 888 160 L 900 110" />
-              <path d="M 818 185 h 84 M 825 155 h 70 M 830 135 h 60 M 835 115 h 50" strokeWidth="0.5" />
-            </g>
-          </g>
-        </g>
-      </g>
-    </svg>
-  );
-};
-
-
 const DICIONARIO = {
   PT: {
     slogan: "O mundo mapeado em sensações.",
     iniciar: "Acessar Plataforma",
     destinos: "Monitoramento",
     visaoLivre: "Mapa Global",
-    buscar: "Pesquisar destino...",
     radarLimpo: "Nenhum registro encontrado para esta região.",
     fecharPainel: "Encerrar Consulta",
     panorama: "Relatório",
@@ -202,7 +102,6 @@ const DICIONARIO = {
     iniciar: "Access Platform",
     destinos: "Monitoring",
     visaoLivre: "Global Map",
-    buscar: "Search destination...",
     radarLimpo: "No records found for this region.",
     fecharPainel: "End Consultation",
     panorama: "Report",
@@ -337,11 +236,6 @@ function getIconeClima(id?: number) {
   return '☁️';
 }
 
-function getMapsLink(nomeLocal: string, cidade: string) {
-  const query = encodeURIComponent(`${nomeLocal} ${cidade}`);
-  return `https://www.google.com/maps/search/?api=1&query=${query}`;
-}
-
 export default function App() {
   const [idioma, setIdioma] = useState<'PT' | 'EN'>(() => {
     return (localStorage.getItem('equinox_idioma') as 'PT' | 'EN') || 'PT';
@@ -351,8 +245,8 @@ export default function App() {
   const [mostrarSplash, setMostrarSplash] = useState(true);
   const [splashSaindo, setSplashSaindo] = useState(false);
   
-    const [visaoApresentacao, setVisaoApresentacao] = useState<'lista' | 'mapa'>(() => {
-    return (localStorage.getItem('equinox_visao') as 'lista' | 'mapa') || 'mapa'; // <-- Mudamos o padrão aqui de lista para mapa
+  const [visaoApresentacao, setVisaoApresentacao] = useState<'lista' | 'mapa'>(() => {
+    return (localStorage.getItem('equinox_visao') as 'lista' | 'mapa') || 'mapa';
   });
   const [camadaRadar, setCamadaRadar] = useState<'nenhuma' | 'temp_new' | 'precipitation_new'>('precipitation_new');
   
@@ -375,7 +269,6 @@ export default function App() {
   });
   const [filtroAtivo, setFiltroAtivo] = useState('Todos');
   const [menuFiltroAberto, setMenuFiltroAberto] = useState(false);
-  const [termoBusca, setTermoBusca] = useState('');
   const [limiteExibicao, setLimiteExibicao] = useState(4); 
 
   // ── EFEITOS DE PERSISTÊNCIA ──
@@ -398,10 +291,9 @@ export default function App() {
     setMostrarOnboarding(false);
   };
 
-    useEffect(() => { 
-        // Se não há filtro nem busca, mostra apenas o Top 8. Senão, mostra até 20.
-        setLimiteExibicao(filtroAtivo === 'Todos' && termoBusca === '' ? 8 : 20); 
-      }, [filtroAtivo, termoBusca]);
+  useEffect(() => { 
+    setLimiteExibicao(filtroAtivo === 'Todos' ? 8 : 20); 
+  }, [filtroAtivo]);
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
@@ -548,7 +440,7 @@ export default function App() {
 
   const formatarExibicao = (temp?: number) => {
     const valor = converterValor(temp);
-    return valor ? valor.toFixed(1) : '--';
+    return valor ? Math.round(valor).toString() : '--';
   };
 
   const cidadesFiltradasTotal = useMemo(() => {
@@ -556,9 +448,7 @@ export default function App() {
     
     const cidadesFiltradas = dadosClima.filter(c => {
       if (!c || !c.cidade) return false;
-      const continenteMatch = filtroAtivo === 'Todos' || getContinente(c.clima_bruto?.pais) === filtroAtivo;
-      const buscaMatch = termoBusca === '' || c.cidade.toLowerCase().includes(termoBusca.toLowerCase());
-      return continenteMatch && buscaMatch;
+      return filtroAtivo === 'Todos' || getContinente(c.clima_bruto?.pais) === filtroAtivo;
     });
 
     return cidadesFiltradas.sort((a, b) => {
@@ -571,7 +461,7 @@ export default function App() {
       if (indexB !== -1) return 1;  
       return nomeA.localeCompare(nomeB);
     });
-  }, [dadosClima, filtroAtivo, termoBusca]);
+  }, [dadosClima, filtroAtivo]);
 
   const cidadesExibidas = cidadesFiltradasTotal.slice(0, limiteExibicao);
   const paisesMonitorados = new Set(dadosClima.map(c => a2toa3[c?.clima_bruto?.pais || '']).filter(Boolean));
@@ -607,10 +497,16 @@ export default function App() {
 
   const curadoriaAtual = cidadeSelecionada ? gerarCuradoriaDinamica(cidadeSelecionada.clima_bruto?.temp || 20, getContinente(cidadeSelecionada.clima_bruto?.pais), idioma) : null;
   
-  const dadosGraficoProcessados = historico.map(p => ({ 
-    hora: p.time, 
-    temp: p && cidadeSelecionada && p[cidadeSelecionada.cidade] !== undefined ? Number(converterValor(p[cidadeSelecionada.cidade]).toFixed(1)) : null 
-  })).filter(p => p.temp !== null);
+  // Eixo Y normalizado (Arredondado) e Eixo X (Horas fechadas)
+  const dadosGraficoProcessados = historico.map(p => {
+    if (!p || !cidadeSelecionada || p[cidadeSelecionada.cidade] === undefined) return null;
+    let horaFormatada = p.time || '00:00';
+    if (typeof horaFormatada === 'string' && horaFormatada.includes(':')) {
+      horaFormatada = horaFormatada.split(':')[0] + ':00'; // Normaliza quebras estranhas para 1h em 1h
+    }
+    const tempArredondada = Math.round(converterValor(p[cidadeSelecionada.cidade]));
+    return { hora: horaFormatada, temp: tempArredondada };
+  }).filter(Boolean);
 
   const dadosGraficoSeguros = dadosGraficoProcessados.length > 0 ? dadosGraficoProcessados : [
     { hora: '06:00', temp: 15 },
@@ -692,7 +588,6 @@ export default function App() {
                     if(paisesMonitorados.has(feature.id)) {
                       const iso2 = Object.keys(a2toa3).find(k => a2toa3[k] === feature.id);
                       if (iso2) setFiltroAtivo(getContinente(iso2) !== 'Global' ? getContinente(iso2) : 'Todos');
-                      setTermoBusca('');
                       setVisaoApresentacao('lista'); 
                     }
                   }
@@ -706,99 +601,63 @@ export default function App() {
       <div className="absolute inset-0 z-[5] pointer-events-none bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#0b1120_100%)] opacity-80" />
       <div className="absolute inset-0 z-[6] pointer-events-none bg-gradient-to-b from-[#0b1120]/80 via-transparent to-[#0b1120]/90" />
 
-      {/* ── HEADER PRINCIPAL STICKY NO TOPO ── */}
-      <header className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 z-[1000] bg-[#0b1120]/60 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl transition-all duration-500">
-        <div className="flex items-center gap-4 w-full md:w-auto justify-between">
-          <h1 className="text-xl md:text-2xl font-black text-white uppercase flex items-center gap-2 tracking-widest leading-none drop-shadow-md">
-            <span className="text-blue-500">{ICONE_DO_APP}</span> {NOME_DO_APP}
-          </h1>
-          <div className="flex bg-black/30 p-1 rounded-lg border border-white/10">
-             <button type="button" 
-               onClick={() => setIdioma('PT')} 
-               className={`px-2 py-1 text-[9px] font-black rounded-md transition-all ${idioma === 'PT' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >PT</button>
-             <button type="button" 
-               onClick={() => setIdioma('EN')} 
-               className={`px-2 py-1 text-[9px] font-black rounded-md transition-all ${idioma === 'EN' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >EN</button>
-          </div>
-        </div>
-
-        <div className="flex w-full md:w-auto justify-between gap-3 items-center">
-          <div className="bg-black/30 p-1.5 rounded-full flex border border-white/10">
-            <button type="button" 
-              onClick={() => setVisaoApresentacao('lista')} 
-              className={`px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider transition-all duration-300 ${visaoApresentacao === 'lista' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
-            >
-              {t.destinos}
-            </button>
-            <button type="button" 
-              onClick={() => setVisaoApresentacao('mapa')} 
-              className={`px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-wider transition-all duration-300 ${visaoApresentacao === 'mapa' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
-            >
-              {t.visaoLivre}
-            </button>
-          </div>
-          <div className="bg-black/30 p-1.5 rounded-full flex border border-white/10">
-             <button type="button" 
-               onClick={() => setUnidade('C')} 
-               className={`px-3 md:px-4 py-1.5 text-[10px] font-black rounded-full transition-all ${unidade === 'C' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >°C</button>
-             <button type="button" 
-               onClick={() => setUnidade('F')} 
-               className={`px-3 md:px-4 py-1.5 text-[10px] font-black rounded-full transition-all ${unidade === 'F' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}
-             >°F</button>
-          </div>
-        </div>
+      {/* ── HEADER PRINCIPAL SLIM (MOBILE FRIENDLY) ── */}
+      <header className={`fixed top-0 left-0 w-full z-[1000] bg-[#0b1120]/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-4 py-3 md:px-6 md:py-4 transition-all duration-500 ease-out ${cidadeSelecionada ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>       
+         <div className="flex items-center gap-3">
+           <span className="text-blue-500 text-xl md:text-2xl drop-shadow-md">{ICONE_DO_APP}</span>
+           <h1 className="hidden md:block text-xl font-black text-white uppercase tracking-widest">{NOME_DO_APP}</h1>
+         </div>
+         <div className="flex items-center gap-2 md:gap-4">
+            <div className="flex bg-black/40 p-1 rounded-lg border border-white/10">
+              <button onClick={() => setIdioma('PT')} className={`px-2 py-1 text-[9px] md:text-[10px] font-black rounded-md transition-all ${idioma === 'PT' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}>PT</button>
+              <button onClick={() => setIdioma('EN')} className={`px-2 py-1 text-[9px] md:text-[10px] font-black rounded-md transition-all ${idioma === 'EN' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}>EN</button>
+            </div>
+            <div className="flex bg-black/40 p-1 rounded-lg border border-white/10">
+              <button onClick={() => setVisaoApresentacao('lista')} className={`px-3 py-1 text-[9px] md:text-[10px] font-black uppercase tracking-wider rounded-md transition-all ${visaoApresentacao === 'lista' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-white'}`}>{t.destinos}</button>
+              <button onClick={() => setVisaoApresentacao('mapa')} className={`px-3 py-1 text-[9px] md:text-[10px] font-black uppercase tracking-wider rounded-md transition-all ${visaoApresentacao === 'mapa' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-white'}`}>{t.visaoLivre}</button>
+            </div>
+            <div className="flex bg-black/40 p-1 rounded-lg border border-white/10">
+              <button onClick={() => setUnidade('C')} className={`px-2 py-1 text-[9px] md:text-[10px] font-black rounded-md transition-all ${unidade === 'C' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}>°C</button>
+              <button onClick={() => setUnidade('F')} className={`px-2 py-1 text-[9px] md:text-[10px] font-black rounded-md transition-all ${unidade === 'F' ? 'bg-slate-700 text-white' : 'text-slate-500 hover:text-white'}`}>°F</button>
+            </div>
+         </div>
       </header>
 
       {/* ── PAINEL DE CONTEÚDO (FEED) ── */}
-      <div className={`absolute top-0 bottom-0 left-0 w-full z-[100] overflow-y-auto no-scrollbar transition-all duration-700 ease-in-out ${visaoApresentacao === 'lista' ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="h-44 md:h-32 w-full" />
+      <div className={`absolute inset-0 pt-20 md:pt-24 z-[100] overflow-y-auto no-scrollbar transition-all duration-700 ease-in-out ${visaoApresentacao === 'lista' && !cidadeSelecionada ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="max-w-7xl mx-auto px-4 md:px-8 pb-32">
           
-          <div className="flex flex-col sm:flex-row gap-3 mb-8 justify-end">
-            <div className="relative w-full sm:w-80">
-              <input 
-                type="text" 
-                placeholder={t.buscar} 
-                value={termoBusca} 
-                onChange={(e) => setTermoBusca(e.target.value)} 
-                className="w-full bg-[#0b1120]/60 backdrop-blur-xl border border-white/10 text-white text-xs font-medium px-5 py-4 rounded-xl focus:outline-none focus:border-blue-500/50 transition-colors shadow-xl placeholder:text-slate-500" 
-              />
-              {termoBusca && (
-                <button onClick={() => setTermoBusca('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white text-xs transition-colors">
-                  ✕
-                </button>
-              )}
-            </div>
-            
-            <div className="relative w-full sm:w-auto">
-              <button type="button" 
-                onClick={() => setMenuFiltroAberto(!menuFiltroAberto)} 
-                className="w-full sm:w-auto px-5 py-4 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all bg-[#0b1120]/60 backdrop-blur-xl border border-white/10 text-slate-200 flex justify-between items-center gap-4 hover:bg-[#0b1120]/80 shadow-xl"
-              >
-                <span>{filtroAtivo === 'Todos' ? '⭐ Destinos Mais Visitados' : `📍 ${filtroAtivo}`}</span>
-                <span className={`opacity-50 transition-transform ${menuFiltroAberto ? 'rotate-180' : ''}`}>▾</span>
-              </button>
+          {/* SELETOR DE REGIÃO DISCRETO */}
+          <div className="mb-6 flex justify-between items-center relative z-[200]">
+             <h2 className="text-white/80 font-black text-sm md:text-base tracking-widest uppercase">
+               Explorar
+             </h2>
+             <div className="relative">
+               <button type="button" 
+                 onClick={() => setMenuFiltroAberto(!menuFiltroAberto)} 
+                 className="px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-wider bg-black/40 backdrop-blur-md border border-white/10 text-slate-300 flex items-center gap-2 hover:bg-white/10 transition-colors shadow-lg"
+               >
+                 <span>{filtroAtivo === 'Todos' ? '🌍 Todos os Destinos' : `📍 ${filtroAtivo}`}</span>
+                 <span className={`transition-transform ${menuFiltroAberto ? 'rotate-180' : ''}`}>▾</span>
+               </button>
 
-              {menuFiltroAberto && (
-                <>
-                  <div className="fixed inset-0 z-[190]" onClick={() => setMenuFiltroAberto(false)} />
-                  <div className="absolute right-0 top-full mt-2 w-full sm:w-64 bg-[#0b1120]/95 border border-white/10 rounded-xl shadow-2xl z-[200] overflow-y-auto max-h-96 flex flex-col backdrop-blur-2xl animate-in slide-in-from-top-2 duration-200 no-scrollbar">
-                    {REGIOES_FILTRO.map(r => (
-                      <button type="button"
-                        key={r} 
-                        onClick={() => { setFiltroAtivo(r); setMenuFiltroAberto(false); }} 
-                        className={`px-5 py-4 text-left text-[10px] font-bold uppercase tracking-wider hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors ${filtroAtivo === r ? 'text-blue-400 bg-blue-500/10' : 'text-slate-300'}`}
-                      >
-                        {r}
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
+               {menuFiltroAberto && (
+                 <>
+                   <div className="fixed inset-0 z-[190]" onClick={() => setMenuFiltroAberto(false)} />
+                   <div className="absolute right-0 top-full mt-2 w-56 bg-[#0b1120]/95 border border-white/10 rounded-xl shadow-2xl z-[200] overflow-y-auto max-h-80 flex flex-col backdrop-blur-2xl animate-in fade-in zoom-in-95 duration-200 no-scrollbar">
+                     {REGIOES_FILTRO.map(r => (
+                       <button type="button"
+                         key={r} 
+                         onClick={() => { setFiltroAtivo(r); setMenuFiltroAberto(false); }} 
+                         className={`px-5 py-3.5 text-left text-[10px] font-bold uppercase tracking-wider hover:bg-white/5 border-b border-white/5 last:border-0 transition-colors ${filtroAtivo === r ? 'text-blue-400 bg-blue-500/10' : 'text-slate-300'}`}
+                       >
+                         {r}
+                       </button>
+                     ))}
+                   </div>
+                 </>
+               )}
+             </div>
           </div>
 
           {cidadesExibidas.length === 0 ? (
@@ -813,16 +672,11 @@ export default function App() {
                 const previewCuradoria = gerarCuradoriaDinamica(cidade.clima_bruto?.temp || 20, getContinente(cidade.clima_bruto?.pais), idioma);
                 
 return (
-                  <div 
-                    key={cidade.cidade} 
-                    onClick={() => abrirPainel(cidade)} 
-                    className="bg-[#0b1120]/50 backdrop-blur-xl border border-white/10 p-6 rounded-[2rem] cursor-pointer hover:bg-[#0b1120]/80 hover:border-blue-500/30 transition-all duration-300 group shadow-xl flex flex-col h-full relative overflow-hidden"
+                  <div
+                    key={cidade.cidade}
+                    onClick={() => abrirPainel(cidade)}
+                    className="bg-[#0b1120]/50 backdrop-blur-xl border border-white/10 p-6 rounded-[2rem] cursor-pointer hover:scale-[1.03] active:scale-95 hover:bg-[#0b1120]/80 hover:border-blue-500/30 transition-all duration-300 ease-out"
                   >
-                    
-                    {/* INJEÇÃO DO SVG AQUI */}
-                    {IconesMonumentos(cidade.cidade, 'mini')}
-
-                    {/* ADICIONADO relative z-10 NESTA DIV ABAIXO */}
                     <div className="flex justify-between items-start mb-6 relative z-10">
                       <div>
                         <span className="text-[8px] font-black uppercase text-blue-400/80 tracking-widest block mb-1">
@@ -870,22 +724,21 @@ return (
 
       {/* ── MODAL PREMIUM (VISÃO SPLIT & TABS) ── */}
       {cidadeSelecionada && curadoriaAtual && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-[#0b1120]/95 backdrop-blur-3xl p-3 md:p-8 animate-in fade-in duration-300">
-          
-          <div className="w-full max-w-7xl flex flex-col h-full max-h-[96vh] md:max-h-[90vh]">
-            
-            <div className="flex flex-col w-full shrink-0 mb-4 md:mb-6 gap-3">
-              <div className="flex justify-end w-full">
-                <button type="button"
-                  onClick={fecharModal} 
-                  className="bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl transition-all border border-white/10 flex items-center justify-center gap-2 text-[10px] md:text-xs font-black uppercase tracking-widest shadow-sm group"
-                >
-                  <span className="text-red-400 group-hover:scale-110 transition-transform">✕</span> 
-                  <span className="hidden md:inline">{t.fecharPainel}</span>
-                </button>
-              </div>
+        
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-3 md:p-8 animate-in fade-in duration-300">
+        <div className="w-full max-w-7xl flex flex-col h-full max-h-[96vh] md:max-h-[90vh] relative">
+        
+        {/* BOTÃO FLUTUANTE DE EXIT (MOBILE NA BASE, DESKTOP NO CANTO) */}
+        <button 
+          onClick={fecharModal}
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 md:absolute md:-top-5 md:-right-5 md:left-auto md:bottom-auto md:translate-x-0 z-[5000] px-6 py-3 md:px-5 md:py-3 bg-[#0f172a]/95 backdrop-blur-xl border border-white/10 hover:border-red-500/50 rounded-full flex items-center gap-3 shadow-[0_10px_40px_rgba(0,0,0,0.8)] text-white transition-all group hover:bg-red-500/10"
+        >
+          <span className="text-red-500 text-lg leading-none group-hover:scale-110 transition-transform">✕</span> 
+          <span className="font-black text-[10px] md:text-xs tracking-widest uppercase">{t.fecharPainel}</span>
+        </button>
 
-              <div className="flex md:hidden w-full bg-black/40 rounded-xl p-1 border border-white/10 shadow-inner">
+        <div className="flex flex-col w-full shrink-0 mb-4 md:mb-6 gap-3 pt-2 md:pt-0">
+              <div className="flex md:hidden w-full bg-black/40 rounded-xl p-1 border border-white/10 shadow-inner z-[2010]">
                 <button type="button"
                   onClick={() => setAbaMobileAtiva('panorama')} 
                   className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
@@ -901,17 +754,15 @@ return (
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-6 flex-1 min-h-0 animate-in slide-in-from-bottom-8 duration-500">
-
-              {/* CARD 1: RELATÓRIO TÉCNICO E CLIMÁTICO */}
-{/* CARD 1: RELATÓRIO TÉCNICO E CLIMÁTICO */}
-              <div className={`${abaMobileAtiva === 'panorama' ? 'flex' : 'hidden'} md:flex flex-1 bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative overflow-hidden`}>
+{/* CORTINA INVISÍVEL */}
+<div className={`fixed inset-0 z-40 ${cidadeSelecionada ? 'pointer-events-auto' : 'pointer-events-none'}`} onClick={fecharModal} />        
+        
+        {/* CONTAINER DOS CARDS */}
+        <div className="flex flex-col lg:flex-row gap-6 flex-1 min-h-0 animate-in slide-in-from-bottom-8 duration-500 relative z-50">
+          
+          {/* CARD 1: RELATÓRIO TÉCNICO E CLIMÁTICO */}
+          <div className={`${abaMobileAtiva === 'panorama' ? 'flex' : 'hidden'} md:flex flex-1 bg-[#0f172a]/90 border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative overflow-hidden transform transition-all duration-500 ease-out origin-bottom ${cidadeSelecionada ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95 pointer-events-none'}`}>
                 
-                {/* INJEÇÃO DO SVG NO PAINEL PREMIUM AQUI */}
-                {/* Note que aqui usamos 'cidadeSelecionada.cidade' em vez de apenas 'cidade.cidade' */}
-                {IconesMonumentos(cidadeSelecionada.cidade, 'premium')}
-
-                {/* ADICIONADO relative z-10 NESTA DIV ABAIXO */}
                 <div className="flex justify-between items-start mb-8 border-b border-white/5 pb-8 relative z-10">
                   <div>
                     <span className="text-[10px] font-black uppercase text-blue-500 tracking-widest block mb-2">
@@ -931,29 +782,29 @@ return (
                   </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-6 pb-20 md:pb-0">
                   
-                  {/* SETUP DA IA (Botões de Perfil) */}
+                  {/* SETUP DA IA (Botões de Perfil Glassmorphism) */}
                   {(estadoRoteiroIA === 'fechado' || estadoRoteiroIA === 'setup') && (
-                    <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-5 shadow-inner">
-                      <h4 className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-3 text-center">1. Selecione seu Perfil</h4>
+                    <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-5 shadow-inner">
+                      <h4 className="text-slate-300 text-[10px] font-black uppercase tracking-widest mb-4 text-center">1. Selecione o Perfil de IA</h4>
                       
-                      <div className="grid grid-cols-3 gap-2 mb-5">
+                      <div className="grid grid-cols-3 gap-2 md:gap-3 mb-5">
                         <button
                           onClick={() => setPerfilViagem('mochilao')}
-                          className={`py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${perfilViagem === 'mochilao' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                          className={`py-3.5 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all backdrop-blur-md border ${perfilViagem === 'mochilao' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'}`}
                         >
                           🎒 Mochilão
                         </button>
                         <button
                           onClick={() => setPerfilViagem('equilibrado')}
-                          className={`py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${perfilViagem === 'equilibrado' ? 'bg-purple-600 text-white shadow-lg' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                          className={`py-3.5 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all backdrop-blur-md border ${perfilViagem === 'equilibrado' ? 'bg-purple-500/20 border-purple-500/50 text-purple-300 shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'}`}
                         >
                           ⚖️ Híbrido
                         </button>
                         <button
                           onClick={() => setPerfilViagem('luxo')}
-                          className={`py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-all ${perfilViagem === 'luxo' ? 'bg-amber-600 text-white shadow-lg' : 'bg-white/5 text-slate-400 hover:bg-white/10'}`}
+                          className={`py-3.5 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all backdrop-blur-md border ${perfilViagem === 'luxo' ? 'bg-amber-500/20 border-amber-500/50 text-amber-300 shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'}`}
                         >
                           🥂 Luxo
                         </button>
@@ -962,19 +813,16 @@ return (
                       <button
                         type="button"
                         onClick={gerarDossiePremium}
-                        className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all flex items-center justify-center gap-2"
+                        className="w-full py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-black text-[11px] uppercase tracking-widest rounded-2xl shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all flex items-center justify-center gap-2 group"
                       >
-                        <svg className="w-4 h-4 fill-none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        2. Gerar Guia com IA
+                        <span className="text-purple-400 group-hover:animate-pulse">✨</span> 2. Consultoria de Itinerário IA
                       </button>
                     </div>
                   )}
 
                   {/* EFEITO HOLLYWOOD DE CARREGAMENTO */}
                   {estadoRoteiroIA === 'carregando' && (
-                    <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-8 shadow-inner flex flex-col items-center justify-center min-h-[200px] animate-in zoom-in-95 duration-300">
+                    <div className="bg-white/[0.02] border border-blue-500/20 rounded-3xl p-8 shadow-inner flex flex-col items-center justify-center min-h-[200px] animate-in zoom-in-95 duration-300">
                       <div className="relative w-12 h-12 mb-5">
                         <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full"></div>
                         <div className="absolute inset-0 border-4 border-blue-400 rounded-full border-t-transparent animate-spin"></div>
@@ -991,19 +839,19 @@ return (
 
                   {/* RESULTADO DA IA */}
                   {estadoRoteiroIA === 'pronto' && dossieAtual && (
-                    <div className="bg-slate-800/40 border border-blue-500/20 rounded-2xl backdrop-blur-sm p-6 shadow-inner space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="bg-white/[0.02] border border-purple-500/20 rounded-3xl backdrop-blur-sm p-6 shadow-inner space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
                       <div>
-                        <h4 className="text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">Vibe Local</h4>
+                        <h4 className="text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">Vibe Local</h4>
                         <p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p>
                       </div>
                       
-                      <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+                      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
                       <div>
-                        <h4 className="text-purple-400 text-xs font-bold uppercase tracking-wider mb-2">O Segredo Premium</h4>
+                        <h4 className="text-purple-400 text-[10px] font-bold uppercase tracking-wider mb-3">O Segredo Premium</h4>
                         <div className="space-y-2">
                           {dossieAtual.segredo_premium?.map((dica: string, idx: number) => (
-                            <p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-lg border border-white/5">
+                            <p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-xl border border-white/5">
                               {dica}
                             </p>
                           ))}
@@ -1011,10 +859,10 @@ return (
                       </div>
 
                       <div>
-                        <h4 className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Dress Code Local</h4>
+                        <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Dress Code Local</h4>
                         <div className="flex flex-col gap-2">
                           {dossieAtual.vestuario_sugerido?.map((roupa: string, idx: number) => (
-                            <div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-2 rounded-xl border border-white/5">
+                            <div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/5">
                               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></div>
                               <span className="leading-snug">{roupa}</span>
                             </div>
@@ -1023,10 +871,10 @@ return (
                       </div>
 
                       <div>
-                        <h4 className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Na Mala (Indispensável)</h4>
+                        <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Na Mala (Indispensável)</h4>
                         <div className="flex flex-wrap gap-2">
                           {dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (
-                            <span key={i} className="bg-slate-900 border border-slate-700 text-slate-300 text-xs px-3 py-1 rounded-full shadow-sm break-words whitespace-normal leading-tight text-center max-w-full">
+                            <span key={i} className="bg-black/40 border border-white/10 text-slate-300 text-[11px] px-4 py-1.5 rounded-full shadow-sm">
                               {item}
                             </span>
                           ))}
@@ -1035,31 +883,36 @@ return (
 
                       <button
                         onClick={() => setEstadoRoteiroIA('setup')}
-                        className="w-full mt-2 py-3 border border-white/5 text-slate-400 hover:text-white hover:bg-white/5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all"
+                        className="w-full mt-4 py-3.5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 text-[10px] font-bold uppercase tracking-widest rounded-2xl transition-all"
                       >
                         Ocultar Guia Inteligente
                       </button>
                     </div>
                   )}
 
-                  {/* GRÁFICO HISTÓRICO */}
-                  <div className="bg-black/40 rounded-2xl p-6 border border-white/5 flex flex-col shadow-inner">
+                  {/* GRÁFICO HISTÓRICO NORMALIZADO E CLEAN */}
+                  <div className="bg-white/[0.02] rounded-3xl p-6 border border-white/5 flex flex-col shadow-inner">
                     <div className="flex justify-between items-center mb-6">
                       <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
                         {t.previsaoHora}
                       </span>
-                      <span className="text-[9px] text-slate-400 font-mono bg-white/5 px-3 py-1.5 rounded border border-white/10 shadow-sm">
+                      <span className="text-[9px] text-slate-300 font-mono bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 shadow-sm">
                         Min {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_min)}° | Max {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_max)}°
                       </span>
                     </div>
                     <div className="w-full h-[180px] mt-2">
                       <ResponsiveContainer width="100%" height="100%">
-                        <LineChart margin={{ top: 20, right: 10, left: 0, bottom: 0 }} data={dadosGraficoSeguros}>
+                        <LineChart margin={{ top: 20, right: 10, left: -20, bottom: 0 }} data={dadosGraficoSeguros}>
                           <CartesianGrid strokeDasharray="3 3" stroke="#ffffff" strokeOpacity={0.03} vertical={false} />
-                          <XAxis dataKey="hora" stroke="#475569" fontSize={9} tickMargin={8} axisLine={false} tickLine={false} />
-                          <YAxis domain={['auto', 'auto']} stroke="#475569" fontSize={9} axisLine={false} tickLine={false} width={25} />
-                          <Tooltip contentStyle={{ backgroundColor: '#0b1120', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }} itemStyle={{ color: '#fff' }} />
-                          <Line isAnimationActive={false} type="monotone" dataKey="temp" stroke={corDestaque} strokeWidth={3} dot={{ r: 4, fill: '#0b1120', stroke: corDestaque, strokeWidth: 2 }} activeDot={{ r: 7, fill: corDestaque, stroke: '#0b1120', strokeWidth: 2 }} />
+                          <XAxis dataKey="hora" stroke="#94a3b8" fontSize={10} tickMargin={10} axisLine={false} tickLine={false} />
+                          <YAxis domain={['auto', 'auto']} stroke="#94a3b8" fontSize={10} axisLine={false} tickLine={false} tickFormatter={(tick) => `${tick}°`} />
+                          <Tooltip 
+                             contentStyle={{ backgroundColor: '#0b1120', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px' }} 
+                             itemStyle={{ color: '#fff' }} 
+                             formatter={(value: number) => [`${value}°`, 'Temperatura']} 
+                             labelStyle={{ color: '#94a3b8', marginBottom: '4px' }}
+                          />
+                          <Line isAnimationActive={true} type="monotone" dataKey="temp" stroke={corDestaque} strokeWidth={3} dot={{ r: 4, fill: '#0b1120', stroke: corDestaque, strokeWidth: 2 }} activeDot={{ r: 7, fill: corDestaque, stroke: '#0b1120', strokeWidth: 2 }} />
                         </LineChart>
                       </ResponsiveContainer>
                     </div>
@@ -1068,7 +921,7 @@ return (
               </div>
 
               {/* CARD 2: FERRAMENTAS PREMIUM E ACIONÁVEIS */}
-              <div className={`${abaMobileAtiva === 'premium' ? 'flex' : 'hidden'} md:flex flex-1 bg-gradient-to-b from-[#1a1c2e] to-black/80 border border-purple-500/20 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative`}>
+              <div className={`${abaMobileAtiva === 'premium' ? 'flex' : 'hidden'} md:flex flex-1 bg-gradient-to-b from-[#1a1c2e] to-[#0b1120] border border-purple-500/20 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative pb-24 md:pb-10`}>
                 
                 <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 text-purple-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg w-fit mb-8 shadow-md">
                   <span className="animate-pulse text-amber-400">✦</span> {t.premiumModo}
@@ -1088,10 +941,10 @@ return (
                       </p>
                       
                       <a 
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dossieAtual.hotspot.nome + ' ' + cidadeSelecionada.cidade)}`}
+                        href={`https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(dossieAtual.hotspot.nome + ' ' + cidadeSelecionada.cidade)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full mt-4 block text-center py-3 border border-amber-500/30 text-amber-500 hover:bg-amber-500 hover:text-black font-black text-xs uppercase tracking-widest rounded-xl transition-all"
+                        className="w-full mt-5 block text-center py-3.5 border border-amber-500/30 bg-amber-500/10 text-amber-500 hover:bg-amber-500 hover:text-black font-black text-[10px] uppercase tracking-widest rounded-xl transition-all"
                       >
                         Visualizar Localização
                       </a>
@@ -1102,7 +955,7 @@ return (
                         HOTSPOT OCULTO
                       </h3>
                       <p className="text-slate-300 text-sm leading-relaxed italic">
-                        "Ative o Guia com IA para revelar a principal recomendação para {cidadeSelecionada.cidade}."
+                        "Ative a Consultoria de Itinerário IA para revelar a principal recomendação para {cidadeSelecionada.cidade}."
                       </p>
                     </div>
                   )}
@@ -1110,29 +963,29 @@ return (
 
                 {/* MÁQUINA DO TEMPO */}
                 <div className="space-y-4 mb-auto flex flex-col shrink-0">
-                   <div className="bg-black/40 border border-white/5 rounded-2xl overflow-hidden shadow-inner transition-all duration-300">
+                   <div className="bg-black/40 border border-white/5 rounded-[2rem] overflow-hidden shadow-inner transition-all duration-300">
                      <button type="button"
                        onClick={() => setEstadoMaquinaTempo(prev => prev === 'fechado' ? 'setup' : 'fechado')} 
-                       className="w-full p-6 hover:bg-amber-900/10 transition-all flex items-center justify-between group"
+                       className="w-full p-6 md:p-8 hover:bg-amber-900/10 transition-all flex items-center justify-between group"
                      >
                         <div className="text-left">
-                          <span className="text-amber-500 text-[8px] md:text-[9px] font-black uppercase tracking-widest block mb-1">Dados Históricos</span>
+                          <span className="text-amber-500 text-[8px] md:text-[9px] font-black uppercase tracking-widest block mb-1.5">Dados Históricos</span>
                           <span className="text-white text-sm md:text-base font-bold uppercase tracking-tight group-hover:text-amber-400 transition-colors">{t.previsaoSazonal}</span>
                         </div>
-                        <span className={`bg-white/5 p-3 rounded-xl text-white group-hover:bg-amber-500/20 transition-transform duration-300 border border-white/5 ${estadoMaquinaTempo !== 'fechado' ? 'rotate-90 text-amber-400' : ''}`}>⏳</span>
+                        <span className={`bg-white/5 p-4 rounded-2xl text-white group-hover:bg-amber-500/20 transition-transform duration-300 border border-white/5 ${estadoMaquinaTempo !== 'fechado' ? 'rotate-90 text-amber-400' : ''}`}>⏳</span>
                      </button>
                      
                      {estadoMaquinaTempo !== 'fechado' && (
-                       <div className="p-6 border-t border-white/5 bg-black/20 animate-in slide-in-from-top-2">
+                       <div className="p-6 md:p-8 border-t border-white/5 bg-black/20 animate-in slide-in-from-top-2">
                           {estadoMaquinaTempo === 'setup' && (
                             <>
-                              <span className="text-slate-400 text-[9px] font-bold uppercase tracking-widest block mb-4">Selecionar Mês Base</span>
-                              <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mb-5">
+                              <span className="text-slate-400 text-[9px] font-bold uppercase tracking-widest block mb-4 text-center">Selecione o Mês Base</span>
+                              <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mb-6">
                                 {MESES_ANO.map(mes => (
                                   <button type="button"
                                     key={mes} 
                                     onClick={() => trocarMes(mes)} 
-                                    className={`py-3 text-[10px] md:text-xs font-bold rounded-xl border transition-all ${mesSelecionado === mes ? 'bg-amber-500/20 border-amber-500/50 text-amber-400 shadow-md' : 'bg-black/30 border-white/10 text-slate-400 hover:border-white/30'}`}
+                                    className={`py-3 text-[10px] md:text-xs font-bold rounded-xl border transition-all ${mesSelecionado === mes ? 'bg-amber-500/20 border-amber-500/50 text-amber-400 shadow-md' : 'bg-black/30 border-white/10 text-slate-400 hover:border-white/30 hover:text-white'}`}
                                   >
                                     {mes}
                                   </button>
@@ -1147,7 +1000,7 @@ return (
                           {estadoMaquinaTempo === 'carregando' && (
                             <div className="py-10 flex flex-col items-center justify-center">
                               <div className="w-8 h-8 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mb-4"></div>
-                              <p className="text-amber-400 font-mono text-[10px] uppercase tracking-widest animate-pulse text-center">Inspecionando registros climáticos de longo prazo...</p>
+                              <p className="text-amber-400 font-mono text-[10px] uppercase tracking-widest animate-pulse text-center">Inspecionando registros climáticos...</p>
                             </div>
                           )}
                           
@@ -1156,7 +1009,7 @@ return (
                               <div className="bg-black/30 p-5 rounded-2xl border border-white/5 mb-5 shadow-inner">
                                 <div className="flex justify-between items-center mb-5 border-b border-white/5 pb-4">
                                   <div>
-                                    <span className="text-[8px] md:text-[9px] text-slate-500 uppercase font-black tracking-widest block mb-1">Temperatura Base Prevista</span>
+                                    <span className="text-[8px] md:text-[9px] text-slate-500 uppercase font-black tracking-widest block mb-1">Temperatura Média Prevista</span>
                                     <span className="text-3xl text-white font-light tracking-tighter">{dossieAtual.temp}°</span>
                                   </div>
                                   <div className="text-right">
@@ -1184,7 +1037,7 @@ return (
                    </div>
                 </div>
 
-                {/* FAST TRACK LINKS (Passagens, Hospedagem, Restaurantes) */}
+                {/* FAST TRACK LINKS */}
                 <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 lg:grid-cols-3 gap-3 shrink-0">
                    <a 
                      href={`https://www.skyscanner.com.br/transporte/passagens-aereas/br/${cidadeSelecionada.cidade.toLowerCase()}`} 
@@ -1217,35 +1070,30 @@ return (
 
       {/* ── MODAL DE ONBOARDING (Boas-vindas) ── */}
       {mostrarOnboarding && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4 animate-in fade-in duration-500">
-          <div className="bg-slate-900 border border-slate-700/50 rounded-3xl shadow-2xl max-w-md w-full p-8 text-center relative overflow-hidden">
+        <div className="fixed inset-0 z-[6000] flex items-center justify-center bg-[#0b1120]/80 backdrop-blur-md p-4 animate-in fade-in duration-500">
+          <div className="bg-[#0f172a] border border-white/10 rounded-3xl shadow-2xl max-w-md w-full p-8 text-center relative overflow-hidden">
             
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <span className="text-white text-3xl">{ICONE_DO_APP}</span>
               </div>
               
-              <h2 className="text-2xl font-bold text-slate-100 mb-3 tracking-tight">
+              <h2 className="text-2xl font-bold text-white mb-3 tracking-tight">
                 Bem-vindo ao Equinox
               </h2>
               
               <p className="text-slate-400 mb-8 leading-relaxed text-sm">
-                Sua nova bússola para o clima global. Descubra os melhores destinos, analise tendências históricas e planeje sua próxima jornada guiado por dados em tempo real.
+                Sua nova bússola para o clima global. Descubra os melhores destinos, analise tendências históricas e planeje sua próxima jornada guiado por inteligência artificial.
               </p>
               
               <button type="button" 
                 onClick={fecharOnboarding}
-                className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium rounded-xl transition-all shadow-md hover:shadow-blue-500/25 active:scale-[0.98] flex items-center justify-center gap-2"
+                className="w-full py-4 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
               >
-                Começar a Explorar
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                Iniciar Exploração
               </button>
             </div>
           </div>
