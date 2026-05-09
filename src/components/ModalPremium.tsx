@@ -1,6 +1,6 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { usePremiumAI } from '../hooks/usePremiumAI.ts';
+import { usePremiumAI } from '../hooks/usePremiumAI.ts'; // <-- Ajustado para a exigência do Deno
 
 interface ModalPremiumProps {
   cidadeSelecionada: {
@@ -48,7 +48,7 @@ export default function ModalPremium({
   mesSelecionado, trocarMes, acionarMaquinaTempo,
   formatarExibicao, getHoraLocalInfo, getContinente,
   dadosGraficoSeguros, MESES_ANO, corDestaque,
-  dossieHistorico // <-- Faltou declarar aqui para o componente poder usar! (Corrigido)
+  dossieHistorico
 }: ModalPremiumProps) {
 
   // Instanciando o Cérebro da IA
@@ -63,7 +63,7 @@ export default function ModalPremium({
 
   if (!cidadeSelecionada || !curadoriaAtual) return null;
 
-  // Encapsulando a chamada da API com os dados da cidade atual
+  // Encapsulando a chamada da API
   const handleGerarGuia = () => {
     gerarDossiePremium(
       cidadeSelecionada.cidade, 
@@ -181,21 +181,64 @@ export default function ModalPremium({
               {/* RESULTADO DA IA */}
               {estadoRoteiroIA === 'pronto' && dossieAtual && (
                 <div className="bg-white/[0.02] border border-purple-500/20 rounded-3xl backdrop-blur-sm p-6 shadow-inner space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <div><h4 className="text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">Vibe Local</h4><p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p></div>
+                  
+                  {/* VIBE LOCAL */}
+                  <div>
+                    <h4 className="text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">Vibe Local</h4>
+                    <p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p>
+                  </div>
+                  
                   <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                  
+                  {/* NOVO: RADAR DE CUSTO FINANCEIRO */}
+                  {dossieAtual.custos && (
+                    <div className="animate-in fade-in duration-500">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-blue-400 text-[10px] font-bold uppercase tracking-wider">Radar de Custo (USD)</h4>
+                          <span className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md border shadow-sm ${
+                            dossieAtual.custos.nivel === 'Baixo' ? 'bg-blue-500/10 text-blue-400 border-blue-500/30' :
+                            dossieAtual.custos.nivel === 'Moderado' ? 'bg-purple-500/10 text-purple-400 border-purple-500/30' :
+                            'bg-amber-500/10 text-amber-400 border-amber-500/30'
+                          }`}>
+                            Nível: {dossieAtual.custos.nivel}
+                          </span>
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="bg-black/30 border border-white/5 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-inner hover:bg-white/5 transition-colors">
+                          <span className="text-lg mb-1 drop-shadow-md">☕</span>
+                          <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Café</span>
+                          <span className="text-[11px] font-mono text-emerald-300 font-bold">{dossieAtual.custos.cafe}</span>
+                        </div>
+                        <div className="bg-black/30 border border-white/5 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-inner hover:bg-white/5 transition-colors">
+                          <span className="text-lg mb-1 drop-shadow-md">🍽️</span>
+                          <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Refeição</span>
+                          <span className="text-[11px] font-mono text-emerald-300 font-bold">{dossieAtual.custos.refeicao}</span>
+                        </div>
+                        <div className="bg-black/30 border border-white/5 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-inner hover:bg-white/5 transition-colors">
+                          <span className="text-lg mb-1 drop-shadow-md">🚕</span>
+                          <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Trajeto</span>
+                          <span className="text-[11px] font-mono text-emerald-300 font-bold">{dossieAtual.custos.transporte}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
                   <div>
                     <h4 className="text-purple-400 text-[10px] font-bold uppercase tracking-wider mb-3">O Segredo Premium</h4>
-                    <div className="space-y-2">{dossieAtual.segredo_premium?.map((dica: string, idx: number) => (<p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-xl border border-white/5">{dica}</p>))}</div>
+                    <div className="space-y-2">{dossieAtual.segredo_premium?.map((dica: string, idx: number) => (<p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-xl border border-white/5 shadow-sm">{dica}</p>))}</div>
                   </div>
                   <div>
                     <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Dress Code Local</h4>
-                    <div className="flex flex-col gap-2">{dossieAtual.vestuario_sugerido?.map((roupa: string, idx: number) => (<div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></div><span className="leading-snug">{roupa}</span></div>))}</div>
+                    <div className="flex flex-col gap-2">{dossieAtual.vestuario_sugerido?.map((roupa: string, idx: number) => (<div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/5 shadow-sm"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></div><span className="leading-snug">{roupa}</span></div>))}</div>
                   </div>
                   <div>
                     <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Na Mala (Indispensável)</h4>
                     <div className="flex flex-wrap gap-2">{dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (<span key={i} className="bg-black/40 border border-white/10 text-slate-300 text-[11px] px-4 py-1.5 rounded-full shadow-sm">{item}</span>))}</div>
                   </div>
-                  <button onClick={resetarIA} className="w-full mt-4 py-3.5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 text-[10px] font-bold uppercase tracking-widest rounded-2xl transition-all">
+                  <button onClick={resetarIA} className="w-full mt-4 py-3.5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 text-[10px] font-bold uppercase tracking-widest rounded-2xl transition-all shadow-sm">
                     Ocultar Guia Inteligente
                   </button>
                 </div>
@@ -248,7 +291,7 @@ export default function ModalPremium({
             )}
           </div>
 
-          {/* MÁQUINA DO TEMPO (CORRIGIDA) */}
+          {/* MÁQUINA DO TEMPO */}
           <div className="space-y-4 mb-auto flex flex-col shrink-0">
              <div className="bg-black/40 border border-white/5 rounded-[2rem] overflow-hidden shadow-inner transition-all duration-300">
                <button type="button" onClick={() => setEstadoMaquinaTempo((prev: any) => prev === 'fechado' ? 'setup' : 'fechado')} className="w-full p-6 md:p-8 hover:bg-amber-900/10 transition-all flex items-center justify-between group">
@@ -278,7 +321,7 @@ export default function ModalPremium({
                         <p className="text-amber-400 font-mono text-[10px] uppercase tracking-widest animate-pulse text-center">Inspecionando registros climáticos...</p>
                       </div>
                     )}
-                    {estadoMaquinaTempo === 'pronto' && dossieHistorico && ( // <-- AQUI foi corrigido para dossieHistorico
+                    {estadoMaquinaTempo === 'pronto' && dossieHistorico && (
                       <div className="animate-in fade-in">
                         <div className="bg-black/30 p-5 rounded-2xl border border-white/5 mb-5 shadow-inner">
                           <div className="flex justify-between items-center mb-5 border-b border-white/5 pb-4">

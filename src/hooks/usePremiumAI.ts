@@ -1,12 +1,18 @@
 import { useState } from 'react';
 
-// Tipagens para manter o TypeScript feliz
+// 1. Interface atualizada para receber a nova aba de Custos
 interface DossierIA {
   vibe_local: string;
   hotspot: { nome: string; descricao: string };
   segredo_premium: string[];
   vestuario_sugerido: string[];
   itens_indispensaveis: string[];
+  custos: {
+    nivel: 'Baixo' | 'Moderado' | 'Alto';
+    cafe: string;
+    refeicao: string;
+    transporte: string;
+  };
 }
 
 type EstadoIA = 'fechado' | 'setup' | 'carregando' | 'pronto' | 'erro';
@@ -51,6 +57,7 @@ export function usePremiumAI() {
 
       const regraAtual = regrasPerfil[perfilViagem];
 
+      // 2. Prompt modificado para exigir os dados financeiros
       const prompt = `
         Atue como ${regraAtual.persona} para o app Equinox.
         O destino EXATO é: ${cidade} (País: ${pais}).
@@ -64,6 +71,7 @@ export function usePremiumAI() {
         3. SEGREDO PREMIUM (HACKS): Focados em: ${regraAtual.foco_hacks}. Máximo de 2 frases curtas por tópico.
         4. VESTUÁRIO: Baseado na temperatura de ${temperatura}°C e no perfil ${perfilViagem.toUpperCase()}. Cite a peça e o motivo em, no máximo, 15 palavras por item.
         5. NA MALA: Cite o item e o motivo tático em, no máximo, 15 palavras por item.
+        6. RADAR DE CUSTO: Estime em Dólares Americanos (USD) o preço médio para este perfil de viajante: um café, uma refeição típica, e um ticket de transporte (ou Uber curto). Classifique o custo geral da cidade como 'Baixo', 'Moderado' ou 'Alto'.
         
         RETORNE APENAS UM JSON VÁLIDO. Formato obrigatório:
         {
@@ -78,7 +86,13 @@ export function usePremiumAI() {
             "🛡️ Tática de Campo: [Alerta de segurança/locomoção objetivo]"
           ],
           "vestuario_sugerido": ["Peça 1: Motivo em 15 palavras", "Peça 2: Motivo", "Peça 3: Motivo"],
-          "itens_indispensaveis": ["Item 1: Motivo em 15 palavras", "Item 2: Motivo", "Item 3: Motivo"]
+          "itens_indispensaveis": ["Item 1: Motivo em 15 palavras", "Item 2: Motivo", "Item 3: Motivo"],
+          "custos": {
+            "nivel": "Moderado",
+            "cafe": "$3.50",
+            "refeicao": "$18.00",
+            "transporte": "$2.50"
+          }
         }
       `;
 
@@ -107,6 +121,7 @@ export function usePremiumAI() {
         .replace(new RegExp('```json', 'gi'), '')
         .replace(new RegExp('```', 'g'), '')
         .trim();
+        
       const dossieJson = JSON.parse(respostaTexto);
       
       setDossieAtual(dossieJson);
@@ -132,4 +147,4 @@ export function usePremiumAI() {
     gerarDossiePremium,
     resetarIA
   };
-      }
+}
