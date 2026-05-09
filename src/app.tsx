@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import ModalPremium from './components/ModalPremium.tsx';
 import 'leaflet/dist/leaflet.css';
 
 const API_KEY = import.meta.env.VITE_OPENWEATHER_KEY;
@@ -249,20 +249,16 @@ export default function App() {
     return (localStorage.getItem('equinox_visao') as 'lista' | 'mapa') || 'mapa';
   });
   const [camadaRadar, setCamadaRadar] = useState<'nenhuma' | 'temp_new' | 'precipitation_new'>('precipitation_new');
-  
   const [dadosClima, setDadosClima] = useState<ClimaCidade[]>([]);
   const [historico, setHistorico] = useState<any[]>([]);
-  const [geoJson, setGeoJson] = useState<any>(null);
-  
+  const [geoJson, setGeoJson] = useState<any>(null); 
   const [cidadeSelecionada, setCidadeSelecionada] = useState<ClimaCidade | null>(null);
   const [abaMobileAtiva, setAbaMobileAtiva] = useState<'panorama' | 'premium'>('panorama');
   
-  const [estadoRoteiroIA, setEstadoRoteiroIA] = useState<'fechado' | 'setup' | 'carregando' | 'pronto'>('fechado');
-  const [perfilViagem, setPerfilViagem] = useState<'mochilao' | 'equilibrado' | 'luxo'>('equilibrado');
-  
+  // ESTADOS DA MÁQUINA DO TEMPO (Separados da IA)
   const [estadoMaquinaTempo, setEstadoMaquinaTempo] = useState<'fechado' | 'setup' | 'carregando' | 'pronto'>('fechado');
   const [mesSelecionado, setMesSelecionado] = useState('Jul');
-  const [dossieAtual, setDossieAtual] = useState<any>(null);
+  const [dossieHistorico, setDossieHistorico] = useState<any>(null);
 
   const [unidade, setUnidade] = useState<'C' | 'F'>(() => {
     return (localStorage.getItem('equinox_unidade') as 'C' | 'F') || 'C';
@@ -318,107 +314,6 @@ export default function App() {
     return () => clearInterval(intervalo);
   }, []);
 
-// ── MOTOR DE INTELIGÊNCIA ARTIFICIAL ──
-  const gerarDossiePremium = async () => {
-    if (!cidadeSelecionada) return;
-
-    setEstadoRoteiroIA('carregando');
-
-    try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-      if (!apiKey) throw new Error("Chave de API não encontrada.");
-
-      const MODELO_IA = "gemini-2.5-flash";
-
-      const regrasPerfil = {
-        mochilao: {
-          persona: "um guia local experiente em viagens 'budget' e mochilões",
-          tom: "descontraído, prático e focado em economia extrema e vivência autêntica de rua",
-          foco_hotspot: "uma comida de rua lendária, um bar underground ou um local autêntico e muito barato",
-          foco_hacks: "transporte público, passes de desconto, dias gratuitos em museus e comida barata"
-        },
-        equilibrado: { 
-          persona: "um consultor de viagens smart-luxury, que equilibra economia com conforto",
-          tom: "equilibrado, objetivo e focado em custo-benefício inteligente (gastar onde importa)",
-          foco_hotspot: "um restaurante de excelente custo-benefício ou uma atração que vale cada centavo do ingresso",
-          foco_hacks: "como evitar armadilhas para turistas, onde economizar para poder gastar em experiências-chave"
-        },
-        luxo: {
-          persona: "um concierge de ultra-luxo",
-          tom: "sofisticado, direto e focado em exclusividade, conforto absoluto e zero atrito",
-          foco_hotspot: "um restaurante Michelin, um rooftop exclusivo ou experiência VIP premium",
-          foco_hacks: "acesso fast-track, transfers privados, regras de etiqueta da alta sociedade local"
-        }
-      };
-
-      const regraAtual = regrasPerfil[perfilViagem];
-
-      const prompt = `
-        Atue como ${regraAtual.persona} para o app Equinox.
-        O destino EXATO é: ${cidadeSelecionada.cidade} (País: ${cidadeSelecionada.clima_bruto?.pais || 'Verificar local'}).
-        REGRA GEOGRÁFICA DE OURO: É estritamente proibido sugerir locais que não existam nesta exata cidade.
-
-        DIRETRIZES DE TOM E PERFIL (ESTILO: ${perfilViagem.toUpperCase()}):
-        Seja ${regraAtual.tom}. O usuário não quer ler muito, quer inteligência acionável e rápida.
-
-        1. VIBE LOCAL: Uma única frase capturando a essência da cidade PARA ESTE PERFIL de viajante.
-        2. HOTSPOT: Indique ${regraAtual.foco_hotspot} REAL em ${cidadeSelecionada.cidade}.
-        3. SEGREDO PREMIUM (HACKS): Focados em: ${regraAtual.foco_hacks}. Máximo de 2 frases curtas por tópico.
-        4. VESTUÁRIO: Baseado na temperatura de ${cidadeSelecionada.temperatura}°C e no perfil ${perfilViagem.toUpperCase()}. Cite a peça e o motivo em, no máximo, 15 palavras por item.
-        5. NA MALA: Cite o item e o motivo tático em, no máximo, 15 palavras por item.
-        
-        RETORNE APENAS UM JSON VÁLIDO. Formato obrigatório:
-        {
-          "vibe_local": "Frase de impacto curta.",
-          "hotspot": {
-            "nome": "Nome do Local Real",
-            "descricao": "Frase curta sobre a experiência."
-          },
-          "segredo_premium": [
-            "🤝 Código de Conduta: [Regra social para este perfil]",
-            "⚡ Hack de Acesso: [Tática rápida de otimização de tempo/dinheiro]",
-            "🛡️ Tática de Campo: [Alerta de segurança/locomoção objetivo]"
-          ],
-          "vestuario_sugerido": ["Peça 1: Motivo em 15 palavras", "Peça 2: Motivo", "Peça 3: Motivo"],
-          "itens_indispensaveis": ["Item 1: Motivo em 15 palavras", "Item 2: Motivo", "Item 3: Motivo"]
-        }
-      `;
-
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELO_IA}:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { 
-            response_mime_type: "application/json",
-            temperature: 0.7 
-          }
-        })
-      });
-
-      if (!response.ok) {
-        const erroDoGoogle = await response.json();
-        throw new Error(erroDoGoogle.error?.message || "Erro desconhecido retornado pela API");
-      }
-
-      const data = await response.json();
-      let respostaTexto = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-      if (!respostaTexto) throw new Error("A IA devolveu um pacote vazio.");
-
-      respostaTexto = respostaTexto.replace(/```json/gi, '').replace(/```/g, '').trim();
-      const dossieJson = JSON.parse(respostaTexto);
-      
-      setDossieAtual(dossieJson);
-      setEstadoRoteiroIA('pronto');
-
-    } catch (error: any) {
-      console.error("❌ Erro interno do motor:", error);
-      setEstadoRoteiroIA('setup'); 
-      alert(`Falha na IA: ${error.message || "Turbulência na conexão."}`);
-    }
-  };
-
   useEffect(() => {
     if (cidadeSelecionada) {
       const dadosFrescos = dadosClima.find(c => c?.cidade === cidadeSelecionada.cidade);
@@ -470,20 +365,18 @@ export default function App() {
   const abrirPainel = (cidade: ClimaCidade) => {
     setCidadeSelecionada(cidade);
     setAbaMobileAtiva('panorama');
-    setEstadoRoteiroIA('fechado');
     setEstadoMaquinaTempo('fechado');
   };
 
   const fecharModal = () => {
     setCidadeSelecionada(null);
-    setEstadoRoteiroIA('fechado');
     setEstadoMaquinaTempo('fechado');
   };
 
   const acionarMaquinaTempo = () => {
     setEstadoMaquinaTempo('carregando');
     setTimeout(() => {
-      setDossieAtual(gerarDossieHistorico(cidadeSelecionada?.clima_bruto?.lat || 0, mesSelecionado));
+      setDossieHistorico(gerarDossieHistorico(cidadeSelecionada?.clima_bruto?.lat || 0, mesSelecionado));
       setEstadoMaquinaTempo('pronto');
     }, 1500);
   };
@@ -491,7 +384,7 @@ export default function App() {
   const trocarMes = (mes: string) => {
     setMesSelecionado(mes);
     if (estadoMaquinaTempo === 'pronto') {
-      setDossieAtual(gerarDossieHistorico(cidadeSelecionada?.clima_bruto?.lat || 0, mes));
+      setDossieHistorico(gerarDossieHistorico(cidadeSelecionada?.clima_bruto?.lat || 0, mes));
     }
   };
 
@@ -671,7 +564,7 @@ export default function App() {
                 const horaLocal = getHoraLocalInfo(cidade.clima_bruto?.timezone);
                 const previewCuradoria = gerarCuradoriaDinamica(cidade.clima_bruto?.temp || 20, getContinente(cidade.clima_bruto?.pais), idioma);
                 
-return (
+                return (
                   <div
                     key={cidade.cidade}
                     onClick={() => abrirPainel(cidade)}
@@ -722,384 +615,30 @@ return (
         </div>
       </div>
 
-      {/* ── MODAL PREMIUM (VISÃO SPLIT & TABS) ── */}
+      {/* ── MODAL PREMIUM (ISOLADO NO COMPONENTE) ── */}
       {cidadeSelecionada && curadoriaAtual && (
-        
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-3 md:p-8 animate-in fade-in duration-300">
-        <div className="w-full max-w-7xl flex flex-col h-full max-h-[96vh] md:max-h-[90vh] relative">
-        
-        {/* BOTÃO FLUTUANTE DE EXIT (MOBILE NA BASE, DESKTOP NO CANTO) */}
-        <button 
-          onClick={fecharModal}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 md:absolute md:-top-5 md:-right-5 md:left-auto md:bottom-auto md:translate-x-0 z-[5000] px-6 py-3 md:px-5 md:py-3 bg-[#0f172a]/95 backdrop-blur-xl border border-white/10 hover:border-red-500/50 rounded-full flex items-center gap-3 shadow-[0_10px_40px_rgba(0,0,0,0.8)] text-white transition-all group hover:bg-red-500/10"
-        >
-          <span className="text-red-500 text-lg leading-none group-hover:scale-110 transition-transform">✕</span> 
-          <span className="font-black text-[10px] md:text-xs tracking-widest uppercase">{t.fecharPainel}</span>
-        </button>
-
-        <div className="flex flex-col w-full shrink-0 mb-4 md:mb-6 gap-3 pt-2 md:pt-0">
-              <div className="flex md:hidden w-full bg-black/40 rounded-xl p-1 border border-white/10 shadow-inner z-[2010]">
-                <button type="button"
-                  onClick={() => setAbaMobileAtiva('panorama')} 
-                  className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`}
-                >
-                  {t.panorama} 
-                </button>
-                <button type="button"
-                  onClick={() => setAbaMobileAtiva('premium')} 
-                  className={`flex-1 py-3.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'premium' ? 'bg-purple-600 text-white shadow-md' : 'text-slate-500 hover:text-white'}`} 
-                >
-                  {t.premium}
-                </button>
-              </div>
-            </div>
-
-{/* CORTINA INVISÍVEL */}
-<div className={`fixed inset-0 z-40 ${cidadeSelecionada ? 'pointer-events-auto' : 'pointer-events-none'}`} onClick={fecharModal} />        
-        
-        {/* CONTAINER DOS CARDS */}
-        <div className="flex flex-col lg:flex-row gap-6 flex-1 min-h-0 animate-in slide-in-from-bottom-8 duration-500 relative z-50">
-          
-          {/* CARD 1: RELATÓRIO TÉCNICO E CLIMÁTICO */}
-          <div className={`${abaMobileAtiva === 'panorama' ? 'flex' : 'hidden'} md:flex flex-1 bg-[#0f172a]/90 border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative overflow-hidden transform transition-all duration-500 ease-out origin-bottom ${cidadeSelecionada ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95 pointer-events-none'}`}>
-                
-                <div className="flex justify-between items-start mb-8 border-b border-white/5 pb-8 relative z-10">
-                  <div>
-                    <span className="text-[10px] font-black uppercase text-blue-500 tracking-widest block mb-2">
-                      {getContinente(cidadeSelecionada.clima_bruto?.pais)}
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
-                      {cidadeSelecionada.cidade}
-                    </h2>
-                  </div>
-                  <div className="text-right flex flex-col items-end">
-                    <div className="text-5xl font-light text-white tracking-tighter mb-2">
-                      {formatarExibicao(cidadeSelecionada.clima_bruto?.temp ?? cidadeSelecionada.temperatura)}°
-                    </div>
-                    <span className={`text-[10px] md:text-xs font-mono px-3 py-1.5 rounded-xl border shadow-inner flex items-center gap-2 ${getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).isDia ? 'bg-amber-900/30 text-amber-200 border-amber-500/20' : 'bg-blue-900/30 text-blue-200 border-blue-500/20'}`}>
-                      <span>{getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).isDia ? '☀️' : '🌙'}</span> {getHoraLocalInfo(cidadeSelecionada.clima_bruto?.timezone).texto}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-6 pb-20 md:pb-0">
-                  
-                  {/* SETUP DA IA (Botões de Perfil Glassmorphism) */}
-                  {(estadoRoteiroIA === 'fechado' || estadoRoteiroIA === 'setup') && (
-                    <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-5 shadow-inner">
-                      <h4 className="text-slate-300 text-[10px] font-black uppercase tracking-widest mb-4 text-center">1. Selecione o Perfil de IA</h4>
-                      
-                      <div className="grid grid-cols-3 gap-2 md:gap-3 mb-5">
-                        <button
-                          onClick={() => setPerfilViagem('mochilao')}
-                          className={`py-3.5 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all backdrop-blur-md border ${perfilViagem === 'mochilao' ? 'bg-blue-500/20 border-blue-500/50 text-blue-300 shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'}`}
-                        >
-                          🎒 Mochilão
-                        </button>
-                        <button
-                          onClick={() => setPerfilViagem('equilibrado')}
-                          className={`py-3.5 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all backdrop-blur-md border ${perfilViagem === 'equilibrado' ? 'bg-purple-500/20 border-purple-500/50 text-purple-300 shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'}`}
-                        >
-                          ⚖️ Híbrido
-                        </button>
-                        <button
-                          onClick={() => setPerfilViagem('luxo')}
-                          className={`py-3.5 rounded-xl text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all backdrop-blur-md border ${perfilViagem === 'luxo' ? 'bg-amber-500/20 border-amber-500/50 text-amber-300 shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white'}`}
-                        >
-                          🥂 Luxo
-                        </button>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={gerarDossiePremium}
-                        className="w-full py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-black text-[11px] uppercase tracking-widest rounded-2xl shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all flex items-center justify-center gap-2 group"
-                      >
-                        <span className="text-purple-400 group-hover:animate-pulse">✨</span> 2. Consultoria de Itinerário IA
-                      </button>
-                    </div>
-                  )}
-
-                  {/* EFEITO HOLLYWOOD DE CARREGAMENTO */}
-                  {estadoRoteiroIA === 'carregando' && (
-                    <div className="bg-white/[0.02] border border-blue-500/20 rounded-3xl p-8 shadow-inner flex flex-col items-center justify-center min-h-[200px] animate-in zoom-in-95 duration-300">
-                      <div className="relative w-12 h-12 mb-5">
-                        <div className="absolute inset-0 border-4 border-blue-500/20 rounded-full"></div>
-                        <div className="absolute inset-0 border-4 border-blue-400 rounded-full border-t-transparent animate-spin"></div>
-                        <div className="absolute inset-2 bg-blue-500/20 rounded-full animate-pulse"></div>
-                      </div>
-                      <h4 className="text-blue-400 text-[11px] font-black uppercase tracking-widest animate-pulse mb-1">
-                        Decodificando {cidadeSelecionada.cidade}
-                      </h4>
-                      <p className="text-slate-400 text-[10px] uppercase tracking-wider font-mono">
-                        Matriz: Perfil {perfilViagem}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* RESULTADO DA IA */}
-                  {estadoRoteiroIA === 'pronto' && dossieAtual && (
-                    <div className="bg-white/[0.02] border border-purple-500/20 rounded-3xl backdrop-blur-sm p-6 shadow-inner space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                      <div>
-                        <h4 className="text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">Vibe Local</h4>
-                        <p className="text-slate-200 text-sm italic leading-relaxed">"{dossieAtual.vibe_local}"</p>
-                      </div>
-                      
-                      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-                      <div>
-                        <h4 className="text-purple-400 text-[10px] font-bold uppercase tracking-wider mb-3">O Segredo Premium</h4>
-                        <div className="space-y-2">
-                          {dossieAtual.segredo_premium?.map((dica: string, idx: number) => (
-                            <p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-xl border border-white/5">
-                              {dica}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Dress Code Local</h4>
-                        <div className="flex flex-col gap-2">
-                          {dossieAtual.vestuario_sugerido?.map((roupa: string, idx: number) => (
-                            <div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/5">
-                              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></div>
-                              <span className="leading-snug">{roupa}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Na Mala (Indispensável)</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (
-                            <span key={i} className="bg-black/40 border border-white/10 text-slate-300 text-[11px] px-4 py-1.5 rounded-full shadow-sm">
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => setEstadoRoteiroIA('setup')}
-                        className="w-full mt-4 py-3.5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 text-[10px] font-bold uppercase tracking-widest rounded-2xl transition-all"
-                      >
-                        Ocultar Guia Inteligente
-                      </button>
-                    </div>
-                  )}
-
-                  {/* GRÁFICO HISTÓRICO NORMALIZADO E CLEAN */}
-                  <div className="bg-white/[0.02] rounded-3xl p-6 border border-white/5 flex flex-col shadow-inner">
-                    <div className="flex justify-between items-center mb-6">
-                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
-                        {t.previsaoHora}
-                      </span>
-                      <span className="text-[9px] text-slate-300 font-mono bg-white/5 px-3 py-1.5 rounded-lg border border-white/10 shadow-sm">
-                        Min {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_min)}° | Max {formatarExibicao(cidadeSelecionada.clima_bruto?.temp_max)}°
-                      </span>
-                    </div>
-                    <div className="w-full h-[180px] mt-2">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <LineChart margin={{ top: 20, right: 10, left: -20, bottom: 0 }} data={dadosGraficoSeguros}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#ffffff" strokeOpacity={0.03} vertical={false} />
-                          <XAxis dataKey="hora" stroke="#94a3b8" fontSize={10} tickMargin={10} axisLine={false} tickLine={false} />
-                          <YAxis domain={['auto', 'auto']} stroke="#94a3b8" fontSize={10} axisLine={false} tickLine={false} tickFormatter={(tick) => `${tick}°`} />
-                          <Tooltip 
-                             contentStyle={{ backgroundColor: '#0b1120', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', fontSize: '12px' }} 
-                             itemStyle={{ color: '#fff' }} 
-                             formatter={(value: number) => [`${value}°`, 'Temperatura']} 
-                             labelStyle={{ color: '#94a3b8', marginBottom: '4px' }}
-                          />
-                          <Line isAnimationActive={true} type="monotone" dataKey="temp" stroke={corDestaque} strokeWidth={3} dot={{ r: 4, fill: '#0b1120', stroke: corDestaque, strokeWidth: 2 }} activeDot={{ r: 7, fill: corDestaque, stroke: '#0b1120', strokeWidth: 2 }} />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* CARD 2: FERRAMENTAS PREMIUM E ACIONÁVEIS */}
-              <div className={`${abaMobileAtiva === 'premium' ? 'flex' : 'hidden'} md:flex flex-1 bg-gradient-to-b from-[#1a1c2e] to-[#0b1120] border border-purple-500/20 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative pb-24 md:pb-10`}>
-                
-                <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 text-purple-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg w-fit mb-8 shadow-md">
-                  <span className="animate-pulse text-amber-400">✦</span> {t.premiumModo}
-                </div>
-
-                {/* CAIXA ÂMBAR (HOTSPOT DINDÂMICO DA IA) */}
-                <div className="min-h-[180px] shrink-0 bg-gradient-to-br from-amber-900/20 to-black/50 p-8 rounded-[2rem] border border-amber-500/20 relative overflow-hidden group mb-6 shadow-lg">
-                  <div className="absolute -top-6 -right-6 text-7xl md:text-8xl opacity-5 transform rotate-12 group-hover:scale-110 group-hover:rotate-45 transition-transform duration-700">✦</div>
-                  
-                  {estadoRoteiroIA === 'pronto' && dossieAtual?.hotspot ? (
-                    <div className="animate-in fade-in duration-500 relative z-10">
-                      <h3 className="text-amber-400 font-black italic text-lg uppercase tracking-wider mb-2 flex items-center gap-2">
-                        📍 {dossieAtual.hotspot.nome}
-                      </h3>
-                      <p className="text-slate-300 text-sm leading-relaxed italic">
-                        "{dossieAtual.hotspot.descricao}"
-                      </p>
-                      
-                      <a 
-                        href={`https://www.google.com/maps/search/?api=1&query=$${encodeURIComponent(dossieAtual.hotspot.nome + ' ' + cidadeSelecionada.cidade)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full mt-5 block text-center py-3.5 border border-amber-500/30 bg-amber-500/10 text-amber-500 hover:bg-amber-500 hover:text-black font-black text-[10px] uppercase tracking-widest rounded-xl transition-all"
-                      >
-                        Visualizar Localização
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="opacity-50 relative z-10">
-                      <h3 className="text-amber-400 font-black italic text-lg uppercase tracking-wider mb-2 flex items-center gap-2">
-                        HOTSPOT OCULTO
-                      </h3>
-                      <p className="text-slate-300 text-sm leading-relaxed italic">
-                        "Ative a Consultoria de Itinerário IA para revelar a principal recomendação para {cidadeSelecionada.cidade}."
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* MÁQUINA DO TEMPO */}
-                <div className="space-y-4 mb-auto flex flex-col shrink-0">
-                   <div className="bg-black/40 border border-white/5 rounded-[2rem] overflow-hidden shadow-inner transition-all duration-300">
-                     <button type="button"
-                       onClick={() => setEstadoMaquinaTempo(prev => prev === 'fechado' ? 'setup' : 'fechado')} 
-                       className="w-full p-6 md:p-8 hover:bg-amber-900/10 transition-all flex items-center justify-between group"
-                     >
-                        <div className="text-left">
-                          <span className="text-amber-500 text-[8px] md:text-[9px] font-black uppercase tracking-widest block mb-1.5">Dados Históricos</span>
-                          <span className="text-white text-sm md:text-base font-bold uppercase tracking-tight group-hover:text-amber-400 transition-colors">{t.previsaoSazonal}</span>
-                        </div>
-                        <span className={`bg-white/5 p-4 rounded-2xl text-white group-hover:bg-amber-500/20 transition-transform duration-300 border border-white/5 ${estadoMaquinaTempo !== 'fechado' ? 'rotate-90 text-amber-400' : ''}`}>⏳</span>
-                     </button>
-                     
-                     {estadoMaquinaTempo !== 'fechado' && (
-                       <div className="p-6 md:p-8 border-t border-white/5 bg-black/20 animate-in slide-in-from-top-2">
-                          {estadoMaquinaTempo === 'setup' && (
-                            <>
-                              <span className="text-slate-400 text-[9px] font-bold uppercase tracking-widest block mb-4 text-center">Selecione o Mês Base</span>
-                              <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mb-6">
-                                {MESES_ANO.map(mes => (
-                                  <button type="button"
-                                    key={mes} 
-                                    onClick={() => trocarMes(mes)} 
-                                    className={`py-3 text-[10px] md:text-xs font-bold rounded-xl border transition-all ${mesSelecionado === mes ? 'bg-amber-500/20 border-amber-500/50 text-amber-400 shadow-md' : 'bg-black/30 border-white/10 text-slate-400 hover:border-white/30 hover:text-white'}`}
-                                  >
-                                    {mes}
-                                  </button>
-                                ))}
-                              </div>
-                              <button onClick={acionarMaquinaTempo} className="w-full bg-amber-600 hover:bg-amber-500 text-white font-black text-[10px] py-4 rounded-xl uppercase tracking-widest transition-all shadow-lg hover:shadow-amber-500/40">
-                                {t.analisarMes}
-                              </button>
-                            </>
-                          )}
-                          
-                          {estadoMaquinaTempo === 'carregando' && (
-                            <div className="py-10 flex flex-col items-center justify-center">
-                              <div className="w-8 h-8 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mb-4"></div>
-                              <p className="text-amber-400 font-mono text-[10px] uppercase tracking-widest animate-pulse text-center">Inspecionando registros climáticos...</p>
-                            </div>
-                          )}
-                          
-                          {estadoMaquinaTempo === 'pronto' && dossieAtual && (
-                            <div className="animate-in fade-in">
-                              <div className="bg-black/30 p-5 rounded-2xl border border-white/5 mb-5 shadow-inner">
-                                <div className="flex justify-between items-center mb-5 border-b border-white/5 pb-4">
-                                  <div>
-                                    <span className="text-[8px] md:text-[9px] text-slate-500 uppercase font-black tracking-widest block mb-1">Temperatura Média Prevista</span>
-                                    <span className="text-3xl text-white font-light tracking-tighter">{dossieAtual.temp}°</span>
-                                  </div>
-                                  <div className="text-right">
-                                    <span className="text-[8px] md:text-[9px] text-slate-500 uppercase font-black tracking-widest block mb-1">Incidência Pluviométrica</span>
-                                    <span className={`text-xl font-black px-2 py-0.5 rounded-lg ${dossieAtual.chuva > 50 ? 'bg-red-500/20 text-red-400 border border-red-500/20' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/20'}`}>
-                                      {dossieAtual.chuva}%
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className="bg-white/5 p-3 rounded-xl border border-white/5 mb-3 flex items-center justify-between">
-                                  <span className="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Fenômeno Histórico</span>
-                                  <span className={`text-[10px] font-black uppercase tracking-wider ${dossieAtual.fenomeno.cor}`}>{dossieAtual.fenomeno.nome}</span>
-                                </div>
-                                <p className="text-slate-300 text-[10px] md:text-[11px] leading-relaxed pt-2 font-medium">
-                                  {dossieAtual.veredito}
-                                </p>
-                              </div>
-                              <button onClick={() => setEstadoMaquinaTempo('setup')} className="text-slate-400 hover:text-white text-[10px] font-bold uppercase tracking-widest w-full text-center flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 py-3.5 rounded-xl transition-colors border border-white/5">
-                                {t.voltarHoje}
-                              </button>
-                            </div>
-                          )}
-                       </div>
-                     )}
-                   </div>
-                </div>
-
-                {/* FAST TRACK LINKS */}
-                <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 lg:grid-cols-3 gap-3 shrink-0">
-                   <a 
-                     href={`https://www.skyscanner.com.br/transporte/passagens-aereas/br/${cidadeSelecionada.cidade.toLowerCase()}`} 
-                     target="_blank" rel="noopener noreferrer" 
-                     className="bg-white/5 hover:bg-white/10 text-white px-3 md:px-4 py-4 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-widest flex items-center justify-center border border-white/10 transition-colors shadow-sm"
-                   >
-                     {t.voos}
-                   </a>
-                   <a 
-                     href={`https://www.booking.com/searchresults.pt-br.html?ss=${cidadeSelecionada.cidade}`} 
-                     target="_blank" rel="noopener noreferrer" 
-                     className="bg-white/5 hover:bg-white/10 text-white px-3 md:px-4 py-4 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-widest flex items-center justify-center border border-white/10 transition-colors shadow-sm"
-                   >
-                     {t.hoteis}
-                   </a>
-                   <a 
-                     href={`https://www.opentable.com/s?q=${cidadeSelecionada.turista?.local_premium?.nome} ${cidadeSelecionada.cidade}`} 
-                     target="_blank" rel="noopener noreferrer" 
-                     className="bg-rose-700/20 hover:bg-rose-700/30 text-rose-300 px-3 md:px-4 py-4 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-widest flex items-center justify-center border border-rose-500/30 transition-colors shadow-sm col-span-2 lg:col-span-1"
-                   >
-                     {t.mesa}
-                   </a>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
+        <ModalPremium 
+          cidadeSelecionada={cidadeSelecionada}
+          curadoriaAtual={curadoriaAtual}
+          fecharModal={fecharModal}
+          t={t}
+          abaMobileAtiva={abaMobileAtiva}
+          setAbaMobileAtiva={setAbaMobileAtiva}
+          estadoMaquinaTempo={estadoMaquinaTempo}
+          setEstadoMaquinaTempo={setEstadoMaquinaTempo}
+          mesSelecionado={mesSelecionado}
+          trocarMes={trocarMes}
+          acionarMaquinaTempo={acionarMaquinaTempo}
+          dossieHistorico={dossieHistorico} 
+          formatarExibicao={formatarExibicao}
+          getHoraLocalInfo={getHoraLocalInfo}
+          getContinente={getContinente}
+          dadosGraficoSeguros={dadosGraficoSeguros}
+          MESES_ANO={MESES_ANO}
+          corDestaque={corDestaque}
+        />
       )}
 
-      {/* ── MODAL DE ONBOARDING (Boas-vindas) ── */}
-      {mostrarOnboarding && (
-        <div className="fixed inset-0 z-[6000] flex items-center justify-center bg-[#0b1120]/80 backdrop-blur-md p-4 animate-in fade-in duration-500">
-          <div className="bg-[#0f172a] border border-white/10 rounded-3xl shadow-2xl max-w-md w-full p-8 text-center relative overflow-hidden">
-            
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div className="relative z-10">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <span className="text-white text-3xl">{ICONE_DO_APP}</span>
-              </div>
-              
-              <h2 className="text-2xl font-bold text-white mb-3 tracking-tight">
-                Bem-vindo ao Equinox
-              </h2>
-              
-              <p className="text-slate-400 mb-8 leading-relaxed text-sm">
-                Sua nova bússola para o clima global. Descubra os melhores destinos, analise tendências históricas e planeje sua próxima jornada guiado por inteligência artificial.
-              </p>
-              
-              <button type="button" 
-                onClick={fecharOnboarding}
-                className="w-full py-4 px-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
-              >
-                Iniciar Exploração
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      
     </div>
   );
 }
