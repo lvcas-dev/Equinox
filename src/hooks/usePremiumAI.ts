@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// 1. Interface atualizada para receber a nova seção de Burocracia
+// 1. Interface atualizada
 interface DossierIA {
   vibe_local: string;
   hotspot: { nome: string; descricao: string };
@@ -18,6 +18,11 @@ interface DossierIA {
     saude_vacinas: string;
     alerta_legal: string;
     setup_logistico: string;
+  };
+  evento_sazonal: {
+    nome: string;
+    vibe: string;
+    icone: string;
   };
 }
 
@@ -39,6 +44,10 @@ export function usePremiumAI() {
       if (!apiKey) throw new Error("Chave de API não encontrada.");
 
       const MODELO_IA = "gemini-2.5-flash";
+
+      // Captura o mês exato em que o usuário está fazendo a pesquisa
+      const dataAtual = new Date();
+      const mesAtual = dataAtual.toLocaleString('pt-BR', { month: 'long' });
 
       const regrasPerfil = {
         mochilao: {
@@ -63,7 +72,6 @@ export function usePremiumAI() {
 
       const regraAtual = regrasPerfil[perfilViagem];
 
-      // 2. Prompt modificado para forçar a perspectiva do passaporte brasileiro e extrair os 4 pilares
       const prompt = `
         Atue como ${regraAtual.persona} para o app Equinox.
         O destino EXATO é: ${cidade} (País: ${pais}).
@@ -84,7 +92,7 @@ export function usePremiumAI() {
            - saude_vacinas: Vacinas OBRIGATÓRIAS para brasileiros (ex: Febre Amarela) ou principal risco sanitário.
            - alerta_legal: Lei local restrita ou choque cultural/comportamental onde estrangeiros levam multas/prisão sem saber.
            - setup_logistico: Padrão de tomada/voltagem e uso de cartão de crédito vs dinheiro em espécie.
-        
+        8. NA CIDADE AGORA: O mês da viagem é ${mesAtual.toUpperCase()}. PROIBIDO usar descrições climáticas genéricas (ex: "Primavera é linda", "Clima ameno", "Dias longos"). OBRIGATÓRIO: Cite um FATO CONCRETO e tático. Qual Feriado Nacional, Festival Cultural específico, temporada de liquidações comerciais (ex: Black Friday local), evento esportivo importante ou fenômeno gastronômico exato ocorre anualmente neste mês? Retorne o nome do evento e a justificativa real do porquê ele altera o pulso da cidade.        
         RETORNE APENAS UM JSON VÁLIDO. Formato obrigatório:
         {
           "vibe_local": "Frase de impacto curta.",
@@ -110,6 +118,11 @@ export function usePremiumAI() {
             "saude_vacinas": "CIVP obrigatório para Febre Amarela.",
             "alerta_legal": "Proibido beber álcool na rua sob pena de multa severa.",
             "setup_logistico": "Tomada Tipo C (220v). País majoritariamente cashless."
+          },
+          "evento_sazonal": {
+            "nome": "Festa da Cerveja de Outono",
+            "vibe": "A cidade respira os festivais folclóricos com muita cerveja e ruas cheias de moradores com roupas típicas.",
+            "icone": "🍻"
           }
         }
       `;

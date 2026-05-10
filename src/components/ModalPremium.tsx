@@ -196,6 +196,38 @@ export default function ModalPremium({
 
                   <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-5"></div>
+
+                  <div className="shrink-0 animate-in fade-in duration-500 delay-150">
+                    <h4 className="text-purple-400 text-[10px] font-bold uppercase tracking-wider mb-3">O Segredo Premium</h4>
+                    <div className="space-y-2">
+                      {dossieAtual.segredo_premium?.map((dica: string, idx: number) => (
+                        <p key={idx} className="text-slate-200 text-[13px] leading-relaxed bg-white/5 p-3 rounded-xl border border-white/5 shadow-sm">{dica}</p>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="shrink-0 animate-in fade-in duration-500 delay-200">
+                    <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Dress Code Local</h4>
+                    <div className="flex flex-col gap-2">
+                      {dossieAtual.vestuario_sugerido?.map((roupa: string, idx: number) => (
+                        <div key={idx} className="text-slate-300 text-[13px] flex items-center gap-3 bg-white/5 px-4 py-3 rounded-xl border border-white/5 shadow-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></div>
+                          <span className="leading-snug">{roupa}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="shrink-0 animate-in fade-in duration-500 delay-300">
+                    <h4 className="text-emerald-400 text-[10px] font-bold uppercase tracking-wider mb-3">Na Mala (Indispensável)</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {dossieAtual.itens_indispensaveis?.map((item: string, i: number) => (
+                        <span key={i} className="bg-black/40 border border-white/10 text-slate-300 text-[11px] px-4 py-1.5 rounded-full shadow-sm">{item}</span>
+                      ))}
+                    </div>
+                  </div>
+
                   <button onClick={resetarIA} className="w-full mt-4 py-3 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 text-[10px] font-bold uppercase tracking-widest rounded-2xl transition-all">Ocultar Guia Inteligente</button>
                 </div>
               )}
@@ -240,6 +272,27 @@ export default function ModalPremium({
               </div>
             )}
           </div>
+
+          {/* RADAR DE EVENTOS (NA CIDADE AGORA) */}
+          {estadoRoteiroIA === 'pronto' && dossieAtual?.evento_sazonal && (
+            <div className="bg-gradient-to-r from-blue-900/10 to-transparent border border-blue-500/20 rounded-[2rem] p-6 md:p-8 mb-6 shadow-inner animate-in fade-in slide-in-from-right-4 duration-500 delay-100">
+              <div className="flex items-center justify-between mb-5">
+                <h4 className="text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                  Na Cidade Agora
+                </h4>
+              </div>
+              <div className="flex items-start gap-4 md:gap-5">
+                <div className="text-4xl md:text-5xl drop-shadow-lg shrink-0 transform hover:scale-110 transition-transform cursor-default">
+                  {dossieAtual.evento_sazonal.icone}
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-base uppercase tracking-tight mb-1">{dossieAtual.evento_sazonal.nome}</h3>
+                  <p className="text-slate-300 text-[13px] leading-relaxed italic">"{dossieAtual.evento_sazonal.vibe}"</p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* MONITOR DE BUROCRACIA (NOVO) */}
           {estadoRoteiroIA === 'pronto' && dossieAtual?.burocracia && (
