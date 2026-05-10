@@ -40,6 +40,17 @@ interface ModalPremiumProps {
     veredito: string;
   } | null;
 }
+const handleFecharModal = () => {
+    resetarIA();
+    fecharModal();
+  };
+
+  // NOVO: Dicionário para forçar a busca do Pinterest em inglês e evitar memes
+  const mapMesIngles: Record<string, string> = {
+    'Jan': 'January', 'Fev': 'February', 'Mar': 'March', 'Abr': 'April',
+    'Mai': 'May', 'Jun': 'June', 'Jul': 'July', 'Ago': 'August',
+    'Set': 'September', 'Out': 'October', 'Nov': 'November', 'Dez': 'December'
+  };
 
 export default function ModalPremium({
   cidadeSelecionada, curadoriaAtual, fecharModal, t,
@@ -57,7 +68,11 @@ export default function ModalPremium({
     setPerfilViagem,
     dossieAtual,
     gerarDossiePremium,
-    resetarIA
+    resetarIA,
+    estadoVibe,          // <-- NOVO
+    vibeFotografica,     // <-- NOVO
+    gerarVibeHistoricaIA,// <-- NOVO
+    resetarVibe          // <-- NOVO
   } = usePremiumAI();
 
   if (!cidadeSelecionada || !curadoriaAtual) return null;
@@ -357,8 +372,15 @@ export default function ModalPremium({
                           <button type="button" key={mes} onClick={() => trocarMes(mes)} className={`py-3 text-[10px] font-bold rounded-xl border transition-all ${mesSelecionado === mes ? 'bg-amber-500/20 border-amber-500/50 text-amber-400' : 'bg-black/30 border-white/10 text-slate-400 hover:border-white/30 hover:text-white'}`}>{mes}</button>
                         ))}
                       </div>
-                      <button onClick={acionarMaquinaTempo} className="w-full bg-amber-600 hover:bg-amber-500 text-white font-black text-[10px] py-4 rounded-xl uppercase tracking-widest transition-all shadow-md">{t.analisarMes}</button>
-                    </>
+                      <button 
+                        onClick={() => {
+                          acionarMaquinaTempo();
+                          gerarVibeHistoricaIA(cidadeSelecionada.cidade, mesSelecionado);
+                        }} 
+                        className="w-full bg-amber-600 hover:bg-amber-500 text-white font-black text-[10px] py-4 rounded-xl uppercase tracking-widest transition-all shadow-md"
+                      >
+                        {t.analisarMes}
+                      </button>                    </>
                   )}
                   {estadoMaquinaTempo === 'pronto' && dossieHistorico && (
                     <div className="animate-in fade-in">
@@ -367,9 +389,52 @@ export default function ModalPremium({
                           <div><span className="text-[8px] text-slate-500 uppercase font-black tracking-widest block mb-1">Temp Média</span><span className="text-3xl text-white font-light">{dossieHistorico.temp}°</span></div>
                           <div className="text-right"><span className="text-[8px] text-slate-500 uppercase font-black tracking-widest block mb-1">Chuva</span><span className={`text-xl font-black px-2 py-0.5 rounded-lg ${dossieHistorico.chuva > 50 ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-blue-400'}`}>{dossieHistorico.chuva}%</span></div>
                         </div>
-                        <p className="text-slate-300 text-[11px] leading-relaxed italic">{dossieHistorico.veredito}</p>
+                        <p className="text-slate-400 text-[11px] leading-relaxed italic">{dossieHistorico.veredito}</p>
+                        
+                        {estadoVibe === 'carregando' && (
+                          <div className="mt-4 pt-4 border-t border-white/5 text-center">
+                            <span className="text-amber-500/50 italic text-[10px] animate-pulse">Revelando fotografias da época...</span>
+                          </div>
+                        )}
+                        {estadoVibe === 'pronto' && vibeFotografica && (
+                          <div className="mt-4 pt-4 border-t border-amber-500/10 relative flex flex-col items-center">
+                            <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0b1120] px-3 text-[8px] text-amber-500/70 uppercase tracking-widest font-black rounded-full border border-amber-500/10">Cinematografia</span>
+                            <p className="text-amber-100/90 text-[13px] leading-relaxed italic text-center pt-3 mb-4">"{vibeFotografica}"</p>
+                            
+                            <a 
+                              href={`https://br.pinterest.com/search/pins/?q=${encodeURIComponent(cidadeSelecionada.cidade + ' ' + (mapMesIngles[mesSelecionado] || mesSelecionado) + ' aesthetic photography')}`}
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 rounded-full text-[9px] text-amber-400 hover:text-amber-300 uppercase font-black tracking-widest transition-colors shadow-sm"
+                            >
+                              <span>📸</span> Moodboard Visual
+                            </a>
+                          </div>
+                        )}
                       </div>
-                      <button onClick={() => setEstadoMaquinaTempo('setup')} className="text-slate-400 hover:text-white text-[10px] font-bold uppercase tracking-widest w-full py-3.5 rounded-xl border border-white/5 hover:bg-white/5 transition-colors">{t.voltarHoje}</button>
+                      
+                      {/* NOVO: UX Resolvida com dupla opção de navegação */}
+                      <div className="flex gap-2 w-full">
+                        <button 
+                          onClick={() => {
+                            setEstadoMaquinaTempo('setup');
+                            resetarVibe();
+                          }} 
+                          className="flex-1 text-slate-400 hover:text-white text-[9px] font-bold uppercase tracking-widest py-3.5 rounded-xl border border-white/5 hover:bg-white/5 transition-colors"
+                        >
+                          Escolher Outro Mês
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setEstadoMaquinaTempo('fechado');
+                            resetarVibe();
+                          }} 
+                          className="flex-1 text-slate-400 hover:text-white text-[9px] font-bold uppercase tracking-widest py-3.5 rounded-xl border border-white/5 hover:bg-white/5 transition-colors"
+                        >
+                          Fechar Histórico
+                        </button>
+                      </div>
+
                     </div>
                   )}
                </div>

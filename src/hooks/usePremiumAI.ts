@@ -163,10 +163,62 @@ export function usePremiumAI() {
       setEstadoRoteiroIA('erro'); 
     }
   };
+// ... (código existente da função gerarDossiePremium)
 
   const resetarIA = () => {
     setEstadoRoteiroIA('fechado');
     setDossieAtual(null);
+  };
+
+  // ==========================================
+  // NOVA FEATURE: VIBE FOTOGRÁFICA (TIME MACHINE)
+  // ==========================================
+  const [estadoVibe, setEstadoVibe] = useState<'ocioso' | 'carregando' | 'pronto' | 'erro'>('ocioso');
+  const [vibeFotografica, setVibeFotografica] = useState<string | null>(null);
+
+  const gerarVibeHistoricaIA = async (cidade: string, mes: string) => {
+    if (!cidade || !mes) return;
+
+    setEstadoVibe('carregando');
+    
+    try {
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      if (!apiKey) throw new Error("Chave de API não encontrada.");
+
+      const prompt = `
+        Destino: ${cidade}. Mês: ${mes}.
+        Atue como um diretor de fotografia cinematográfica. 
+        Em uma ÚNICA FRASE ELEGANTE (máximo de 25 palavras), descreva a estética visual e a atmosfera da cidade especificamente neste mês. 
+        Foco na cor predominante do ambiente, luz natural (ex: sol dourado, neblina, dias cinzas) e elementos visuais da estação (folhas secas, neve, flores, asfalto quente).
+        Gere desejo visual e imersão.
+        NÃO use aspas, NÃO dê explicações, retorne apenas a frase poética.
+      `;
+
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.9 } // Temperatura um pouco mais alta para maior criatividade poética
+        })
+      });
+
+      if (!response.ok) throw new Error("Erro na API");
+
+      const data = await response.json();
+      const respostaTexto = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+      setVibeFotografica(respostaTexto.trim());
+      setEstadoVibe('pronto');
+    } catch (error) {
+      console.error("Erro ao gerar Vibe Fotográfica:", error);
+      setEstadoVibe('erro');
+    }
+  };
+
+  const resetarVibe = () => {
+    setEstadoVibe('ocioso');
+    setVibeFotografica(null);
   };
 
   return {
@@ -176,6 +228,11 @@ export function usePremiumAI() {
     setPerfilViagem,
     dossieAtual,
     gerarDossiePremium,
-    resetarIA
+    resetarIA,
+    // Exportando os novos métodos e estados
+    estadoVibe,
+    vibeFotografica,
+    gerarVibeHistoricaIA,
+    resetarVibe
   };
 }
