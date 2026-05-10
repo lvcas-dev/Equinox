@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// 1. Interface atualizada para receber a nova aba de Custos
+// 1. Interface atualizada para receber a nova seção de Burocracia
 interface DossierIA {
   vibe_local: string;
   hotspot: { nome: string; descricao: string };
@@ -12,6 +12,12 @@ interface DossierIA {
     cafe: string;
     refeicao: string;
     transporte: string;
+  };
+  burocracia: {
+    visto_fronteira: string;
+    saude_vacinas: string;
+    alerta_legal: string;
+    setup_logistico: string;
   };
 }
 
@@ -57,11 +63,12 @@ export function usePremiumAI() {
 
       const regraAtual = regrasPerfil[perfilViagem];
 
-      // 2. Prompt modificado para exigir os dados financeiros
+      // 2. Prompt modificado para forçar a perspectiva do passaporte brasileiro e extrair os 4 pilares
       const prompt = `
         Atue como ${regraAtual.persona} para o app Equinox.
         O destino EXATO é: ${cidade} (País: ${pais}).
         REGRA GEOGRÁFICA DE OURO: É estritamente proibido sugerir locais que não existam nesta exata cidade.
+        PERFIL DO VIAJANTE (IMPORTANTE): Turista com PASSAPORTE BRASILEIRO.
 
         DIRETRIZES DE TOM E PERFIL (ESTILO: ${perfilViagem.toUpperCase()}):
         Seja ${regraAtual.tom}. O usuário não quer ler muito, quer inteligência acionável e rápida.
@@ -71,7 +78,12 @@ export function usePremiumAI() {
         3. SEGREDO PREMIUM (HACKS): Focados em: ${regraAtual.foco_hacks}. Máximo de 2 frases curtas por tópico.
         4. VESTUÁRIO: Baseado na temperatura de ${temperatura}°C e no perfil ${perfilViagem.toUpperCase()}. Cite a peça e o motivo em, no máximo, 15 palavras por item.
         5. NA MALA: Cite o item e o motivo tático em, no máximo, 15 palavras por item.
-        6. RADAR DE CUSTO: Estime em Dólares Americanos (USD) o preço médio para este perfil de viajante: um café, uma refeição típica, e um ticket de transporte (ou Uber curto). Classifique o custo geral da cidade como 'Baixo', 'Moderado' ou 'Alto'.
+        6. RADAR DE CUSTO: Estime na MOEDA LOCAL EXATA DO DESTINO (usando o símbolo oficial, ex: €, ¥, R$) o preço médio para este perfil de viajante: um café, uma refeição típica, e um ticket de transporte (ou Uber curto). Classifique o custo geral da cidade como 'Baixo', 'Moderado' ou 'Alto'.
+        7. MONITOR DE BUROCRACIA (Foco em Brasileiros): Forneça informações táticas e diretas (máximo 15 palavras cada):
+           - visto_fronteira: Exige visto prévio para BR? É isento? Validade mínima exigida no passaporte.
+           - saude_vacinas: Vacinas OBRIGATÓRIAS para brasileiros (ex: Febre Amarela) ou principal risco sanitário.
+           - alerta_legal: Lei local restrita ou choque cultural/comportamental onde estrangeiros levam multas/prisão sem saber.
+           - setup_logistico: Padrão de tomada/voltagem e uso de cartão de crédito vs dinheiro em espécie.
         
         RETORNE APENAS UM JSON VÁLIDO. Formato obrigatório:
         {
@@ -89,9 +101,15 @@ export function usePremiumAI() {
           "itens_indispensaveis": ["Item 1: Motivo em 15 palavras", "Item 2: Motivo", "Item 3: Motivo"],
           "custos": {
             "nivel": "Moderado",
-            "cafe": "$3.50",
-            "refeicao": "$18.00",
-            "transporte": "$2.50"
+            "cafe": "€3.50",
+            "refeicao": "€18.00",
+            "transporte": "€2.50"
+          },
+          "burocracia": {
+            "visto_fronteira": "Isento por 90 dias. Passaporte deve ter 6 meses de validade.",
+            "saude_vacinas": "CIVP obrigatório para Febre Amarela.",
+            "alerta_legal": "Proibido beber álcool na rua sob pena de multa severa.",
+            "setup_logistico": "Tomada Tipo C (220v). País majoritariamente cashless."
           }
         }
       `;
