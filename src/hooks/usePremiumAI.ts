@@ -31,6 +31,7 @@ type PerfilViagem = 'mochilao' | 'equilibrado' | 'luxo';
 
 export function usePremiumAI() {
   const [estadoRoteiroIA, setEstadoRoteiroIA] = useState<EstadoIA>('fechado');
+  const [erroMensagem, setErroMensagem] = useState<string | null>(null); // NOVO
   const [perfilViagem, setPerfilViagem] = useState<PerfilViagem>('equilibrado');
   const [dossieAtual, setDossieAtual] = useState<DossierIA | null>(null);
 
@@ -38,6 +39,7 @@ export function usePremiumAI() {
     if (!cidade) return;
 
     setEstadoRoteiroIA('carregando');
+    setErroMensagem(null);
 
     try {
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
@@ -86,12 +88,12 @@ export function usePremiumAI() {
         3. SEGREDO PREMIUM (HACKS): Focados em: ${regraAtual.foco_hacks}. Máximo de 2 frases curtas por tópico.
         4. VESTUÁRIO: Baseado na temperatura de ${temperatura}°C e no perfil ${perfilViagem.toUpperCase()}. Cite a peça e o motivo em, no máximo, 15 palavras por item.
         5. NA MALA: Cite o item e o motivo tático em, no máximo, 15 palavras por item.
-        6. RADAR DE CUSTO: Estime na MOEDA LOCAL EXATA DO DESTINO (usando o símbolo oficial, ex: €, ¥, R$) o preço médio para este perfil de viajante: um café, uma refeição típica, e um ticket de transporte (ou Uber curto). Classifique o custo geral da cidade como 'Baixo', 'Moderado' ou 'Alto'.
+        6. RADAR DE CUSTO: Estime na MOEDA LOCAL EXATA DO DESTINO (usando o símbolo oficial, ex: €, ¥, R$) o preço médio para este perfil de viajante: um café, uma refeição típica, e UM BILHETE ÚNICO DE TRANSPORTE PÚBLICO (Metrô/Ônibus). Classifique o custo geral da cidade como 'Baixo', 'Moderado' ou 'Alto'.
         7. MONITOR DE BUROCRACIA (Foco em Brasileiros): Forneça informações táticas e diretas (máximo 15 palavras cada):
-           - visto_fronteira: Exige visto prévio para BR? É isento? Validade mínima exigida no passaporte.
-           - saude_vacinas: Vacinas OBRIGATÓRIAS para brasileiros (ex: Febre Amarela) ou principal risco sanitário.
-           - alerta_legal: Lei local restrita ou choque cultural/comportamental onde estrangeiros levam multas/prisão sem saber.
-           - setup_logistico: Padrão de tomada/voltagem e uso de cartão de crédito vs dinheiro em espécie.
+          - visto_fronteira: Exige visto prévio para BR? É isento? Validade mínima exigida no passaporte.
+          - saude_vacinas: Vacinas OBRIGATÓRIAS para brasileiros (ex: Febre Amarela) ou principal risco sanitário.
+          - alerta_legal: Lei local restrita ou choque cultural/comportamental onde estrangeiros levam multas/prisão sem saber.
+          - setup_logistico: Padrão de tomada/voltagem e uso de cartão de crédito vs dinheiro em espécie.
         8. NA CIDADE AGORA: O mês da viagem é ${mesAtual.toUpperCase()}. PROIBIDO usar descrições climáticas genéricas (ex: "Primavera é linda", "Clima ameno", "Dias longos"). OBRIGATÓRIO: Cite um FATO CONCRETO e tático. Qual Feriado Nacional, Festival Cultural específico, temporada de liquidações comerciais (ex: Black Friday local), evento esportivo importante ou fenômeno gastronômico exato ocorre anualmente neste mês? Retorne o nome do evento e a justificativa real do porquê ele altera o pulso da cidade.        
         RETORNE APENAS UM JSON VÁLIDO. Formato obrigatório:
         {
@@ -160,6 +162,7 @@ export function usePremiumAI() {
 
     } catch (error: any) {
       console.error("❌ Erro interno do motor:", error);
+      setErroMensagem(error.message || "A inteligência artificial encontrou uma anomalia na rede."); // NOVO
       setEstadoRoteiroIA('erro'); 
     }
   };
@@ -229,6 +232,7 @@ export function usePremiumAI() {
     dossieAtual,
     gerarDossiePremium,
     resetarIA,
+    erroMensagem,
     // Exportando os novos métodos e estados
     estadoVibe,
     vibeFotografica,

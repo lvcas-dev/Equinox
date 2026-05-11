@@ -40,10 +40,7 @@ interface ModalPremiumProps {
     veredito: string;
   } | null;
 }
-const handleFecharModal = () => {
-    resetarIA();
-    fecharModal();
-  };
+
 
   // NOVO: Dicionário para forçar a busca do Pinterest em inglês e evitar memes
   const mapMesIngles: Record<string, string> = {
@@ -69,11 +66,17 @@ export default function ModalPremium({
     dossieAtual,
     gerarDossiePremium,
     resetarIA,
+    erroMensagem,
     estadoVibe,          // <-- NOVO
     vibeFotografica,     // <-- NOVO
     gerarVibeHistoricaIA,// <-- NOVO
     resetarVibe          // <-- NOVO
   } = usePremiumAI();
+
+  const handleFecharModal = () => {
+    resetarIA();
+    fecharModal();
+  };
 
   if (!cidadeSelecionada || !curadoriaAtual) return null;
 
@@ -85,39 +88,26 @@ export default function ModalPremium({
     );
   };
 
-  const handleFecharModal = () => {
-    resetarIA();
-    fecharModal();
-  };
-
   return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-3 md:p-8 animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-3 md:p-8">
       
-      <div className="absolute inset-0 z-0 bg-black/10 backdrop-blur-sm" onClick={handleFecharModal} />
+      {/* Fundo sem blur, com dimming leve */}
+      <div className="absolute inset-0 z-0 bg-black/30 transition-opacity duration-500" onClick={handleFecharModal} />
 
-            {/* CONTROLES GLOBAIS */}
-            {/* Botão Fechar (Desktop e Mobile - Canto Superior Direito) */}
-            <div className="absolute top-4 right-4 md:top-6 md:right-6 z-[6000] pointer-events-none">
-              <button 
-                onClick={handleFecharModal}
-                className="pointer-events-auto w-10 h-10 md:w-12 md:h-12 bg-[#0f172a]/60 backdrop-blur-xl border border-white/10 hover:border-white/30 rounded-full flex items-center justify-center shadow-2xl text-slate-400 hover:text-white transition-all group hover:bg-white/10"
-              >
-                <span className="text-lg md:text-xl font-light leading-none group-hover:scale-110 transition-transform">✕</span> 
-              </button>
-            </div>
+      {/* CONTROLES GLOBAIS (Botão Fechar e Abas Mobile) FICAM AQUI - Não altere esta parte */}
+      <div className="absolute top-4 right-4 md:top-6 md:right-6 z-[6000] pointer-events-none">
+        <button onClick={handleFecharModal} className="pointer-events-auto w-10 h-10 md:w-12 md:h-12 bg-[#0f172a]/60 backdrop-blur-xl border border-white/10 hover:border-white/30 rounded-full flex items-center justify-center shadow-2xl text-slate-400 hover:text-white transition-all group hover:bg-white/10">
+          <span className="text-lg md:text-xl font-light leading-none group-hover:scale-110 transition-transform">✕</span> 
+        </button>
+      </div>
 
-            {/* Seletor de Abas (Apenas Mobile - Centralizado) */}
-            <div className="pointer-events-auto md:hidden inline-flex bg-black/60 backdrop-blur-md rounded-full p-1 border border-white/10 shadow-xl fixed top-4 left-1/2 -translate-x-1/2 z-[6000]">
-                <button type="button" onClick={() => setAbaMobileAtiva('panorama')} className={`px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400'}`}>
-                  {t.panorama}
-                </button>
-                <button type="button" onClick={() => setAbaMobileAtiva('premium')} className={`px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'premium' ? 'bg-purple-600 text-white shadow-md' : 'text-slate-400'}`}>
-                  {t.premium}
-                </button>
-            </div>
+      <div className="pointer-events-auto md:hidden inline-flex bg-black/60 backdrop-blur-md rounded-full p-1 border border-white/10 shadow-xl fixed top-4 left-1/2 -translate-x-1/2 z-[6000]">
+          <button type="button" onClick={() => setAbaMobileAtiva('panorama')} className={`px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'panorama' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400'}`}>{t.panorama}</button>
+          <button type="button" onClick={() => setAbaMobileAtiva('premium')} className={`px-5 py-2.5 rounded-full text-[9px] font-black uppercase tracking-widest transition-all ${abaMobileAtiva === 'premium' ? 'bg-purple-600 text-white shadow-md' : 'text-slate-400'}`}>{t.premium}</button>
+      </div>
 
-      <div className="w-full max-w-7xl h-full max-h-[96vh] md:max-h-[90vh] flex flex-col lg:flex-row gap-6 md:gap-8 pt-20 md:pt-0 relative z-10 pointer-events-none">
-        
+      {/* Painel Principal com animação Bottom Sheet */}
+      <div className="w-full max-w-7xl h-full max-h-[96vh] md:max-h-[90vh] flex flex-col lg:flex-row gap-6 md:gap-8 pt-20 md:pt-0 relative z-10 pointer-events-none animate-in slide-in-from-bottom-12 fade-in duration-700 ease-out"> 
         {/* COLUNA ESQUERDA: PANORAMA */}
         <div className={`pointer-events-auto ${abaMobileAtiva === 'panorama' ? 'flex' : 'hidden'} md:flex flex-1 bg-[#0f172a]/90 border border-white/10 rounded-[2.5rem] p-6 md:p-10 flex-col overflow-y-auto no-scrollbar shadow-2xl relative overflow-hidden transform transition-all duration-500 ease-out origin-bottom`}>
             
@@ -167,6 +157,20 @@ export default function ModalPremium({
                 </div>
               )}
 
+              {/* UI DE ERRO NATIVA */}
+              {estadoRoteiroIA === 'erro' && (
+                <div className="bg-red-950/20 border border-red-500/30 rounded-3xl p-6 shadow-inner animate-in zoom-in-95 duration-300">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-red-500 text-xl">⚠️</span>
+                    <h4 className="text-red-400 text-[11px] font-black uppercase tracking-widest">Anomalia de Conexão</h4>
+                  </div>
+                  <p className="text-red-200/70 text-sm leading-relaxed mb-5">{erroMensagem}</p>
+                  <button onClick={resetarIA} className="w-full py-3.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-300 font-bold text-[10px] uppercase tracking-widest rounded-xl transition-colors">
+                    Reiniciar Módulo
+                  </button>
+                </div>
+              )}
+
               {estadoRoteiroIA === 'pronto' && dossieAtual && (
                 <div className="bg-white/[0.02] border border-purple-500/20 rounded-3xl p-6 shadow-inner space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-700">
                   <div>
@@ -201,8 +205,8 @@ export default function ModalPremium({
                           <span className="text-[11px] font-mono text-white font-bold">{dossieAtual.custos.refeicao}</span>
                         </div>
                         <div className="bg-black/30 border border-white/5 rounded-xl p-3 flex flex-col items-center justify-center text-center shadow-inner hover:bg-white/5 transition-colors">
-                          <span className="text-lg mb-1">🚕</span>
-                          <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Trajeto</span>
+                          <span className="text-lg mb-1">🚇</span>
+                          <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest mb-1">Ticket</span>
                           <span className="text-[11px] font-mono text-white font-bold">{dossieAtual.custos.transporte}</span>
                         </div>
                       </div>
